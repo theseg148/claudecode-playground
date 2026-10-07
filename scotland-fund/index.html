@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scotland Fund</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --text:#1b2030; --muted:#6b7285; --accent:#1f5fbf; --ok:#1a9a5b; --line:#e3e6ef; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12151d; --card:#1b1f2b; --text:#eef0f6; --muted:#9097ab; --accent:#6aa3ff; --ok:#3ecf8e; --line:#2a2f3e; }
+  }
+  * { box-sizing:border-box }
+  body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--text); }
+  main { max-width:640px; margin:0 auto; padding:20px 16px 48px; }
+  h1 { font-size:1.5rem; margin:0 0 4px }
+  .sub { color:var(--muted); margin:0 0 20px }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:16px }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px }
+  label { display:block; font-size:.8rem; color:var(--muted); margin-bottom:2px }
+  input { width:100%; padding:9px 10px; font:inherit; color:var(--text); background:var(--bg); border:1px solid var(--line); border-radius:8px }
+  .big { font-size:2rem; font-weight:700 }
+  .bar { height:14px; background:var(--line); border-radius:99px; overflow:hidden; margin:10px 0 6px }
+  .bar > div { height:100%; background:var(--accent); transition:width .3s }
+  .bar.done > div { background:var(--ok) }
+  .muted { color:var(--muted); font-size:.9rem }
+  .ok { color:var(--ok); font-weight:600 }
+  table { width:100%; border-collapse:collapse; font-size:.92rem }
+  th, td { text-align:left; padding:7px 4px; border-bottom:1px solid var(--line) }
+  th { color:var(--muted); font-weight:500; font-size:.8rem }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums }
+  tr.hit td { color:var(--ok); font-weight:600 }
+  tr.trip td { background:color-mix(in srgb, var(--accent) 12%, transparent) }
+</style>
+</head>
+<body>
+<main>
+  <h1>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland Fund</h1>
+  <p class="sub">Amounts in KWD</p>
+
+  <div class="card">
+    <div class="grid">
+      <div><label>Saved now</label><input id="saved" type="number" step="any" value="600"></div>
+      <div><label>Goal</label><input id="goal" type="number" step="any" value="1000"></div>
+      <div><label>Income on the 20th</label><input id="inc1" type="number" step="any" value="185"></div>
+      <div><label>Income on the 27th</label><input id="inc2" type="number" step="any" value="200"></div>
+      <div><label>Planned spending per month</label><input id="spend" type="number" step="any" value="0"></div>
+      <div><label>Trip month</label><input id="trip" type="month" value="2027-01"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="muted">Progress</div>
+    <div class="big" id="pct"></div>
+    <div class="bar" id="bar"><div></div></div>
+    <div class="muted" id="left"></div>
+  </div>
+
+  <div class="card">
+    <div id="verdict"></div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead><tr><th>Date</th><th>Event</th><th class="n">Balance</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const ids = ['saved','goal','inc1','inc2','spend','trip'];
+const KEY = 'scotland-fund-v1';
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) ids.forEach(i => s[i] != null && ($(i).value = s[i])); } catch {}
+
+const fmt = n => n.toLocaleString('en', { minimumFractionDigits:3, maximumFractionDigits:3 }) + ' KWD';
+const dstr = d => d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+
+function render() {
+  try { localStorage.setItem(KEY, JSON.stringify(Object.fromEntries(ids.map(i => [i, $(i).value])))); } catch {}
+  const v = i => parseFloat($(i).value) || 0;
+  const goal = v('goal'), inc = [[20, v('inc1')], [27, v('inc2')]], spend = v('spend');
+  let bal = v('saved');
+
+  const [ty, tm] = ($('trip').value || '2027-01').split('-').map(Number);
+  const tripStart = new Date(ty, tm - 1, 1);
+
+  const pct = goal > 0 ? Math.min(100, bal / goal * 100) : 100;
+  $('pct').textContent = pct.toFixed(0) + '%';
+  $('bar').firstElementChild.style.width = pct + '%';
+  $('bar').classList.toggle('done', bal >= goal);
+  $('left').textContent = bal >= goal ? 'Goal already reached 🎉' : `${fmt(goal - bal)} to go (${fmt(bal)} of ${fmt(goal)})`;
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const rows = []; let hitDate = null;
+  if (bal >= goal) hitDate = today;
+  for (let y = today.getFullYear(), m = today.getMonth(); new Date(y, m, 1) < tripStart; m++) {
+    if (m > 11) { m = 0; y++; }
+    const events = inc.map(([day, amt]) => ({ d: new Date(y, m, day), label: `Income (${day}th)`, amt }));
+    events.push({ d: new Date(y, m + 1, 0), label: 'Monthly spending', amt: -spend });
+    for (const e of events) {
+      if (e.d < today || e.d >= tripStart || (e.amt === 0)) continue;
+      bal += e.amt;
+      const hit = !hitDate && bal >= goal;
+      if (hit) hitDate = e.d;
+      rows.push(`<tr class="${hit ? 'hit' : ''}"><td>${dstr(e.d)}</td><td>${e.label}${e.amt > 0 ? ' +' + e.amt : ' ' + e.amt}${hit ? ' ← goal reached' : ''}</td><td class="n">${fmt(bal)}</td></tr>`);
+    }
+  }
+  rows.push(`<tr class="trip"><td>${dstr(tripStart)}</td><td>✈️ Trip starts</td><td class="n">${fmt(bal)}</td></tr>`);
+  $('rows').innerHTML = rows.join('');
+
+  const diff = bal - goal;
+  $('verdict').innerHTML = diff >= 0
+    ? `<span class="ok">You'll have ${fmt(bal)} by the trip — ${fmt(diff)} above your goal.</span><br><span class="muted">${hitDate && hitDate > today ? 'You hit the goal on ' + dstr(hitDate) + '.' : ''} The extra ${fmt(diff)} is safe to spend on the trip or elsewhere.</span>`
+    : `<b>Short by ${fmt(-diff)}</b> at the trip date. Raise income, cut spending, or move the goal.`;
+}
+ids.forEach(i => $(i).addEventListener('input', render));
+render();
+</script>
+</body>
+</html>
