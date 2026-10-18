@@ -58,14 +58,24 @@
 - [ ] Prototype: full vertical slice combining milestones+ride+offline+tree (prototypes/decade_slice.html), with a pacing telemetry overlay
 - [ ] Verify Kabuto/other Rider world details by WebSearch (names of Zecters etc.)
 - [ ] Re-run verification where web access allows; review [M]/[E] tags
-- [ ] Charts embedded in sim/results.md (png references)
+- [x] Charts embedded in sim/results.md (png references)
 
 ## Round 2 backlog (after REVIEW_1 applied)
 - [x] REVIEW_1 applied -> DESIGN_RULES v2, DECADE v2, SUMMARY v2
-- [ ] research/retention_monetization.md, ui_and_numbers.md, events_and_choices.md (agents running)
-- [ ] Prototype v2: decade_slice with Kabuto Clock Up rule, mastery tree (build fork), ride preview panel, reset table, Cast Off at 40
-- [ ] Sim v3: tree decisions/builds (>=2 viable builds each reach gate within +-15%), Photo Op active layer budget, upgrade-tree goals raising goal density
+- [x] research/retention_monetization.md, ui_and_numbers.md, events_and_choices.md
+- [x] Prototype v2: decade_slice with Kabuto Clock Up rule, mastery tree (build fork), ride preview panel, reset table, Cast Off at 40
+- [x] Sim v3: tree decisions/builds (>=2 viable builds each reach gate within +-15%), Photo Op active layer budget, upgrade-tree goals raising goal density
 - [ ] Sim: sensitivity to T0, bonus/pt, sessions/day (1,2,3,6), offline cap -> world length table
-- [ ] REVIEW_2 (second adversarial pass) after next edits
-- [ ] Per-world gate tables for worlds 3-9, mid-world beats list for worlds 4-6 (lull audit)
-- [ ] Unit tests for sim (cost formula, milestones, offline) in sim/test_sim.py
+- [x] REVIEW_2 (second adversarial pass) — applied
+- [x] Per-world gate tables for worlds 3-9, mid-world beats list for worlds 4-6 (lull audit)
+- [x] Unit tests for sim (cost formula, milestones, offline) in sim/test_sim.py
+
+## Round 3 backlog (after REVIEW_2 applied)
+- [ ] analysis/*.md refresh to v3 (agent running)
+- [ ] REVIEW_3: third adversarial pass over DESIGN_RULES/DECADE docs + analysis; check C/P/H tags against source files
+- [ ] Sim: offline auto-buy / auto-spend effect on world length (REVIEW_2 3.1); ride cooldown option (R34); 1-session/day players: world length 9 d — decide cap upgrade
+- [ ] Sim: mid-world beats supply model (album/tree/fusion) vs dry sessions
+- [ ] Prototype: Album + Form Deck (World 2/3 systems), 3-named-cost gate inside slice, Exposure bank offline
+- [ ] Gates for worlds 3-9 content tables: full fill (3 named costs each) & beat schedule per world
+- [ ] Verify Agito lore (still [M]); verify Cookie Clicker early-upgrade thresholds; Egg Inc / Realm Grinder numbers remain [S]/[M]
+- [ ] Validate sim against more real ladders (AdCap [M], Kittens [CODE], Synergism [CODE]) like cc_ladder.py
