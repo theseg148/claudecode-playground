@@ -1,0 +1,16 @@
+<!doctype html><meta charset=utf-8><title>Prestige: Rider Seals</title>
+<style>body{font:15px system-ui;background:#111;color:#eee;max-width:560px;margin:20px auto;padding:0 16px}button{padding:10px 14px;background:#2a3a55;color:#fff;border:0;border-radius:6px;margin:3px}button:disabled{opacity:.4}.card{background:#1d2433;padding:12px;border-radius:8px;margin:10px 0}</style>
+<h3>Prestige ("Rider Seal" — world reset)</h3>
+<div class=card>Energy <b id=g></b> · lifetime this run <b id=l></b> · rate <b id=p></b>/s<br>Seals <b id=s>0</b> → permanent x<b id=m>1</b></div>
+<div class=card>Gen: <b id=o>0</b> owned <button id=b onclick=buy()>Buy</button></div>
+<div class=card>Seals on reset: <b id=pend></b> (formula: floor((lifetime/1e6)^0.5)); worth it when pending ≥ 2x current seals. <button id=pr onclick=pres()>Seal & restart</button></div>
+<script>
+let gold=15,life=0,own=0,seals=0,TH=1e6;const bonus=.25;
+const cost=()=>15*1.12**own, mult=()=>1+bonus*seals, rate=()=>own*mult()*(1+Math.floor(own/25)),pend=()=>Math.floor((life/TH)**.5);
+function buy(){if(gold>=cost()){gold-=cost();own++}}
+function pres(){const n=pend();if(n<1)return;seals+=n;gold=15;life=0;own=0}
+setInterval(()=>{const d=rate()/10;gold+=d;life+=d;g.textContent=gold.toFixed(0);l.textContent=life.toExponential(2);p.textContent=rate().toFixed(1);s.textContent=seals;m.textContent=mult().toFixed(2);o.textContent=own;
+b.textContent="Buy "+cost().toFixed(0);b.disabled=gold<cost();pend_.textContent;},100);
+const pend_={};document.getElementById("pend").textContent="";
+setInterval(()=>{document.getElementById("pend").textContent=pend()+(pend()>=Math.max(1,2*seals)?" ✔ recommended":"");document.getElementById("pr").disabled=pend()<1},200);
+</script>

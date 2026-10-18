@@ -1,0 +1,11 @@
+<!doctype html><meta charset=utf-8><title>Unlock tree</title>
+<style>body{font:15px system-ui;background:#111;color:#eee;max-width:640px;margin:20px auto;padding:0 16px}.n{display:inline-block;background:#1d2433;border:2px solid #345;border-radius:8px;padding:8px;margin:5px;width:170px;vertical-align:top}.n.on{border-color:#6c6}.n.lock{opacity:.35}.n.can{border-color:#fc6;cursor:pointer}</style>
+<h3>Upgrade tree (Kabuto world) — Mastery points <b id=pt>12</b></h3><div id=t></div>
+<script>
+// 3 branches: Clock Up (speed), Zecter (multiplier), Hyper (automation). Node: [name,cost,req,effect]
+const N=[["Clock Up I",1,null,"+25% rate"],["Clock Up II",2,0,"+50% rate"],["Auto-Buy",3,1,"buys cheapest gen"],["Zecter Strike",1,null,"click x3"],["Zecter Throw",2,3,"clicks give 1s of rate"],["Hyper Zecter",4,4,"x2 all"],["Cast-Off Insight",2,null,"+1 visible tier"],["Rider Kick",3,6,"offline eff 50→75%"],["Decade Link",5,[2,5],"unlocks next world"]];
+const on=new Set();let pt=12;
+const ok=n=>N[n][2]==null||[].concat(N[n][2]).every(r=>on.has(r));
+function r(){t.innerHTML=N.map((n,i)=>`<div class="n ${on.has(i)?"on":ok(i)?(pt>=n[1]?"can":"lock"):"lock"}" onclick=buy(${i})><b>${n[0]}</b><br>${n[3]}<br>cost ${n[1]}${n[2]!=null?"<br><small>needs "+[].concat(n[2]).map(x=>N[x][0]).join(", ")+"</small>":""}</div>`).join("");document.getElementById("pt").textContent=pt}
+function buy(i){if(!on.has(i)&&ok(i)&&pt>=N[i][1]){pt-=N[i][1];on.add(i);r()}}r();
+</script>

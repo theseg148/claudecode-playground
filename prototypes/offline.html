@@ -1,0 +1,12 @@
+<!doctype html><meta charset=utf-8><title>Offline gains</title>
+<style>body{font:15px system-ui;background:#111;color:#eee;max-width:520px;margin:20px auto;padding:0 16px}button{padding:10px 14px;background:#2a3a55;color:#fff;border:0;border-radius:6px}.card{background:#1d2433;padding:12px;border-radius:8px;margin:10px 0}</style>
+<h3>Offline progress ("Time away" card)</h3>
+<div class=card>Rate: <b id=r>100</b>/s · Cap: 8h · Efficiency: 50% for first 2h, 25% beyond (rule: soft cap, never zero)</div>
+<div class=card>Gold: <b id=g>0</b></div>
+<button onclick="away(600)">Away 10 min</button> <button onclick="away(7200)">2 h</button> <button onclick="away(28800)">8 h</button> <button onclick="away(86400)">24 h</button>
+<div class=card id=out>Press a button to simulate returning.</div>
+<script>
+let gold=0;const rate=100,CAP=8*3600;
+function away(s){s=Math.min(s,CAP);const a=Math.min(s,7200)*.5+Math.max(0,s-7200)*.25,earn=a*rate;gold+=earn;g.textContent=gold.toFixed(0);
+out.innerHTML=`Welcome back! Away ${(s/3600).toFixed(1)}h → <b>+${earn.toFixed(0)}</b> (${(100*a/s).toFixed(0)}% eff.)<br><button onclick="gold+=${earn};g.textContent=gold.toFixed(0)">Claim x2 (optional ad/Decade Ride bonus)</button><br><small>Active play value: ${rate*60} per active min vs ${(a/(s/60)*rate/ rate).toFixed(2)}x that per offline min.</small>`}
+</script>
