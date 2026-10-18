@@ -1,4 +1,5 @@
 # Realm Grinder
+> Verification pass 2026-10-18 (WebSearch snippets only; pages not opened). [S] = confirmed in a search snippet with the URL given; [unverified] = not confirmed, treat as a design placeholder. See "Verification log" at the bottom.
 **Sources:** (WebFetch was blocked by DNS in this session; everything here is from recall of the wiki and forums. Realm Grinder has little officially published math, so the many numbers below are estimates.)
 - https://realm-grinder.fandom.com/wiki/Realm_Grinder_Wiki
 - https://realm-grinder.fandom.com/wiki/Factions
@@ -19,30 +20,30 @@
 - Production is modified by faction, Spells, upgrades, Research, and Mercenary ("Hire and Fire") effects.
 
 ## Cost & production growth formulas
-- Building cost follows `base * mult^owned`, and the community calls the multiplier "about 1.08 to 1.15" depending on the building. [estimate]
-- Production per building is `count * base_prod * upgrades`, and upgrades give +x% or x2 at fixed thresholds (e.g. 10, 25, 50, 100 owned). [estimate]
-- Abdication gives a bonus that scales approximately with the log of coins earned in that run, and the number of gems you hold. [estimate]
-- Reincarnation: bonus = `1 + (faction_coins / threshold)^0.? ` is not public in a precise form; players use calculators. [estimate; do not rely on]
-- Gem production: some buildings produce a small gem trickle, which is why gems are a "slow" currency. [estimate]
-- Spell timers: spell duration and cooldowns are constants in the wiki, e.g. Fairy's "Lucky Draw" and Elf's "Mana Surge". [public, specifics need verifying]
+- Building cost follows base * mult^owned. Base cost / production [S https://realm-grinder.fandom.com/wiki/Buildings]: Farm 10 / 2, Inn 125 / 6, Blacksmith 600 / 20. The 'about 1.08 to 1.15' multiplier is [unverified]; faction upgrades (Fairy, Dwarf, etc.) reduce the cost multiplier.
+- Production per building is count * base_prod * upgrades, with +x% or x2 at fixed thresholds (e.g. 10, 25, 50, 100). [unverified]
+- Abdication: gives gems; one PC Gamer guide says each gem raises gold production by 3% [S https://www.pcgamer.com/realm-grinder-guide/, single guide, treat as unconfirmed against the wiki]. Abdication resets buildings, upgrades and coins but keeps unlocked factions, gems, trophies, rubies and premium upgrades [S https://realm-grinder.fandom.com/wiki/Abdication]. The log-of-coins scaling is [unverified].
+- Reincarnation: first possible at 1 Oc (1e27) gems, and each later one needs 1,000x more gems [S https://realm-grinder.fandom.com/wiki/Reincarnation]. Ascension replaces the Reincarnation button at R39, R99, R159 and R219 [S https://realm-grinder.fandom.com/wiki/Ascension]; the Gems page gives the first Ascension threshold as 1 Spqag (1e144) gems, which is inconsistent with the other page, so treat as [unverified]. The reincarnation bonus formula remains unknown.
+- Gem production: some buildings produce a small gem trickle. [unverified]
+- Spell timers: durations and cooldowns are on the wiki, specifics not checked. [unverified]
 
 ## Prestige structure
-- Abdication: a quick reset to swap faction and re-earn the faction multiplier faster, can be done within ~10-30 minutes in mid-game. [estimate]
+- Abdication: a quick reset to swap faction, doable in ~10-30 minutes mid-game. [unverified]
 - Reincarnation: needs a high amount of coins; gives permanent boosts per faction and unlocks the extra Reincarnation upgrades.
 - Ascension / Rank: the ultimate layer, with extra multiplier tiers.
 - Each layer keeps gems, trophies and certain upgrades.
 
 ## Unlock pacing
-- Early run: first workshop in seconds; unlocking the first faction after ~10 minutes. [estimate]
-- Abdication appears after a few hours; Reincarnation after days to weeks; Ascension after months. [estimates]
+- Early run: first workshop in seconds; first faction after ~10 minutes. [unverified]
+- Abdication is always available, even with no benefit [S https://realm-grinder.fandom.com/wiki/Abdication]; Reincarnation needs 1e27 gems [S above]; the 'few hours / days to weeks / months' pacing is [unverified].
 - Late updates add Excavations, Hybrids (mixed factions), etc., extending the arc further.
 
 ## Offline progress
-- Realm Grinder awards offline coins at a fraction of the active rate (commonly said 50% or "spell time" disabled), with a cap on the length of time. [estimate]
+- Offline: no source found for a percentage or hour cap [unverified]. Players report offline production is small versus active play, Undead are built for long absences (PC Gamer), and offline output is raised by mana regeneration upgrades (player report, '62.5% per regen' unconfirmed).
 - Many players keep it running as an idle tab; mercenary and fairy spells need activation.
 
 ## Monetization effects
-- The Kongregate/mobile versions have optional IAP (gem packs, ad-skipping), and the Steam version is a one-time purchase. [estimate; verify per platform]
+- The Kongregate/mobile versions have optional IAP; the Steam version is a one-time purchase. [unverified; verify per platform]
 - Gems are mostly free-to-earn, though premium purchases speed up some tasks.
 
 ## What players love
@@ -62,3 +63,11 @@
 - Display formulas and breakdowns in-game to avoid the opacity complaint.
 - Layer prestige (soft reset and then deep reset) so players always have a near-term and a far-term goal.
 - Keep the grind to unlock new layers bounded and show progress to the next unlock.
+
+## Verification log
+
+Confirmed [S]:
+- Base cost/production of Farm, Inn, Blacksmith; Reincarnation first at 1e27 gems with 1,000x scaling; Ascension at R39/R99/R159/R219; what Abdication keeps and loses; Farms/Inns/Blacksmiths/Hall of Legends are universal buildings.
+Partly sourced: gem bonus 3% each (one guide only).
+Unconfirmed [unverified]:
+- Per-building cost multipliers, upgrade thresholds, reincarnation/abdication bonus formulas, spell timers, offline cap and rate, pacing, IAP details. A commenter says the fandom wiki is partly outdated and points to musicfamily.org, which was not checked.
