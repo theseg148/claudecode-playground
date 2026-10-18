@@ -1,9 +1,11 @@
 # Magic Research
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: this file's title game is the Steam/mobile 'Magic Research' (2023) by Maticolotto, NOT a Kongregate/Flash original (unconfirmed). 'Retirement' is the reset; the Kongregate and 'mana/elemental' details below stay [MEM-LOW]. See Verification log.
 CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com. I could not fetch any page about Magic Research (there are a Flash/browser original and a later "Magic Research 2" on Steam; I am not certain which details belong to which). All specifics below are [MEM-LOW] or [EST]. Treat as hypotheses.
-- https://store.steampowered.com/search/?term=Magic+Research (search page, not fetched)
+- https://store.steampowered.com/app/2311680/ (Steam app id 2311680 from vaporlens/steamdb search results) [S]
+- https://www.incrementaldb.com/community/interview/1 (interview with the creator, Maticolotto; seen in search results only)
 - https://www.kongregate.com/games/ (original-era host, exact URL unverified)
-- https://magicresearch.fandom.com (guess; unverified)
+- (magicresearch.fandom.com guess: not confirmed)
 
 ## Core loop
 - Wizard-themed idle: you gather mana, research spells and upgrades, and summon helpers (apprentices, golems, towers... [MEM-LOW]) that produce mana and other magical resources.
@@ -59,3 +61,16 @@ CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com. I 
 6. Provide a thorough in-game help/wiki page since small idles are criticised for poor docs.
 7. Avoid second-prestige soft walls by playtesting the transition: ensure the second layer's first purchase is affordable in about 10-15 minutes.
 8. Record uncertainty: this file is low-confidence; re-research before copying numbers.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only; no source code or wiki page reachable.
+Confirmed [S]:
+- Developer Maticolotto (Matias Ezequiel Colotto); on Steam (app 2311680; Steam release March 2023 per https://gg.deals/ca/game/magic-research/ , a Discord page says 2023-01-25, so exact date conflicts), Android and iOS (https://apkpure.net/magic-research/com.mcolotto.magicresearchfull).
+- Premise (store text): "you are the headmaster of a newly-created institution of Magic with one goal: to learn as much as possible about this power", gain fame and win the Tournament of Magic. Over 100 spells, dozens of side stories. https://videogamegeek.com/videogame/394132/magic-research , https://inviocean.com/?p=2447
+- Reset mechanic is called RETIREMENT, with retirement bonuses that speed up later runs; apprentices can be assigned to automate repeated spells; facilities/storage/land-type resource management. (inviocean / game-solver snippets)
+- Reviews ~410, ~91% positive; estimated full completion 77-120 h (reviewer estimates, vaporlens/steamdb snippets: https://vaporlens.app/app/2311680/magic_research.md ).
+- Patch v1.12.1 added one storyline and eight upgrades (steamdb patch notes, https://steamdb.info/patchnotes/11069169).
+- Forum tip: casting create-iron-bar spell with mana yields more iron than gathering (applevis.com comment, https://applevis.com/comment/145694). Accessibility note: the game is text-based.
+- Sequel Magic Research 2 (Steam 2864890): v1.3.2 added "Classic Mode"; reviewers call prestige/retirement an artificial extender. https://vaporlens.app/app/2864890/magic_research_2
+Contradicted: the earlier assumption of a Flash/Kongregate original and a 'research tree as central screen' is unsupported; the game is text-based with spells, apprentices, land and storylines. 'Ascend/reincarnate' wording replaced by 'retirement'.
+Unverified (keep [EST]): all cost/growth formulas, prestige currency formula, temporary spell multipliers, elemental resources, offline rules.

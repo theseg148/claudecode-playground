@@ -1,8 +1,10 @@
 # Farm Away! (idle farming)
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: Farm Away! is by Futureplay Games (Helsinki); Android rename to 'Idle Farming Empire', 'view-to-play' ad model, tap/swipe farming and market-for-seeds mechanic confirmed [S]. The Adventure Capitalist-style formulas and prestige are NOT confirmed for this game. See Verification log.
 CONFIDENCE WARNING (LOW): the sandbox could only fetch raw.githubusercontent.com. Farm Away! (a mobile idle farm with a virtual-farm-in-the-background style) could not be looked up. Everything is [MEM-LOW] or [EST]. I also was unsure whether to cover Farm Away! or "Idle Farming Empire"; I chose Farm Away! per the brief's first option.
-- https://play.google.com/store/apps/details?id=com.fugu.farmaway (id from memory, unverified)
-- https://apps.apple.com/us/search?term=farm%20away (search; not fetched)
+- https://www.pocketgamer.biz/futureplay-farm-away/ and https://gamesbeat.com/helsinkis-futureplay-games-attacks-hay-day-with-farm-away-mobile-game/ (Futureplay Games coverage; via search snippets) [S]
+- Package name com.futureplay.boots appears on a third-party APK mirror (https://farm-away.fileplanet.com/apk), unverified (earlier com.fugu.farmaway was WRONG)
+- https://www.pocketgamer.biz/futureplay-games-rebrands-farm-away/ (rename to Idle Farming Empire on Android; snippet) [S]
 - https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii (genre math; not fetched)
 - https://adventure-capitalist.fandom.com/wiki/Adventure_Capitalist_Wiki (genre-prototype wiki; not fetched)
 
@@ -59,3 +61,13 @@ CONFIDENCE WARNING (LOW): the sandbox could only fetch raw.githubusercontent.com
 6. Visible growth (farm fills up) maps to a diorama of Rider worlds filling up in the Studio.
 7. Avoid time-skip IAP as the main monetization; sell cosmetics.
 8. Low confidence: re-research before relying on numbers.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only.
+Confirmed [S]:
+- Developer/publisher Futureplay Games Ltd (Helsinki); described as a super-casual farming 'tapper/swiper' where you tap and swipe to cultivate crops and animals and sell them; main aim earn money, upgrade the farm and unlock new plants and animals; market trades for seeds that boost later harvests; friends can join as hired hands. https://gamesbeat.com/helsinkis-futureplay-games-attacks-hay-day-with-farm-away-mobile-game/
+- Futureplay calls its model 'view-to-play': broadly accessible, ad-based monetization. https://www.pocketgamer.biz/futureplay-farm-away/
+- Rebrand: on Android Farm Away!, Build Away!, Craft Away! and Star Away! were renamed Idle Farming Empire, Idle City Empire, Idle Crafting Empire and Idle Tuber Empire; iOS kept the original name at the time. https://www.pocketgamer.biz/futureplay-games-rebrands-farm-away/
+- GamesBeat says the game supports online and offline play (this is reporting about play modes, not an offline-earnings formula).
+Contradicted: 'Tiny Giant Games' (not the developer); 'com.fugu.farmaway' package id; the 'several parallel producers with managers, Adventure-Capitalist structure' is not supported by any snippet, which instead describe tap/swipe farming closer to Hay Day.
+Unverified: prestige of any kind, gems/IAP, manager automation, the 1.07-1.15 cost coefficient and 150*sqrt(earnings/1e15) formula (these are Adventure Capitalist facts, not Farm Away facts), offline cap, ad-doubling. Treat the entire Cost & Prestige sections as genre reference only.

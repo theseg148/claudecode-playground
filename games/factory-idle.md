@@ -1,9 +1,11 @@
 # Factory Idle
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: Factory Idle is a game by Hein Stain (itch.io, same author as Reactor Idle), with conveyor belts, money + research, and a 'hard for an idle game' framing [S]. No Steam page, prestige, or numbers could be confirmed; 'Steam one-time purchase' is UNVERIFIED. See Verification log.
 CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com. I could not fetch the Steam page or wiki for Factory Idle. Everything is [MEM-LOW] or [EST].
-- https://store.steampowered.com/search/?term=Factory+Idle (search; not fetched)
-- https://factoryidle.fandom.com (guess; unverified)
-- https://www.reddit.com/r/FactoryIdle/ (guess; unverified)
+- https://hein-stain.itch.io/factory-idle (developer page, Hein Stain; via search snippets) [S]
+- https://tvtropes.org/pmwiki/pmwiki.php/VideoGame/FactoryIdle (summary; via snippet) [S]
+- https://hein-stain.itch.io/factory-idle/devlog (devlog; snippets) [S]
+- https://www.wurb.com/stack/archives/date/2016/05 (2016 blog post on the game; snippet) [S]
 - https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii (genre math; not fetched)
 
 ## Core loop
@@ -61,3 +63,12 @@ CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com. I 
 6. Highlight the current bottleneck in the UI (red arrow) to cut the tedious hunt.
 7. One-time purchase and no pressure monetization suits this audience; consider the same for a premium release.
 8. Low confidence; verify before relying on numbers.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only.
+Confirmed [S]:
+- TV Tropes: an idle game about running a fully automated factory; you set up machines to buy resources, process them and sell them, linked by conveyor belts; the intro itself says it is hard for an idle game; one mistake can drag output down and jam the system; buying upgrades forces you to reshuffle because machines' requirements and outputs change. https://tvtropes.org/pmwiki/pmwiki.php/VideoGame/FactoryIdle
+- Developer Hein Stain on itch.io; description centred on conveyor belts, machines and automation to generate income; alpha announced in a 2023 devlog; update 0.4.17 live; later Assembler added with several new recipes. https://hein-stain.itch.io/factory-idle , https://hein-stain.itch.io/factory-idle/devlog
+- A 2016 blog post says Factory Idle has conveyor belts and two goals, money and research, and is by the same artist as Reactor Idle (UI/structure shared, but Reactor Idle has no belts). https://www.wurb.com/stack/archives/date/2016/05 . Factory Idle Missions is a spin-off belt puzzle sorting coloured boxes.
+- Items are variously sized components placed on a grid (wurb.com snippet).
+Contradicted/unverified: the Fandom wiki, subreddit and Steam store listing could not be found; I did not find a 'Rebuild/Relocate' prestige, 'workers/energy' resource, or any cost formula, so they stay [MEM-LOW]/[EST]; the offline-cap and one-time-price claims are unverified. Do not confuse with 'Factory Works Idle' (EnricoBC, Steam Dec 2025), 'From Zero: Idle Factory' or 'Factory: Idle & Tycoon Game'. If the Steam title in question is one of those, this file does not describe it.

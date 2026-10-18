@@ -1,40 +1,48 @@
 # Reactor Incremental
 **Sources:** (URLs, required)
-CONFIDENCE WARNING (LOW-MED): sandbox could only fetch raw.githubusercontent.com. I could not confirm the repo or wiki for Reactor Incremental. Details are [MEM-LOW] or [EST].
-- https://www.kongregate.com/games/ (original host, exact URL unverified)
-- https://reactor-incremental.fandom.com (guess; unverified)
-- https://www.reddit.com/r/incremental_games/ (community; not fetched)
-- https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii (genre math; surfaced in search; not fetched)
+VERIFICATION UPDATE 2026-10-18: numbers below tagged [CODE] come from the open-source CLONE cwmonkey/reactor-knockoff (v1.3.2), whose index.html credits the original "Reactor Incremental" by Cael on Kongregate. The clone mirrors the original's design but is NOT guaranteed to match the original's current numbers. The earlier claim "Mephyst/reactor-incremental on GitHub" could NOT be confirmed (raw URLs 404). Other claims stay [MEM-LOW]/[EST].
+- https://raw.githubusercontent.com/cwmonkey/reactor-knockoff/master/js/app.parts.js [CODE]
+- https://raw.githubusercontent.com/cwmonkey/reactor-knockoff/master/js/app.js , app.upgrades.js , app.objectives.js [CODE]
+- https://raw.githubusercontent.com/cwmonkey/reactor-knockoff/master/index.html (credit link http://www.kongregate.com/games/Cael/reactor-incremental) [CODE]
+- https://metafilter.com/153322/It-is-inadvisable-to-leave-your-reactor-unattended (2015 description of the original) [S]
+- https://www.wurb.com/stack/archives/date/2016/05 (notes that Factory Idle's author also made Reactor Idle; a different but similarly named game) [S]
+- https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii (genre math; not fetched)
 
 ## Core loop
 - Place components on a grid inside a nuclear reactor: fuel cells generate power and heat; vents, heat exchangers and coolant cells manage heat; reflectors boost neighbouring cells.
 - Sell power for money, buy better components, and rebuild the layout. Layout optimisation (grid design) is the puzzle, similar to Factorio-lite.
-- If heat exceeds capacity, the reactor melts down (component loss), so risk management matters.
+- If reactor heat exceeds 2x max heat (or a component explodes), the game enters a melting-down state affecting the grid [CODE: app.js ~L2404-2420]; the 2015 MetaFilter description confirms 'cause a meltdown and restart' [S]. Exactly which parts are lost was not read.
 - Prestige ("Reboot"/"Exotic particles") converts accumulated progress into permanent upgrades. [MEM-LOW]
 
 ## Resource types
-- Money, Power (energy output), Heat, Exotic Particles / Protium-type prestige resources (names uncertain), Research/Upgrades tokens. [MEM-LOW]
+- Money, Power (energy output), Heat, Exotic Particles / Protium-type prestige resources (EP = 'exotic particles' confirmed [CODE]; Protium is an experimental cell), Research/Upgrades tokens. [MEM-LOW]
 - Component types: Uranium cell (1x, 2x, 4x), Plutonium, Thorium, Seaborgium..., Vent, Heat exchanger, Coolant cell, Reflector, Capacitor, Plating. [MEM-LOW]
 
 ## Cost & production growth formulas (public or estimated; mark which)
-- Not verified. Typical shape in this game: [EST]
-  - Each component tier costs ~x5-x20 the previous; fuel cells' power ~x4-x8 per tier, heat grows in proportion.
-  - Upgrades (e.g. "Improved chronometers") cost grows ~x2-x10 per level with +x% or double effects.
-  - Cell neighbours: a fuel cell's output is multiplied by (1 + adjacent cells) in the Reactor-style design (the "Nuclear fission" logic). [EST, from the real-world analogue]
-- Prestige formula: exotic particles ~ floor(log or sqrt(total power/threshold)). [EST]
+All [CODE] from reactor-knockoff v1.3.2 unless marked [EST]:
+- Grid: base 14 cols x 11 rows, max 35 x 32. Tick: base_loop_wait 1000 ms. Base max heat 1000, base max power 100.
+- Cell tiers (level 1/2/3 = single/double/quad cell): power multiplier [1,4,12], heat multiplier [1,8,36], cell counts [1,2,4,(9,16 for later levels)].
+- Uranium cell: cost 10 / 25 / 60 for tiers 1/2/3, 15 ticks life, base power 1, base heat 1.
+- Higher fuels: base_cost = base x 2.2^(level-1). Plutonium 6e3 (ticks 60, power/heat 150), Thorium 4.7e6 (900; 7,400), Seaborgium 4e9 (3,600; 1.6e6), Dolorium 3.9e12 (22,000; 2.3e8), Nefastium 3.6e15 (86,000; 5.2e10), Protium (experimental) 3e15 (3,600; 1.25e12).
+- Per-cell upgrades: ticks and power upgrades each x10 effect; costs e.g. uranium 100 / 500, plutonium 30,000 / 30,000, thorium 25M / 25M.
+- Adjacency: pulses = sum of adjacent cells' (cell_count x pulse_multiplier). Cell with neighbours: power += base_power x (cell_multiplier + pulses); heat += base_heat x (cell_multiplier + pulses)^2 / cell_count. So heat grows QUADRATICALLY with neighbours while power grows linearly.
+- Reflector: cost 500, cost multiplier x50 per tier, 5 tiers, +5% power base (+1 per tier), 100 ticks (x2 per tier). Capacitor: cost 1000, x160 per tier. Vent: cost 50, x250 per tier, containment 80 (x75), vent rate 4 (x75).
+- Upgrades: Improved Chronometers cost 10,000 with cost multiplier x100 per level, effect loop_wait = 1000/(level+1) ms (+1 tick/s per level). Forceful Fusion cost 10,000 x100. Improved Piping cost 100 x20 per level (manual venting x10 per level).
+- Exotic-particle (EP) upgrades cost 1 EP up to 10,000 EP; each experimental-part unlock costs ecost x (already-unlocked count + 1).
+- Original-game percentages/tier costs not re-checked [EST].
 
 ## Prestige structure
-- Reboot-like: the reactor and money reset; exotic particles are kept and spent on permanent upgrades. [MEM-LOW]
-- Possibly a second deeper reset (Protium or Experimental) that resets everything including exotic upgrades. [MEM-LOW]
-- A layout design unlocked at later tiers continues the "puzzle" element across resets.
+- [CODE] "Reboot": clears the grid and all non-EP upgrades. EP earned this run are added to total_exotic_particles and to spendable current EP. A "refund" reboot instead resets ALL upgrades (including EP upgrades) and restores current EP to the lifetime total, so EP spending can be re-allocated.
+- [CODE] EP are generated by Particle Accelerator parts, not from a lifetime-earnings formula: per tick chance = ln(heat_contained, capped at part ep_heat) / 10^(5 - level) x (that heat / base_ep_heat); chance >1 gives floor(chance) guaranteed EP plus a random remainder. Objectives also pay EP (ep_reward). So prestige currency depends on running hot accelerators, not on money.
+- [CODE] Experimental parts (Protium, Extreme Vent/Capacitor, Thermal Neutron Reflector) are gated behind EP upgrades ("erequires").
+- No second reset layer was seen in the clone. [Unverified for the original]
 
 ## Unlock pacing
 - [EST] 0-10 min: manual click for power, first cell; 30-60 min: first vents and heat management; 2-6 h: first reboot; days: later prestige and big grids.
 - Grid expansions unlock gradually (more rows/columns) as upgrades are bought. [MEM-LOW]
 
 ## Offline progress
-- [MEM-LOW] Browser version runs in a tab; offline progress is limited (probably a simulated cap). Unknown; mark [EST]: capped at a small multiple of tick rate.
-- Design assumption: because the grid is a puzzle, progress is measured by layout quality, not offline.
+- [CODE] offline_tick = true by default; on load the elapsed real time is replayed as ticks. When a steady state is detected the game fast-forwards using predicted per-tick heat/power/sell/EP deltas (offline_ticks), otherwise runs real ticks. No explicit hour cap was found in the clone. [Unverified for the original]
 
 ## Monetization effects
 - Free browser game, no purchases; later forks/mobile ports may have ads. [MEM-LOW]
@@ -58,3 +66,9 @@ CONFIDENCE WARNING (LOW-MED): sandbox could only fetch raw.githubusercontent.com
 6. Share/export a "layout code" so the community can theorycraft; cheap virality.
 7. Provide an auto-arrange helper for casual players.
 8. Low confidence; re-verify before use.
+
+## Verification log (2026-10-18)
+Local copies (untrusted, read only): /tmp/claude-0/-home-user-claudecode-playground/2e77cd6e-e441-551f-a27e-40f493265545/scratchpad/src4/reactor-incremental/
+Confirmed [CODE] (clone cwmonkey/reactor-knockoff, version string 1.3.2): part tables, cost multipliers, grid size, cell power/heat formulas, EP generation formula, reboot/refund logic, meltdown threshold (2x max heat), offline tick replay, upgrade costs. Confirmed [S]: original game credited to Cael on Kongregate (clone's index.html); MetaFilter 2015: fuel cells + heat mitigation, sell power, meltdown or restart.
+Corrected: developer is Cael (Kongregate), not Mephyst; resource name is Exotic Particles (confirmed), prestige is the 'Reboot'; heat scales with the square of neighbour pulses (earlier 'x(1+adjacent)' estimate was wrong).
+Still unverified: original-vs-clone number parity, objective rewards table, final-tier unlock timings, whether a deeper reset exists in the original, hour estimates in Unlock pacing, 'Mephyst' repo.

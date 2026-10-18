@@ -1,13 +1,14 @@
 # Mr. Mine
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: developer (Playsaurus), platforms, Steam id, and the depth/milestone structure are now confirmed; all numeric formulas remain unverified. See Verification log.
 CONFIDENCE WARNING (LOW): the sandbox could only fetch raw.githubusercontent.com; no store, wiki or forum page about Mr. Mine could be fetched. Everything is [MEM-LOW] or [EST]. Verify before using.
-- https://play.google.com/store/apps/details?id=com.playgems.mrmine (Google Play listing; id from memory, unverified)
+- https://store.steampowered.com/app/1397920/MrMine/ (Steam, free to play; text via search snippets) [S]
 - https://apps.apple.com/app/mr-mine/id1257552996 (App Store; unverified)
-- https://mrmine.fandom.com/wiki/Mr._Mine_Wiki (community wiki guess; unverified)
+- https://mrmine.fandom.com/wiki/File:3.png (front page of the Mr. Mine wiki; section list seen in snippet) [S]
 - https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii (genre math reference; surfaced by search, not fetched)
 
 ## Core loop
-- Vertical-mine idle by Playgems (developer from memory). Mr. Mine digs deeper automatically; depth in meters is the central number.
+- Vertical-mine idle by Playsaurus (also made Clicker Heroes) [S: https://blog.mrmine.com/ search snippets, https://mrmine.fandom.com/wiki/File:3.png]. (Earlier 'Playgems' was WRONG.) Mr. Mine digs deeper automatically; depth in meters is the central number.
 - Tap to dig, hire workers (miners, lamps, drills...), collect resources (Coal, Copper, Iron... gems) and sell them for cash. Spend cash on upgrades to dig and carry faster.
 - Beyond a depth, special layers appear (Lava, Cave Monsters? [MEM-LOW]) and new resources/items drop. A "Dwarf" crafting and "Dig Dungeon"/events layer in later updates. [MEM-LOW]
 - Prestige: "Reinforcement/Prestige" resets depth and cash for permanent boosts. [MEM-LOW]
@@ -61,3 +62,15 @@ CONFIDENCE WARNING (LOW): the sandbox could only fetch raw.githubusercontent.com
 6. Keep premium currency off the critical path to avoid the mid-game gem-wall complaint.
 7. Second-prestige pace: aim for roughly one-third the time of the first.
 8. This file is low-confidence; verify numbers before using.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only (wiki/Steam pages not fetchable).
+Confirmed [S]:
+- Developer Playsaurus; Steam (free), browser and phones; originally 2012, remastered for Steam. https://store.steampowered.com/app/1397920/MrMine/ , https://blog.mrmine.com/?p=74
+- Steam text: manage a team of miners and upgrade a drill; 100+ drill upgrades; hire scientists to find rare relics; chests with hidden upgrades; unique buildings; quests and achievements; secret encounters; features unlock the deeper you go.
+- Wiki sections: Materials, Milestones, Super Miners, Scientists, Caves, Forge, Monsters/Weapons, Reactor/Buff Lab, Chests, Quests, Upgrades, Blueprints. https://mrmine.fandom.com/wiki/File:3.png
+- Milestone depths (unofficial blog.mrmine.com, treat as medium confidence): trading post 15 km, cave building 45 km, Chest Compressor 700 km, Reactor ~1133-1134 km (World 2 101-102 km), Buff Lab 1,135 km, Robot MK2 1257 km (drill parts 24-26). https://blog.mrmine.com/?p=40 , ?p=109
+- Worlds: Earth -> Moon -> ... Titan; Einsteinium and Fermium come from the Reactor, not mining (blog snippet).
+- Super miners boost drill speed, auto-sell ores and speed all miners in a mineshaft (snippet).
+Contradicted: 'Playgems', 'Dwarf crafting', 'Dig Dungeon', ore list (Coal/Copper/Iron...) and 'energy/time-limited miners' are not confirmed; wiki indicates Forge, Caves, Monsters, Reactor instead.
+Unverified: whether a prestige reset exists (no snippet mentioned it; worlds/'timelapses' may serve that role), all costs, growth multipliers and offline values; the 2-3x depth geometric claim is [EST].

@@ -1,12 +1,14 @@
 # Spaceplan
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: developer/publisher, release date, price, premise, content counts, review share now [S] (see Verification log at bottom). Formulas, offline and prestige details remain unverified [EST]/[MEM]. Anything tagged [S] was read only as a web-search snippet (no page fetch available).
 CONFIDENCE WARNING: sandbox network only reached raw.githubusercontent.com; no Spaceplan page could be fetched. All content below is [MEM] (recalled, unverified) or [EST]. Verify at the URLs before quoting numbers.
-- https://store.steampowered.com/app/1051770/Spaceplan/ (Steam; app id not verified; not fetched)
-- https://en.wikipedia.org/wiki/Spaceplan (not fetched)
-- https://jhollands.itch.io/spaceplan and https://spaceplan.fandom.com (unverified guesses; not fetched)
+- https://store.steampowered.com/app/616110/SPACEPLAN/ (Steam; app id 616110 appeared in search results; page text only seen through search snippets) [S]
+- https://www.cosmocover.com/newsroom/spaceplan-launches-on-app-store-google-play-and-steam/ (press release, via search snippet) [S]
+- https://toucharcade.com/2017/05/08/spaceplan-review-delicious-potatoes/ (review, via search snippet) [S]
+- (earlier guesses jhollands.itch.io and spaceplan.fandom.com are unverified; the old Steam id 1051770 was WRONG)
 
 ## Core loop
-- Narrative incremental by Jake Hollands (developer name from memory, not verified). You are a ship AI/pilot stranded after a failed escape; you click to produce Energy and unlock increasingly absurd tech.
+- Narrative incremental by Jake Hollands, published by Devolver Digital [S: cosmocover press release snippet]. You are a ship AI/pilot stranded after a failed escape; you click to produce Energy and unlock increasingly absurd tech.
 - Click an energy source -> buy generators -> unlock research that auto-completes -> new "worlds" and story beats. Dialogue is sarcastic, with a computer voice commenting.
 - Each story beat unlocks a new currency or building category: Energy -> Matter -> Planets/solar systems -> strange late-game systems (time, universe-scale building).
 - Finite: the game has a clear ending after roughly 2-4 hours. [MEM/EST]
@@ -58,3 +60,16 @@ CONFIDENCE WARNING: sandbox network only reached raw.githubusercontent.com; no S
 6. Keep click interaction meaningful early (the first minutes) then transition to automation as a deliberate "ah, it's running by itself" story moment.
 7. Because premium pricing works for a short narrative idle, don't force ad/energy monetization; consider one-time purchase or cosmetic DLC.
 8. Offline: modest and capped is enough for a story pacing game; payouts should never skip the narrative.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only (Steam/wiki pages not directly fetchable); no source code exists publicly that I could find.
+Confirmed [S]:
+- Developer Jake Hollands, publisher Devolver Digital; mobile + Steam launch 2017-05-04; Steam price EUR 2.99. https://www.cosmocover.com/newsroom/spaceplan-launches-on-app-store-google-play-and-steam/ , https://cosmocover.com/newsroom/spaceplan-set-to-unlock-the-mysteries-of-the-galaxy-via-potatoes-on-may-4
+- Started as a web-based clicker prototype (MetaFilter, Aug 2016: https://metafilter.com/161529/maris-pipers ; press materials above).
+- Official blurb: manual clicks plus passage of time create and launch potato-based devices and probes from a satellite orbiting a planet; "fifteen starchy items" to unlock; five planets across two realities; described as a "life-affirming, silly story". https://store.steampowered.com/app/616110/SPACEPLAN/ (via snippets)
+- Steam app id is 616110 (earlier id 1051770 in this file was wrong). Reviews ~3,300, ~91% positive (gg.deals snippet, https://gg.deals/gb/game/spaceplan/).
+- Story length: a store listing gives ~6 h 3 min for the main story (HowLongToBeat-style figure from a search snippet; source page not identified). The earlier "2-4 hours" is therefore likely too low [EST->contradicted].
+- Early game: KinetGen click generator; Thing Maker items such as Repair Solar Cell (one example cost 26 power in an early 2016 build) and Potato raise power. https://wbgsv0a.gigazine.net/gsc_news/en/20160816-spaceplan-review (snippet; old build).
+- No in-app purchases or ads (German press, appgefahren.de snippet). Premium one-time price matches the "Monetization" section.
+- Google Play listing last updated 2025-12-05 (balance may have changed since old guides).
+Still unverified: all cost/growth formulas (1.15^n is only a genre default), offline-income rules and ratio, resource names beyond Energy/watts, the claim 'Matter/Dimensions' resources, and the 'sarcastic computer voice' detail beyond the generic 'silly story'. "No prestige" is consistent with every description seen but not explicitly confirmed.

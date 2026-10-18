@@ -1,13 +1,15 @@
 # Candy Box 2
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: author, release date, tech stack, game version and wiki location are now confirmed. The compiled/TypeScript game code could NOT be fetched (candybox2.js and sources/* return 404 on raw), so NO numeric formula is verified. See Verification log.
 CONFIDENCE WARNING: the sandbox could only reach raw.githubusercontent.com. Wikipedia, the fandom wikis and the game site timed out/ENOTFOUND, and no Candy Box 2 source repo was reachable. Everything below is [MEM] (recalled, unverified) or [EST]. Re-verify with the URLs before using numbers.
 - https://candybox2.github.io/ (official game; not fetched)
 - https://en.wikipedia.org/wiki/Candy_Box_2 (not fetched)
-- https://candybox2.fandom.com/wiki/Candy_Box_2_Wiki (community wiki; not fetched)
-- https://github.com/candybox2 (organization hosting source/release builds; unverified)
+- http://candybox2.gamepedia.com (wiki link taken from the game's own index.html; not fetched)
+- https://github.com/candybox2/candybox2.github.io (source repo; link from the game's index.html) [CODE-partial]
+- https://raw.githubusercontent.com/candybox2/candybox2/master/index.html and .../faq.html (read) [CODE]
 
 ## Core loop
-- ASCII-art browser game by aniwey (2013), sequel to "Candy Box!". You start with a box that slowly produces candies (about 1 per second at the start). [MEM]
+- ASCII-art browser game by aniwey (a student from Caen, France), released 2013-10-24 as sequel to "Candy Box!". [S: https://en.wikipedia.org/wiki/Candy_Box!] The ORIGINAL Candy Box! gives candies at 1 per second [S, same page]; that rate for Candy Box 2 is unconfirmed [MEM].
 - Spend candies on nothing visible at first -> the game rewards patience: tools, shops and areas appear as total candies grows (the Candy Box! trick: "do nothing, then things appear").
 - Then branch: eat/throw candies, buy lollipops, farm lollipops, feed the cauldron, forge equipment, go on quests.
 - Quests are small ASCII adventures (fight, collect candies, find chocolate bars/pain au chocolat) that return candies and items; items unlock more quests and a map.
@@ -67,3 +69,12 @@ CONFIDENCE WARNING: the sandbox could only reach raw.githubusercontent.com. Wiki
 
 ## Source-verified formulas
 No verified source code could be fetched this session: the candidate raw URLs for the Candy Box 2 repository (`candybox2/candybox2.github.io`, `candybox2/candybox2`, `aniwey/candybox2`) returned 404 on raw.githubusercontent.com, and the GitHub tree API is not available in this sandbox. No [CODE] tags are claimed for this game; all numbers elsewhere in this file remain [MEM]/[EST]. Retry later with the correct owner/repo.
+
+## Verification log (2026-10-18)
+Local copies (untrusted, read only): /tmp/claude-0/-home-user-claudecode-playground/2e77cd6e-e441-551f-a27e-40f493265545/scratchpad/src4/candy-box-2/
+Confirmed:
+- [CODE] index.html in https://github.com/candybox2/candybox2.github.io (mirror candybox2/candybox2, branch master) shows "Version 1.2.3", links to wiki http://candybox2.gamepedia.com, blog candybox2.wordpress.com, IRC, and the source repo, and the original at candybox2.github.io/candybox/. The game is HTML + jQuery 1.9.1 + one bundled script candybox2.js.
+- [CODE] faq.html (same repo): "The game is written in TypeScript ... compiles to javascript using tsc"; says octopus-king behaviour and "the squirrel's game" are NOT bugs (so those exist); contact aniwey. cacheManifest.mf lists candybox2.js, so the game works offline once cached (browser cache, not idle catch-up).
+- [S] Release 2013-10-24 and developer aniwey: https://en.wikipedia.org/wiki/Candy_Box! (search snippet).
+- [S] Walkthrough snippets (https://www.arrpeegeez.com/2014/08/candy-box-walkthrough.html): crossing the desert (needs health and an iron axe, ~400 candies) unlocks the lollipop farm, time ring and leather gloves. The desert/lollipop farm/castle exist, which matches Core loop. A gameskeys walkthrough says the shop sells lollipops at 60 C (three total) but its text is garbled; treat as weak.
+Contradicted/unverified: "Steam port" is still unverified; "~1 candy/s" is only confirmed for Candy Box 1. Cauldron, wishing well, sea, beanstalk, shop price ladder, growth multipliers and the 8-20 h completion time remain [MEM]/[EST]; no search result mentioned the cauldron. Retry: find the compiled candybox2.js through a different mirror (e.g. aniwey/candybox2 on another host), then grep for candiesPerSecond-style values.

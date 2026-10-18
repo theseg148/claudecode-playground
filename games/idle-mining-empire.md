@@ -1,13 +1,14 @@
 # Idle Mining Empire
 **Sources:** (URLs, required)
+VERIFICATION UPDATE 2026-10-18: 'Idle Mining Empire' is a browser HTML5 game on CrazyGames (June 2021), NOT a confirmed mobile F2P title with gems/ads; the monetization, gems, 'Empire' prestige and offline sections below were written for a mobile tycoon and are UNVERIFIED for this game. See Verification log.
 CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com; no page on Idle Mining Empire was fetchable. Details are [MEM-LOW] or [EST] and may be mixed with similar mining tycoons (Idle Miner Tycoon). Verify before using.
-- https://play.google.com/store/search?q=idle%20mining%20empire (search; not fetched)
-- https://apps.apple.com/us/search?term=idle%20mining%20empire (search; not fetched)
+- https://www.crazygames.com/game/idle-mining-empire (browser game listing, via search snippets) [S]
+- https://www.thefictionaddiction.com/idle-mining-empire/ (review, via snippet) [S]
 - https://www.gamedeveloper.com/design/the-math-of-idle-games-part-i (genre math; not fetched; it surfaced via the part III search result)
 - https://en.wikipedia.org/wiki/Idle_Miner_Tycoon (closest genre comparison; not fetched)
 
 ## Core loop
-- Mobile idle tycoon: build mine shafts, elevators and warehouses; hire managers to automate each level; money flows from ore to market.
+- Browser (HTML5, CrazyGames, June 2021) idle tycoon [S]: build mine shafts, elevators and warehouses; hire managers to automate each level; money flows from ore to market.
 - You tap to boost; managers automate; upgrades multiply speed or capacity; each new shaft costs more but yields more.
 - Periodic "Empire" reset trades the whole mine for permanent Prestige currency (names unverified) and unlocks new regions (coal, gold, gems, etc.). [MEM-LOW]
 - Events and missions refresh engagement.
@@ -60,3 +61,11 @@ CONFIDENCE WARNING (LOW): sandbox could only fetch raw.githubusercontent.com; no
 6. Rewarded "double" optional; no mandatory ads.
 7. Avoid cloning mining-tycoon structure verbatim; the genre is saturated, and the Decade IP differentiator is the sequential worlds.
 8. This file is low-confidence; do not cite its numbers as facts.
+
+## Verification log (2026-10-18)
+Method: WebSearch snippets only.
+Confirmed [S]:
+- CrazyGames lists Idle Mining Empire as HTML5, desktop+mobile web, June 2021, rating 9.1: start from scratch and build a fully automated mining operation; click your worker to produce resources to sell; digging deeper unlocks new shafts that earn more; managers are added to each part of the workflow; upgrades make each part faster and more profitable. https://www.crazygames.com/id/game/idle-mining-empire
+- Review (thefictionaddiction.com): cute low-stress background game; miners start at a couple of dollars and quickly reach millions, trillions and beyond. https://www.thefictionaddiction.com/idle-mining-empire/
+Not the same game: App Store 'Mining Empire Idle Tycoon' (https://apps.apple.com/app/id6479964188; managers, offline income, weekly events, an elevator-bug fix note), 'Idle Mining Company: Tycoon' (managers, prestige), 'Mine Empire: Idle Tycoon' (Android, prestige, 100+ miners). Their features must not be attributed to the CrazyGames title. A Chrome extension with the same name also exists.
+Unverified: any prestige/'Empire' reset, premium currency, ads/IAP, offline cap, all formulas (all remain genre [EST]); the 'Lazy Panda' developer guess was NOT confirmed and is dropped. Lessons below that rely on mobile monetization are generic design advice, not evidence from this game.
