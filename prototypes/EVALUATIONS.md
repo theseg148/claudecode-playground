@@ -47,4 +47,5 @@ Slider-driven card: ignores <2 min, measures capped time (8 h), stepped efficien
 4. Number format uses K/M/B/T… suffixes to 1e36 (R40); dimension-ride flash replaced by a 0.5 s brightness fade (no full-white flash).
 5. Cast Off applies to tiers ≥4 only (matches builds.py); Clock Up now ×2 for 8 s for 4 Charge (regen 1/8 s ⇒ ≈×1.25 average), Speed II ×3; Photo Op +10 %: active tools stay inside the R34c budget (≤1.5× total).
 6. Auto-buy after the first ride is payback-greedy like the sim (not cheapest-first). Separate localStorage key `decadeSliceV2`.
-Known gaps: still two worlds, a single-bar gate instead of 3 named costs, no Photo Window event, no Album/Form Deck (they arrive in World 2 per DECADE_IDLE_DESIGN §12).
+7. **Photo Window event added** (R38b): first at ≈170 s, then every 90–240 s foregrounded, 15 s lifetime, outcomes Windfall (min(15 % stock, 600 s production)+13) / Frenzy (×7 for 45 s) / Spotlight (one tier ≥10 owned gets +owned/10 for 30 s), 80 % no-repeat, no downside. Headless test: window appears, button clickable, frenzy applied, no JS errors.
+Known gaps: still two worlds, a single-bar gate instead of 3 named costs (world_transition.html shows the 3-cost gate), no Album/Form Deck (they arrive in World 2/3 per DECADE_IDLE_DESIGN §12), no Exposure bank offline.

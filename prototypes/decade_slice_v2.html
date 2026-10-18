@@ -19,6 +19,7 @@ small{color:var(--dim)}.g{color:var(--ok)}.w{color:var(--warn)}#tel span{display
 <div class=card><div class=row><div>Dimension Ride <small id=dinfo></small></div><button id=dim disabled>Ride →</button></div></div>
 <div class=card><small>Speed: </small><button onclick="spd=1">×1</button> <button onclick="spd=10">×10</button> <button onclick="spd=100">×100</button> <button onclick="hardReset()">Reset save</button>
 <div><small>Goal gaps (s, telemetry): <span id=tel></span></small></div><div><small id=stats></small></div></div>
+<div id=win class=card style="display:none;border:1px solid #e0457b"></div>
 <div id=toast class=card style="display:none"></div>
 </main>
 <script>
@@ -28,6 +29,7 @@ const WORLDS=[{n:"Kabuto",t:["Cast-Off Cells","Zecter Charges","Clock-Up Cores",
 const G=1.12,MS=[10,25,50,100,200],TH=1e5,BONUS=.08,GOALMULT=[3e6,3e8];
 let S=load()||{charge:5,clock:0,mp:1,tree:[],gold:15,own:[0,0,0,0,0,0],seals:0,life:0,w:0,cards:0,t0:Date.now(),last:Date.now(),goals:[],lastGoal:0,run:0,photoCD:0,maxTier:0};
 let spd=1,sinceGoal=0;
+let winT=170,winLife=0,frenzy=0,spot=null,spotT=0,winCount=0,lastOut='';
 S.wlife=S.wlife||S.life||0;S.charge=S.charge??5;S.clock=S.clock||0;S.mp=(S.mp===undefined)?1:S.mp;S.tree=S.tree||[];
 function load(){try{return JSON.parse(localStorage.getItem("decadeSliceV2"))}catch(e){return null}}
 function save(){try{S.last=Date.now();localStorage.setItem("decadeSliceV2",JSON.stringify(S))}catch(e){}}
@@ -38,7 +40,7 @@ const mult=(n,i)=>2**MS.filter(m=>n>=m).length*castoff(n,i), cost=i=>cs(i)*G**S.
 const sealMult=()=>Math.sqrt(1+S.seals), carry=()=>3**S.w*(1+.1*S.cards)*(1+.02*Math.sqrt(S.arch||0));
 const rate=i=>S.own[i]*rt(i)*mult(S.own[i],i);
 const treeMult=()=>(S.tree.includes('sp1')?1.2:1)*(S.tree.includes('sp2')?1.2:1);
-const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry()*treeMult()*(S.clock>0?(S.tree.includes('sp2')?3:2):1);
+const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry()*treeMult()*(S.clock>0?(S.tree.includes('sp2')?3:2):1)*(frenzy>0?7:1)+(spotT>0&&spot!==null?rate(spot)*(S.own[spot]/10)*sealMult()*carry()*treeMult():0);
 const avail=i=>i==0||S.own[i-1]>=5;
 const rideGain=()=>Math.sqrt(1+S.seals+pend())/Math.sqrt(1+S.seals), canRide=()=>pend()>=1&&S.maxTier>=3&&rideGain()>=1.5;
 const pend=()=>Math.floor(Math.sqrt(S.life/(TH*(S.tree.includes('rc1')?.3:1)*Math.pow(3,S.w))));
@@ -73,6 +75,13 @@ let _lastSig='';function render(){
  const gs=S.goals.slice().sort((a,b)=>a-b);$("stats").textContent=gs.length?`median gap ${gs[gs.length>>1].toFixed(0)}s · max ${gs[gs.length-1].toFixed(0)}s · in-band(15–600s) ${(100*gs.filter(g=>g>=15&&g<=600).length/gs.length).toFixed(0)}%`:"";
 }
 offline();render();
+function spawnWindow(){const w=$("win");winLife=15;winCount++;
+ const owned10=S.own.map((n,i)=>n>=10?i:-1).filter(i=>i>=0);let r=Math.random();let out=r<.4?"windfall":r<.75?"frenzy":(owned10.length?"spotlight":"windfall");
+ if(out==lastOut&&Math.random()<.8)out=out=="windfall"?"frenzy":"windfall";lastOut=out;
+ const label={windfall:"Windfall: +"+fmt(Math.min(.15*S.gold,600*prod())+13)+" Shots",frenzy:"Frenzy: ×7 production for 45 s",spotlight:"Spotlight: one tier +"+"(owned/10) for 30 s"}[out];
+ w.style.display="block";w.innerHTML=`<b>Photo Window!</b> <small>(${Math.ceil(winLife)}s)</small><br><button id=wbtn>Take the shot — ${label}</button> <small>never required · no downside</small>`;
+ $("wbtn").onclick=()=>{if(out=="windfall"){const v=Math.min(.15*S.gold,600*prod())+13;S.gold+=v;S.life+=v;S.wlife+=v}else if(out=="frenzy"){frenzy=45}else{spot=owned10[Math.floor(Math.random()*owned10.length)];spotT=30}
+  w.style.display="none";winLife=0}}
 let last=performance.now(),lastSig="";
 function sig(){return JSON.stringify([S.w,S.own,S.own.map((_,i)=>S.gold>=cost(i)),S.tree,S.mp>0,S.seals,S.clock>0,S.charge>=4])}
 function auto(){ // payback-greedy auto-buy after first ride (R21)
@@ -81,6 +90,8 @@ setInterval(()=>{const now=performance.now(),real=(now-last)/1000;last=now;
  if(real>2){offline(real);return}                         // throttled/hidden tab: route through the offline model (no 100 % credit)
  const dt=real*spd,e=prod()*dt;S.gold+=e;S.life+=e;S.wlife+=e;S.run+=dt;S.photoCD=Math.max(0,S.photoCD-dt);S.clock=Math.max(0,S.clock-dt);S.charge=Math.min(S.tree.includes('rc2')?15:10,S.charge+dt/(S.tree.includes('rc2')?4:8));
  if(S.seals>0)auto();
+ winT-=dt;if(winLife>0){winLife-=real;if(winLife<=0)$("win").style.display="none"}else if(winT<=0){spawnWindow();winT=90+Math.random()*150}
+ frenzy=Math.max(0,frenzy-dt);spotT=Math.max(0,spotT-dt);
  render();},100);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible"){last=performance.now()}});
 setInterval(save,5000);addEventListener("beforeunload",save);
