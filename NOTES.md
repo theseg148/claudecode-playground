@@ -24,3 +24,4 @@ Lessons added to world design: world = data record; multi-slot gate payment; off
 - 08:43 population.py: campaign days ∝ 1/sessions per day (gentle variant 99/49/33/26/21 d for 1/2/3/4/6 sessions). Rules updated. Waiting on REVIEW_2 + 2 weak-game upgrade agents.
 - 08:44 weak-game upgrade A done: only Reactor Incremental has [CODE] numbers (cwmonkey/reactor-knockoff); Candy Box 2 compiled JS not found; corrected facts for Spaceplan (6h, id 616110), Mr. Mine (Playsaurus), Magic Research (2023 Maticolotto), Farm Away (Futureplay).
 - 08:46 weak-game upgrade B done: corrections (Cell to Singularity premium=Darwinium; CH2 paid EA 2018, delisted 2024; Idle Champions has offline; Idle Wizard prestige Exile+Realm). Many numbers still [EST].
+- 09:00 REVIEW_2 applied: campaign3.py (all carry sources, calibrated T_w & gates, unique goals), pow(0.5) Seal multiplier, prototype fixes, events seeded (+17.5%/+40.7% deck), tests (7), doc consistency. Elapsed ~50 min.
