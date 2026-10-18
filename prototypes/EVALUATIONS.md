@@ -49,3 +49,14 @@ Slider-driven card: ignores <2 min, measures capped time (8 h), stepped efficien
 6. Auto-buy after the first ride is payback-greedy like the sim (not cheapest-first). Separate localStorage key `decadeSliceV2`.
 7. **Photo Window event added** (R38b): first at ≈170 s, then every 90–240 s foregrounded, 15 s lifetime, outcomes Windfall (min(15 % stock, 600 s production)+13) / Frenzy (×7 for 45 s) / Spotlight (one tier ≥10 owned gets +owned/10 for 30 s), 80 % no-repeat, no downside. Headless test: window appears, button clickable, frenzy applied, no JS errors.
 Known gaps: still two worlds, a single-bar gate instead of 3 named costs (world_transition.html shows the 3-cost gate), no Album/Form Deck (they arrive in World 2/3 per DECADE_IDLE_DESIGN §12), no Exposure bank offline.
+
+## Measured first-10-minutes timeline of decade_slice_v2 (headless payback-greedy bot, ×20 speed; t7.js)
+| event | target (DECADE_IDLE_DESIGN §12) | slice measured |
+|---|---|---|
+| first purchase | 0:20 | 0:00 (start gold = tier-0 cost) |
+| tier 2 visible (5 of tier 1) | 1:30 | 0:42 |
+| first ×2 milestone (10 owned) | bar visible 0:45 | bar visible 0:00, doubling at 1:44 |
+| tier 3 visible | 3:00 (Zecter joins 5:30) | 1:42 |
+| 4 tiers seen (ride allowed, R19) | — | 3:18 |
+| first Final Form Ride worth ≥×1.5 (R17) | ≈8:00 | 5:34 (DEV threshold T=1e5; calibrate per world, sim: 8.0 min) |
+Takeaways: the slice is ~1.5× faster than the target script early on (tier costs ×8/rate ×6 from a 15-Shot start); to hit the design timeline raise tier-0 cost or lower tier-0 rate, or accept the faster start as a tutorial-friendly front load (first ride at 5.6 min stays inside R10's "session 1"). The bot was not clicking Photo Op and ignored Windows (which would shave ≈10 %).
