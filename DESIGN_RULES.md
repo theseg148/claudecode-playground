@@ -4,7 +4,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 ## A. Cost & production
 **R1 [C] Per-unit cost growth r = 1.12–1.15 for main generators (1.07 only for late/bulk tiers).** Cookie Clicker 1.15 [CODE games/cookie-clicker.md], Kittens 1.12–1.15 [CODE], Trimps 1.12–1.24 [CODE], Synergism 1.25 [CODE]; Pecorella 1.07–1.15 [P research/math_of_idle_games.md]. At 1.15 price doubles every ~5 buys, at 1.07 every ~10.
 **R2 [H] Tier base cost ×8–12 per tier; tier rate ratio ≈ cost ratio / 1.3.** AdCap ×12 [P]; AD steps 1e3…1e15 [CODE]. Sim of 512 configs: best ratio cost/rate 1.2–1.5, ≤1 → bursts, >2 → walls [Sim].
-**R3 [P] ×2 milestone multipliers every 10–25 owned (10/25/50/100/200).** AD ×2 per 10 bought [CODE]; AdCap halvings at 25/50/100/200/300/400 [P]; Pecorella M≈r^S. Sim: ×2 beat ×3; 200 was not swept [H].
+**R3 [P] ×2 milestone multipliers at 10/25/50/100/200(/300/400/500/700/1000 for late tiers).** Guava Juice Tub Tapper's guide lists milestone levels 5,10,25,50,100,200,300,400,500,700,1000 with automation unlocking at 50 [S games/guava-juice-tub-tapper.md];  AD ×2 per 10 bought [CODE]; AdCap halvings at 25/50/100/200/300/400 [P]; Pecorella M≈r^S. Sim: ×2 beat ×3; 200 was not swept [H].
 **R4 [P] Show the next milestone as a bar and a count ("×2 in 7").** Goal-gradient effect (psychology.md, strong support for the effect, weaker for magnitude), prototypes/milestones.html.
 **R5 [P] Reveal tier N+1 at ~1/3 of its price or 5 owned.** Cookie Clicker reveal [P]; sim uses 5 owned [H].
 **R6 [P] Permanent perks have hard level caps (5–15).** Trimps perk caps [P games/trimps.md], Prestige Tree/Evolve softcaps [CODE]. (Leaf Blower combo caps unverified.)

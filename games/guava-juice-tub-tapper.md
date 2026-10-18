@@ -51,3 +51,10 @@
 
 ## Verification log
 - 2026-10-18, WebSearch snippets only. Confirmed: Studio 71 launch, May 2018, bubble tapping + automating bathtubs, chart ranks (self/Studio-71 reported). Not confirmed: PopReach, formulas, prestige, offline, monetization, reviews, YouTube coverage. All genre-typical numbers above stay [E].
+
+## Update (08:5x) — gameplay snippets (search snippet only, not a fetched page)
+Source: https://www.levelwinner.com/?p=15323 (guide; snippet via WebSearch, 2026-10-18) and https://www.moregameslike.com/guava-juice-tub-tapper/steam/ (listing). [S, snippet]
+- Idle clicker (Android/iOS): tap, build and automate bathtubs to earn money; coins collected unlock upgrades; "bubble billionaire" goal; >100 bathtub types, >40 costumes, Pop Bubbles mini-game. [S]
+- **Per-tub upgrade levels with milestone bonuses at levels 5, 10, 25, 50, 100, 200, 300, 400, 500, 700, 1000** — an AdCap-style milestone ladder; the guide advises spreading upgrades across tubs rather than maxing one, and rushing **collection automation, which unlocks at level 50**. [S, one guide; not confirmed in-game]
+- No reliable information found on prestige, offline caps, formulas or monetisation numbers; the itch.io tip about "maxing tubes" may refer to another game.
+Implications for the Decade game: the user's inspiration likely uses (a) many "tubs" (generators) with per-tub levels, (b) milestone bonuses spaced roughly ×2 apart (5→10→25→50→100→200→…→1000), (c) automation as a milestone reward — consistent with DESIGN_RULES R3/R10/R21; adopt the longer ladder (…300/400/500/700/1000) for late tiers so a world's top tier keeps giving goals (R25), and give "collection automation" as a milestone reward (not a purchase).
