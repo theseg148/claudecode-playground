@@ -3,7 +3,7 @@
 2. Form Deck: 6 forms x 3 slots (3:2:1): spread of the best loadouts when forms are built from a fixed power budget.
 3. Achievement multiplier 1.05^rows * 1.01^count: size vs world carry."""
 import random, itertools, json, numpy as np
-random.seed(1)
+random.seed(1); np.random.seed(1)   # seeded (REVIEW_2 P1-8)
 # ---- 1. windows
 OUT=[("windfall",.35),("frenzy",.30),("quick",.15),("spotlight",.15),("card",.05)]
 def window_value(bank_s, develop=False):
@@ -12,10 +12,11 @@ def window_value(bank_s, develop=False):
     for name,w in OUT:
         acc+=w
         if r<=acc: break
-    v={"windfall":min(0.15*bank_s,600)+13/ max(1,1),"frenzy":6*45,"quick":3*10*0.1*20,"spotlight":2*0.3*30,"card":0}[name]
+    v={"windfall":min(0.15*bank_s,600)+13,"frenzy":6*45,"quick":3*10*0.1*20,"spotlight":2*0.3*30,"card":0}[name]
     if develop: v*= 2 if random.random()<.5 else .5
     return v
 def session_windows(hit=0.6, gap=(90,240), dur=600, develop=False, bank_s=450):
+    # bank_s = production-seconds of spendable stock when the window opens; windfall = min(15 % of stock, 600 s)+13 s
     t=0; tot=0; n=0
     first=random.uniform(150,180)
     t=first
@@ -27,7 +28,8 @@ def session_windows(hit=0.6, gap=(90,240), dur=600, develop=False, bank_s=450):
 def daily_share(spd=3, hit=0.6, develop=False, trials=2000, exposures_cap=6, offline_eff_avg=0.31):
     ws=[];
     for _ in range(trials):
-        s=sum(session_windows(hit,develop=develop)[0] for _ in range(spd))
+        # first session of the day opens with a large stock (overnight accrual ~ 8h*0.31 = 8900 production-seconds); others ~450 s
+        s=session_windows(hit,develop=develop,bank_s=8900)[0]+sum(session_windows(hit,develop=develop)[0] for _ in range(spd-1))
         s+=min(exposures_cap, 8*3600//1800)*window_value(450)*0.5*(spd>0)   # banked exposures, taken at half EV (delivered as a strip) — one night
         ws.append(s)
     window_s=float(np.mean(ws))
@@ -55,6 +57,15 @@ def deck_spread(n_trials=400, budget=1.0):
         vs=sorted(vs,reverse=True); spreads.append(vs[0]/vs[2]-1)
     return float(np.mean(spreads)), float(np.percentile(spreads,90))
 print("deck spread (top1 vs top3) random budget split:",deck_spread())
+def deck_stats(n=400):
+    best_med=[];best_worst=[]
+    for _ in range(n):
+        forms=[np.random.dirichlet([1,1,1]) for _ in range(6)]
+        val=lambda f:f[0]+0.6*f[1]+0.4*f[2]
+        vs=sorted(sum(s*val(forms[i]) for s,i in zip((3,2,1),p)) for p in itertools.permutations(range(6),3))
+        best_med.append(vs[-1]/vs[len(vs)//2]-1); best_worst.append(vs[-1]/vs[0]-1)
+    return float(np.mean(best_med)),float(np.mean(best_worst))
+print("deck best vs median / best vs worst: +%.1f%% / +%.1f%%"%tuple(100*x for x in deck_stats()))
 # equalised axes (every form has same value 1.0 but different shape): spread 0
 # ---- 3. achievement multiplier
 for w in (1,3,6,9):

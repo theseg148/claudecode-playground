@@ -24,13 +24,32 @@ def test_no_softlock_after_reset():
     cfg=C(n_tiers=8,base_cost=15.0,growth=1.12,tier_cost_ratio=8,tier_rate_ratio=6,milestones=(10,25,50,100,200))
     for w in range(3):
         W=play_world(w,3,3,cfg,0.08,1e6,1e12,max_days=30)
-        assert W.done() or W.t>0 and len(W.events)>0     # world makes progress from the first second
+        assert len(W.events)>0
         assert W.events[0] < 120                         # first goal within 2 minutes (R10)
+    # new world starts with exactly tier-0 cost in gold (the slice soft-lock bug): player can always buy something
+    from campaign3 import World
+    for w in range(9):
+        Wd=World(w,1.0,3.0**w,1e6,1e30); assert Wd.gold==Wd.c0[0]
 
 def test_world_scaling_flat_when_ratio_one():
     cfg=C(n_tiers=8,base_cost=15.0,growth=1.12,tier_cost_ratio=8,tier_rate_ratio=6,milestones=(10,25,50,100,200))
     d=[play_world(w,3,3,cfg,0.08,1e6,1e16,max_days=60).t for w in (0,1,2)]
     assert max(d)/min(d) < 1.5, d
+
+def test_unique_goals_and_ride_gain():
+    from campaign3 import World, GAPS_3, play, calibrate_T, carry_total
+    T=calibrate_T(1.0,1.0); W,ns=play(0,1e14,1.0,1.0,T)
+    assert len(W.uniq)<=8*6+len(W.rides)+1                 # unique goals bounded by tiers*(1+milestones)+rides (no repeats)
+    # every ride raised production multiplier by >= ride_gain (1.5x)
+    prev=1.0; s=0.0
+    for _,tot in W.rides:
+        assert W.smult(tot)/W.smult(s)>=1.5-1e-9; s=tot
+def test_first_ride_under_15_min_every_world_when_T_calibrated():
+    from campaign3 import play, calibrate_T, carry_total
+    for w in range(0,9,2):
+        car=carry_total(w,2.25); cs=3.0**w; T=calibrate_T(car,cs)
+        W,ns=play(w,1e300,car,cs,T,max_days=1)
+        assert W.first_ride_t is not None and W.first_ride_t<=900, (w,W.first_ride_t)
 
 if __name__=="__main__":
     for n,f in list(globals().items()):

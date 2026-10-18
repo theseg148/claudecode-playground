@@ -1,4 +1,6 @@
-# Simulation results (draft v1)
+> **STATUS (v3 review pass, REVIEW_2):** everything here is a toy greedy-player model, **not validated against real player data**. Sections are layered by date: *Sweep / Worlds / Prestige sweep / Sessions / Decade campaign model* are v1 (no rides/carry sources) and are kept for the **tier-shape** result only; their world-length and "weak active reward" conclusions are **superseded** by *Campaign sim v2/v3* below. Re-run commands are listed under *Tooling*. Quantisation: v2 numbers are session-granular (≈0.33 d). Goal counts in v2 sections counted repeated goals; v3 counts unique goals.
+
+# Simulation results (living document)
 Code: `sim.py` (greedy-payback player), `sweep.py` (512 configs), `worlds.py` (sequential worlds). Charts: `baseline.png`, `sweep_params.png`, `worlds.png`. Raw: `sweep.json`, `worlds.json`.
 Model: 8 tiers; cost_i = base*cost_ratio^i * growth^owned; rate_i = rate_ratio^i; x`mm` multiplier at ownership milestones; tier i+1 unlocks at 5 owned of tier i. "Goal" = first purchase of a tier or hitting a milestone count. Satisfying band = 15-600 s between goals; wall = gap > 30 min.
 
