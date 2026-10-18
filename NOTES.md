@@ -16,3 +16,5 @@
 - 08:27 decade_slice.html built & headless-tested (94% goals in band). robustness sim done.
 - 08:28 decade_worlds.md verified by agent; design doc patched (Kabuto upgrades, IP caution).
 - 08:28 Round2 mining: AD IP=10^(log10(AM)/308-0.75), EP=5^(log10(IP)/308-0.7), RM=1000^(log10(EP)/4000-1); Kittens paragon=kittens-70; Cookie Clicker mirror ozh/cookieclicker has main.js (CC NOT closed source: price base*1.15^n, prestige cbrt(c/1e12), golden cookie 5-15min/13s); Paperclips AutoClipper 1.1^n+5, Mega 1000*1.07^n, trust at Fibonacci x1000 clips; Synergism offline 72h(+8h) ; Prestige Tree formulas.
+- 08:29 batch E: 10 more games (now ~47 files). Shark Game worlds = data records w/ gate cost table; Idle Loops banks offline time as 5x spendable speed; Prestige Tree layers = worlds w/ order choice. 
+Lessons added to world design: world = data record; multi-slot gate payment; offline time banked.

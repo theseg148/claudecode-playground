@@ -47,7 +47,7 @@
 - [ ] Decade world content: verify Kabuto/Den-O etc. mechanics via WebSearch
 - [ ] Prototype evaluations (prototypes/EVALUATIONS.md)
 - [ ] Sim: add offline/active-play modes, per-world prestige inside worlds, Decade world model with real Rider order
-- [ ] 30+ games total (currently 16 + batches C/D pending)
+- [x] 30+ games total (47 files)
 
 ## Improvement backlog (run 1, after v1 deliverables)
 - [ ] Review DESIGN_RULES for contradictions (fixed R18 ratio direction); cross-check each rule vs sources
