@@ -1,5 +1,5 @@
-# DESIGN RULES (v2) — Decade idle game
-v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in open-source code or primary data; **P** = published design article/wiki or ≥3 independent games/complaints (secondhand but convergent); **H** = hypothesis from our toy simulation or author judgement — play-test before trusting. Sim = sim/results.md (greedy player; toy). Game files: games/*.md.
+# DESIGN RULES (v3) — Decade idle game
+v3 applies REVIEW_1.md and REVIEW_2.md (campaign sim v3, builds3, offline_lever, offline_autobuy, ride_cooldown, Cookie Clicker ladder check). Each rule has a **confidence**: **C** = confirmed in open-source code or primary data; **P** = published design article/wiki or ≥3 independent games/complaints (secondhand but convergent); **H** = hypothesis from our toy simulation or author judgement — play-test before trusting. Sim = sim/results.md (greedy player; toy). Game files: games/*.md.
 
 ## A. Cost & production
 **R1 [C] Per-unit cost growth r = 1.12–1.15 for main generators (1.07 only for late/bulk tiers).** Cookie Clicker 1.15 [CODE games/cookie-clicker.md], Kittens 1.12–1.15 [CODE], Trimps 1.12–1.24 [CODE], Synergism 1.25 [CODE]; Pecorella 1.07–1.15 [P research/math_of_idle_games.md]. At 1.15 price doubles every ~5 buys, at 1.07 every ~10.
