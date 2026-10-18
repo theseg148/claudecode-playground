@@ -47,7 +47,7 @@ Worlds 3–9 gates are placeholders to fill during content design. Currencies vi
 Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: 1e18·s^w in the sim = ~3 days), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
 
 ## 5. Pacing plan and check table (from sim/results.md v2)
-- Flat variant: s=3, c=3 → 3 d/world, 27 d. Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
+- **Recommended: gentle variant s=3, c=2.8 (ratio 1.07): 3.0→4.0 d/world, 33 d for a 3-session/day player (21 d heavy, 99 d for 1 session/day; sim/results.md population).** Flat variant: s=3, c=3 → 3 d/world, 27 d. Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
 - Per world: 8 tiers × (1 + 5 milestones) + ~11 rides ≈ 60 goals ⇒ ≥1 goal in 90–100 % of sessions (R25). If worlds are >5 days, add mid-world beats (tree nodes, set bonuses, events) to keep ≥6 goals/session-day.
 - Offline: stepped 50 %/25 %, cap 8 h (upgradable to 24 h) (R33). Active ≤1.5× (R34).
 - Check: each ride ≥2× faster than previous start; first ride ≤15 min; rides per session ≤2.

@@ -31,7 +31,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R22 [P] Cliff awareness:** the prestige currency magnitude ≪ main currency; check the reward cliff so players don't time rides before a cliff. math_of_idle_games 6.7.
 
 ## D. Worlds
-**R23 [H] World length ∝ (cost_scale/carryover)^n. Choose ratio 1.0 (flat) to 1.2 (lengthening); <0.8 trivial, >1.25 walls.** Sim v2: ratio 1.0 → 3 d × 9 (27 d), 1.07 → 3→4 d (33 d), 1.2 → 3→8.7 d (48 d), 1.25 → 3→11.3 d with 2 dry sessions [Sim H].
+**R23 [H] World length ∝ (cost_scale/carryover)^n. Recommend ratio 1.0–1.07 (flat to gentle: 27–33 d casual campaign); 1.2 only with extra beats in later worlds (dry-session streaks of 5–7 otherwise); <0.8 trivial, >1.25 walls.** Sim v2 + population.py: campaign length ∝ 1/sessions-per-day (1/day 81–147 d, 3/day 27–48 d, 6/day 16–33 d). Sim v2: ratio 1.0 → 3 d × 9 (27 d), 1.07 → 3→4 d (33 d), 1.2 → 3→8.7 d (48 d), 1.25 → 3→11.3 d with 2 dry sessions [Sim H].
 **R24 [H] Dimension Ride = fixed world-clear bonus (carry c) + a Ride Card, not a formula.** Only ~8 hops, objective-gated; formula-prestige only adds opacity. Review H2.
 **R25 [H] Target 3–4 days per world for a 3×10 min/day player (≈4–5 weeks total flat, ≈7 weeks lengthening); must contain ≥6 goals per session-day or ≤5 days long.** Sim v2: 18-day world had only 34 % of sessions with a goal [Sim H].
 **R26 [P] Each world adds exactly one new rule/verb; world-local currency from world 2–3; ≤3 visible currencies at once.** sequential_worlds.md S1/S2/S11 [P, tally of ~12 games]; skin-only restarts fail (AdCap planets).

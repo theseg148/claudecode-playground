@@ -109,3 +109,14 @@ Not simulated yet: challenge reward budget (automation vs ×1.15 stack, ≤×3.1
 - `sim/pacing_report.py [growth cost_ratio rate_ratio]` — prints PASS/FAIL checks against DESIGN_RULES (R2, R9, R10, R16, R25). Recommended config 1.12/8/6 passes all; the "bad" config 1.15/5/14 fails 7 of 9 checks.
 - `sim/test_sim.py` — unit tests (cost formula, milestones, stepped offline, no soft-lock after reset, flat worlds at ratio 1).
 - Re-run order: `python3 sweep.py; python3 prestige_sweep.py; python3 sessions_sweep.py; python3 worlds.py; python3 decade_model.py; python3 campaign.py 1e18; python3 campaign_sweep.py; python3 builds.py; python3 events.py; python3 robustness.py`.
+
+## Player archetypes × world scaling (population.py / population.json) — campaign length, goal density
+Goal 1e18, 9 worlds, 8 tiers, rides ≥2× rule, stepped offline. Total campaign days (and the worst-world share of sessions with ≥1 goal / longest run of dry sessions):
+| sessions/day | flat (ratio 1.0) | gentle (1.07) | lengthening (1.2) |
+|---|---|---|---|
+| 1 | 81 d (100 % / 0) | 99 d (83 % / 2) | 147 d (68 % / 6) |
+| 2 | 40.5 d (100 % / 0) | 49.5 d (83 % / 2) | 73.5 d (68 % / 6) |
+| 3 (casual) | 27 d (100 % / 0) | 33 d (83 % / 2) | 48 d (69 % / 5) |
+| 4 | 22.5 d (90 % / 1) | 26.5 d (77 % / 2) | 41.5 d (60 % / 5) |
+| 6 (heavy) | 16.5 d (82 % / 2) | 20.8 d (73 % / 2) | 32.7 d (52 % / 7) |
+Findings: (1) campaign length is almost exactly ∝ 1/sessions-per-day, so the "same game" spans 17–147 days across archetypes; (2) the flat variant keeps ≥90 % goal density up to 4 sessions/day; (3) every step toward lengthening worlds costs goal density (dry-session streaks of 5–7), so **lengthening worlds only work if later worlds add content beats (R32) — recommend the gentle variant (ratio ≈1.07) with beat density rising per world**; (4) heavy players see less goal density because they exhaust beats faster — give them optional challenges/replay modes (R31).
