@@ -34,7 +34,7 @@ def test_no_softlock_after_reset():
 def test_world_scaling_flat_when_ratio_one():
     cfg=C(n_tiers=8,base_cost=15.0,growth=1.12,tier_cost_ratio=8,tier_rate_ratio=6,milestones=(10,25,50,100,200))
     d=[play_world(w,3,3,cfg,0.08,1e6,1e16,max_days=60).t for w in (0,1,2)]
-    assert max(d)/min(d) < 1.5, d
+    assert max(d)/min(d) < 1.5, d   # NOTE: tautology when s=c (exact rescale); kept as a regression guard only
 
 def test_unique_goals_and_ride_gain():
     from campaign3 import World, GAPS_3, play, calibrate_T, carry_total
@@ -50,6 +50,13 @@ def test_first_ride_under_15_min_every_world_when_T_calibrated():
         car=carry_total(w,2.25); cs=3.0**w; T=calibrate_T(car,cs)
         W,ns=play(w,1e300,car,cs,T,max_days=1)
         assert W.first_ride_t is not None and W.first_ride_t<=900, (w,W.first_ride_t)
+
+def test_pow_mode_sublinear_and_rides():
+    from campaign3 import play, calibrate_T, carry_total
+    car=carry_total(0,2.25); T=calibrate_T(car,1.0,mode="pow")
+    W,ns=play(0,6.24e15,car,1.0,T,mode="pow",bonus=.08,p=.5)
+    assert W.done() and 6<=len(W.rides)<=16 and W.smult(W.seals)<1e4
+    assert W.first_ride_t<=900
 
 if __name__=="__main__":
     for n,f in list(globals().items()):

@@ -71,11 +71,19 @@
 - [x] Unit tests for sim (cost formula, milestones, offline) in sim/test_sim.py
 
 ## Round 3 backlog (after REVIEW_2 applied)
-- [ ] analysis/*.md refresh to v3 (agent running)
-- [ ] REVIEW_3: third adversarial pass over DESIGN_RULES/DECADE docs + analysis; check C/P/H tags against source files
+- [x] analysis/*.md refresh to v3
+- [x] REVIEW_3 (applied batch 1+2; remaining items below): third adversarial pass over DESIGN_RULES/DECADE docs + analysis; check C/P/H tags against source files
 - [ ] Sim: offline auto-buy / auto-spend effect on world length (REVIEW_2 3.1); ride cooldown option (R34); 1-session/day players: world length 9 d — decide cap upgrade
 - [ ] Sim: mid-world beats supply model (album/tree/fusion) vs dry sessions
 - [ ] Prototype: Album + Form Deck (World 2/3 systems), 3-named-cost gate inside slice, Exposure bank offline
 - [ ] Gates for worlds 3-9 content tables: full fill (3 named costs each) & beat schedule per world
 - [ ] Verify Agito lore (still [M]); verify Cookie Clicker early-upgrade thresholds; Egg Inc / Realm Grinder numbers remain [S]/[M]
 - [ ] Validate sim against more real ladders (AdCap [M], Kittens [CODE], Synergism [CODE]) like cc_ladder.py
+
+## Round 4 backlog (after REVIEW_3)
+- [ ] Gate calibration with auto-spend + builds in the loop (gates ≈×1.7–2.1 larger) -> campaign4 gate schedule
+- [ ] Sim: carry sources still missing (cross-world tree nodes, Driver forms, passive income, Time Skip)
+- [ ] Wording: 'Form' overload (Final Form Ride / Driver forms / Form Deck / Agito Forms / Rider Form) -> rename Form Deck -> 'Loadout'
+- [ ] R-number references in older files (campaign.py header, builds.py, decade_slice.html, DD:1/WT:1) -> v3 numbers
+- [ ] Mastery tree size: '~25 nodes' vs point cap 4/world -> define node count (≈12/world with 4 points)
+- [ ] Phase files: README still lists decade_slice v1; consider removing v1 slice

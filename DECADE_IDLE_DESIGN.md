@@ -2,14 +2,14 @@
 Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels the Rider worlds in sequence, photographing each one and *restoring* it by upgrading it — no fighting. Lore hooks are verified in research/decade_worlds.md ([S] vs [M]); fan project, see §9.
 
 ## 1. Loops
-- Seconds: auto-collect + tap "Photo Op"; buy; watch the ×2 bar fill.
+- Seconds: auto-collect + tap "Photo Op" (a cooldown button, +10 %); a separate unscheduled Photo Window event (R38b) appears every 90–240 s; buy; watch the ×2 bar fill.
 - Session (10 min): 1–2 rides' worth of decisions: welcome-back card → spend → build choice → optional Final Form Ride.
 - World (≈3.2 days): ≈9–11 Final Form Rides (≈3.4/day), gate (3 named costs) completed, Dimension Ride.
 - Campaign: 9 worlds ≈ 29 days (≈4 weeks) *as the calibration target for a 3-session/day player with auto-spend and a build on* (the sim v3 gates, calibrated without them, clear in ≈1.5–1.9 d/world = 14–17 d; ≈3.2 d/world; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d), then finale + post-game (R23, R25; sim v3 + population sim).
 
 ## 2. Structure
 **Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
-**Layer 1 — Final Form Ride (in-world, R15–R19):** Seals pending = floor(sqrt(run_lifetime/T_w)); production multiplier = (1+Seals)^0.5 (sim v3; linear +8 %/seal explodes). Player rides when it raises production ≥1.5× (highlighted, with before/after preview). T_w is calibrated so the first ride lands ≈8 min into play in every world (R10, R16). Rhythm: ≈9–11 rides per 3.2-day world (≈3.4/day), each ≥1.5× production by construction. The prototype slice still uses a DEV linear formula (+8 %/seal) for quick feel-testing.
+**Layer 1 — Final Form Ride (in-world, R15–R19):** Seals pending = floor(sqrt(run_lifetime/T_w)); production multiplier = (1+Seals)^0.5 (sim v3; linear +8 %/seal explodes). Player rides when it raises production ≥1.5× (highlighted, with before/after preview). T_w is calibrated so the first ride lands ≈8 min into play in every world (R10, R16). Rhythm: ≈9–11 rides per 3.2-day world (≈3.4/day), each ≥1.5× production by construction. The prototype slice uses the same (1+Seals)^0.5 and ≥×1.5 ride rule (DEV T and gates).
 **Layer 2 — Dimension Ride (to next world, R24):** NOT a formula: a fixed carry multiplier c per cleared world (c ≈ cost-scale s / 1.0–1.2) plus one Ride Card; gated by the world objective (§4). Number of hops: 8.
 **Layer 3 — "All Riders" (post-game, R31):** only layer with a formula (log-scaled), unlocked after world 9.
 Layers ≤3 (R20).
@@ -65,7 +65,7 @@ Default: **none** (fan project, Toei IP; research/retention_monetization.md: App
 Verified [S]: Kabuto (Clock Up, Cast Off, Hyper Zecter, Zecter roster), Den-O Imagin, Kiva Fuestles/Castle Doran, Blade Rouze Cards, Faiz Mission Memories, Hibiki Onkaku. Unverified: Agito; "Tenshi", "Misaki Kaoru" (dropped); Hikari Studio framing. Fan project: no assets/logos/card images; consider renaming mechanics before release; non-commercial.
 
 ## 10. Risks / next
-Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 3 worlds first: Kabuto, Den-O, Faiz); tuning T_w, bonus/pt, c need play-tests. prototypes/decade_slice.html implements a 2-world slice with telemetry for tuning.
+Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 3 worlds first: Kabuto, Den-O, Faiz); tuning T_w, bonus/pt, c need play-tests. prototypes/decade_slice_v2.html implements a 2-world, 6-tier slice (the design says 8 tiers; DEV gates) with telemetry for tuning.
 
 ## 11. Technical notes (research/ui_and_numbers.md)
 Native doubles suffice (peak ≈1e22 vs 1.8e308 limit). Named-short notation to 1e33; log-scale gate bar; versioned `DECADE1:` export string; autosave + backup slots.

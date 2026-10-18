@@ -37,10 +37,10 @@ function hardReset(){try{localStorage.removeItem("decadeSliceV2")}catch(e){}loca
 const cs=i=>15*8**i*Math.pow(3,S.w), rt=i=>6**i;
 const castoff=(n,i)=>(S.w==0&&i>=3&&n>=40)?(S.tree.includes('co2')?2:S.tree.includes('co1')?1.5:1):1;
 const mult=(n,i)=>2**MS.filter(m=>n>=m).length*castoff(n,i), cost=i=>cs(i)*G**S.own[i];
-const sealMult=()=>Math.sqrt(1+S.seals), carry=()=>3**S.w*(1+.1*S.cards)*(1+.02*Math.sqrt(S.arch||0));
+const sealMult=()=>Math.sqrt(1+S.seals), carry=()=>2.25**S.w*(1+.1*S.cards)*(1+.01*S.w)*(S.w>0?1.05**Math.floor(16*S.w*.8/8)*1.01**Math.floor(16*S.w*.8):1);   // c=2.25 + cards + bounded archive + achievements (DEV approximation, campaign3.carry_total)
 const rate=i=>S.own[i]*rt(i)*mult(S.own[i],i);
 const treeMult=()=>(S.tree.includes('sp1')?1.2:1)*(S.tree.includes('sp2')?1.2:1);
-const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry()*treeMult()*(S.clock>0?(S.tree.includes('sp2')?3:2):1)*(frenzy>0?7:1)+(spotT>0&&spot!==null?rate(spot)*(S.own[spot]/10)*sealMult()*carry()*treeMult():0);
+const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry()*treeMult()*(S.clock>0?2:1)*(frenzy>0?7:1)+(spotT>0&&spot!==null?rate(spot)*(S.own[spot]/10)*sealMult()*carry()*treeMult():0);
 const avail=i=>i==0||S.own[i-1]>=5;
 const rideGain=()=>Math.sqrt(1+S.seals+pend())/Math.sqrt(1+S.seals), canRide=()=>pend()>=1&&S.maxTier>=3&&rideGain()>=1.5;
 const pend=()=>Math.floor(Math.sqrt(S.life/(TH*(S.tree.includes('rc1')?.3:1)*Math.pow(3,S.w))));
@@ -53,7 +53,7 @@ $("clock").onclick=()=>{if(S.w!=0||S.charge<4||S.clock>0)return;S.charge-=4;S.cl
 $("photo").onclick=()=>{if(S.photoCD>0)return;const v=prod()*6;S.gold+=v;S.life+=v;S.wlife+=v;S.photoCD=60;};  // active layer ≈ 6 s of income per 60 s (+10 %)
 $("ffr").onclick=()=>{const p=pend();if(!canRide())return;S.seals+=p;S.mp++;S.gold=cs(0);S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
 $("dim").onclick=()=>{if(S.w>=WORLDS.length-1)return;S.arch=(S.arch||0)+S.seals;S.seals=0;S.w++;S.cards++;S.gold=cs(0);S.life=0;S.wlife=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;document.body.style.transition="filter .5s";document.body.style.filter="brightness(1.5)";setTimeout(()=>document.body.style.filter="",500);toast(`KAMEN RIDE — ${WORLDS[S.w].n}! Seals archived (+bonus), Cards kept (+10% each). New rule here.`)};
-const TREE=[["sp1","Speed I: ×1.2 production",1,null],["sp2","Speed II: Clock Up ×3, ×1.2 more",2,"sp1"],["co1","Cast Off I: ×1.5 at 40 owned",1,null],["co2","Cast Off II: ×2 at 40 owned",2,"co1"],["rc1","Recipes I: offline 50%→65%, rides need 70% less",1,null],["rc2","Recipes II: +1 Charge cap, Charge regen ×2",2,"rc1"]];
+const TREE=[["sp1","Speed I: ×1.2 production",1,null],["sp2","Speed II: ×1.2 more",2,"sp1"],["co1","Cast Off I: ×1.5 at 40 owned",1,null],["co2","Cast Off II: ×2 at 40 owned",2,"co1"],["rc1","Recipes I: offline 50%→65%, rides need 70% less",1,null],["rc2","Recipes II: +1 Charge cap, Charge regen ×2",2,"rc1"]];
 function buyNode(id){const n=TREE.find(t=>t[0]==id);if(S.tree.includes(id)||S.mp<n[2]||(n[3]&&!S.tree.includes(n[3])))return;S.mp-=n[2];S.tree.push(id);render()}
 function toast(m){const t=$("toast");t.style.display="block";t.textContent=m;setTimeout(()=>t.style.display="none",5000)}
 function offline(sec){const s=Math.min(sec!==undefined?sec:(Date.now()-S.last)/1000,8*3600);if(s<120)return;const e1=S.tree.includes('rc1')?.65:.5;const a=Math.min(s,7200)*e1+Math.max(0,s-7200)*.25;const e=prod()*a;S.gold+=e;S.life+=e;S.wlife+=e;toast(`Welcome back! Away ${(s/60).toFixed(0)} min → +${fmt(e)} Shots (${(100*a/s).toFixed(0)}% efficiency)`)}
