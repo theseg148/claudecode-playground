@@ -47,3 +47,8 @@
 4. Combo mechanic offers moment-to-moment engagement without fighting.
 5. Gate subsystems (cards, pets, gems) behind progress; do not show all at once.
 6. Cap max-level for certain upgrades (e.g., Combo Multiplier cap) to create "done" moments.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Searches returned no gameplay data. Only [S]: Steam DLC packs exist (Premium Pack $24.99 list, Borbventure $13.99, Materials Pack $8.99; may be stale) - dekudeals/gamegeeker. All [M]/[E] items left unverified, including the 'no microtransactions ~$5' claim.

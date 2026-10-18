@@ -33,7 +33,7 @@
 - Yes: offline coins accumulate at a fraction of active rate, with a cap tied to upgrades (Offline progress upgrade) [M/E].
 
 ## Monetization effects
-- Paid on Steam (~$5-10) with optional DLC; on mobile free with ads (rewarded ads for boosts) and IAP for bundles [M]. Steam version no ads.
+- Steam: free-to-play [S: raijin.gg/nodal.gg listings; earlier text here said paid ~$5-10, which snippets contradict - likely was paid before the v3.0.0 F2P switch, unverified]; on mobile free with ads (rewarded ads for boosts) and IAP for bundles [M].
 
 ## What players love
 - Active/idle hybrid; satisfying chain upgrades; the Random Box/Rage surprise moments; frequent ascension cadence; lots of quests; nostalgic pixel art.
@@ -48,3 +48,10 @@
 4. Crit-for-souls is a nice example of a second "prestige" stat with its own upgrade line.
 5. Advise a first-ascension checklist in-game (affordable trio) to prevent premature resets.
 6. Keep a hybrid: auto progress + optional active bursts (Rage) so no fighting is required but engagement exists.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Confirmed [S]: Slayer Points formula '12 + lifetimeSP*4' (wiki snippet, exact context unclear); crits give 200% souls; Critical Mushrooms +30% crit souls; % souls bonus is additive; Rage Mode added in v3.0.0 with free-to-play Steam (idleslayer.fandom.com).
+- CORRECTION [S]: Steam is free-to-play (not paid $5-10 as stated in Monetization); mobile free with ads + IAP (Remove Ads $3.99 1 month / $9.99) per App Store listing. Fixed in Monetization line.
+- NOT confirmed: soul-to-coin %, upgrade cost ratios, ascension timings, offline fraction.

@@ -20,7 +20,7 @@
 
 ## Cost & production growth formulas
 - AutoClipper cost [M]: `1.07^level + 5` dollars (roughly; starts ~$5, so slow exponential). Production per clipper = 1 clip/sec x multipliers.
-- MegaClipper cost [M]: `1.07^level * 1000`; each MegaClipper = 500 AutoClippers of output. Only unlocked after 75 AutoClippers [S].
+- MegaClipper cost [S: https://universalpaperclips.fandom.com/wiki/MegaClippers; wiki table 5th = $1,402.55, 75th = $159,876.01 matches `1000*1.07^A` exactly (1.07^5*1000=1402.55); first one costs 500]: `1.07^level * 1000`; each MegaClipper = 500 AutoClippers of output. Only unlocked after 75 AutoClippers [S].
 - Wire: 1000-inch spool, price does a random walk around ~$15-30 [M]; WireBuyer automates for 7,000 ops [S].
 - Marketing level n cost [M]: approx doubles each level (~`100 * 2^(n-1)`); each level multiplies demand by 1.1 [E on exact constants].
 - Demand: `0.8 * marketing_mult * 1.1^(marketing-1) * 1.1^... / price_factor` - effectively linear-falling in price; optimum price found by hand [M, vague].
@@ -58,3 +58,9 @@
 4. Finite 8-10 hr arc with a satisfying world-collapse finale suits Decade (destroyer-of-worlds) theme.
 5. Exponential cost `base*1.07^n`-style curves for first-tier buyers, with a 500x "Mega" tier unlocked after n=75, is a neat pattern for "Final Form Ride" bulk upgrades.
 6. Keep an automation unlock (WireBuyer-like, 7k ops) as a priced milestone: automation = reward.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- CONFIRMED [S]: MegaClipper cost `1000*1.07^A` (arithmetic match with wiki table), x500 output, unlock at 75 AutoClippers. https://universalpaperclips.fandom.com/wiki/MegaClippers
+- NOT confirmed (searches returned nothing relevant): AutoClipper cost `1.07^level+5`, Wire price range, marketing cost constants, ops cap = memory x1000, total clips ~3e55, clear time 6-10h. Remain [M]/[E].

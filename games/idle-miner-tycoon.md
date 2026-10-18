@@ -48,3 +48,9 @@
 4. Offline earnings with a capped window and "welcome back" doubling hooks returning.
 5. New location unlocks (Earth -> Moon -> Mars) are natural analogues to world-hopping; give each its own currency scale.
 6. Avoid its late-game ad/IAP pressure if we want better reviews.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Partly supported [S]: managers let you earn Idle Cash offline with a cap (idleminertycoon.fandom.com, bluestacks guides); manager upgrade discounts up to 70-80% for Executives; Super Cash buys shafts/speedups (kolibrigames.com blog).
+- NOT confirmed: cost growth constants, 'Super Cash x2 offline' booster, milestone levels 25/50/100. Remain [M]/[E].

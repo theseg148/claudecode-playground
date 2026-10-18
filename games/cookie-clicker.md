@@ -36,7 +36,7 @@
 
 ## Prestige structure
 - Ascension resets cookies, buildings and normal upgrades. It keeps achievements, heavenly upgrades, sugar lumps and milk.
-- The first ascension is possible at 1 trillion cookies for 1 chip, and community guides suggest waiting for hundreds of chips (365 to 440 is quoted by low-quality sources; treat as estimate).
+- The first ascension is possible at 1 trillion cookies for 1 chip, and community guides suggest waiting for hundreds of chips (community guides quote ~200 as a minimum for the first ascension and ~440 to afford a starter set [S: ponderworthy.com guides via search; low-quality sources, still advice not rule]). Prestige = cube root of lifetime cookies in trillions, +1% CpS per level, chips 1:1 with levels [S: https://cookieclicker.wiki.gg/wiki/Prestige].
 - The Heavenly upgrade tree is a spatial web: you must buy neighbours to unlock further nodes. This is itself a pacing gate.
 - Key permanent perks: start with some cookies, golden cookies appear more, "Persistent memory", the Legacy permanent upgrade slots, offline CPS, and the "Season switcher".
 - Players ascend repeatedly; the endgame is optimizing runs, not one giant run.
@@ -49,7 +49,7 @@
 - Late buildings (Prism, Chancemaker, Fractal engine, Javascript console, Idleverse, Cortex baker, You) are revealed over weeks of play. [estimate: weeks, depends on ascend cadence]
 
 ## Offline progress
-- Base game: no offline cookie production. The "Twin Gates of Transcendence" heavenly upgrade grants offline CPS at 5% for up to 1h, rising with further upgrades ("Angels" 10%, "Archangels" 15%, "Virtues"), at most about 25% over a 24h window or so. [estimate from recall of values]
+- Base game: no offline cookie production. The "Twin Gates of Transcendence" heavenly upgrade grants offline CPS at 5% for up to 1h, costs 1 chip; beyond 1h the rate drops a further 90% (0.5% of CpS) [S: https://cookieclicker.wiki.gg/wiki/Prestige]. Angels adds +10% (15% total), Dominions (after Virtues) brings total to 45% per the wiki snippet; with all upgrades the wiki states 91% for 7 days 8 hours [S, snippet wording; verify the exact tier names].
 - Grandmas never stop, but the player must return to click golden cookies. This keeps the game active.
 
 ## Monetization effects
@@ -75,3 +75,10 @@
 - Offer an in-game unlock (e.g. Kamen Ride cards) that grants a modest offline rate instead of forcing it.
 - Give a short, active "golden cookie" analogue: a timed Rider Card event that creates a combo moment without fighting.
 - Reveal future tiers at about 1/3 of price so that the next Rider world is always a visible goal.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Confirmed [S]: building price = base * 1.15^(owned - free), rounded up (wiki.gg Buildings; twinfinite); Classic used 1.1; Classic Cursor base 15 (modern Cursor 15 not directly confirmed).
+- Confirmed [S]: prestige = cube root of lifetime cookies in trillions, +1%/level, chips 1:1; Twin Gates 5% for 1h, 0.5% after, 1 chip; Angels/Dominions totals 15%/45% (https://cookieclicker.wiki.gg/wiki/Prestige).
+- Ascend-timing numbers (200/440) are community advice, not rules. Late-building reveal timing remains [estimate].

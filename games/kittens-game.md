@@ -51,3 +51,9 @@
 4. Fixed reset thresholds (35 kittens) are discoverable thresholds: telegraph in UI.
 5. Challenge modes that nerf a mechanic for a permanent reward fit Decade's world-specific rule changes.
 6. Offline catch-up capped by storage naturally bounds offline gains.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Confirmed only weakly [S]: catnip field production varies strongly by season (forum: +50% summer, -75% winter - differs from my [M] values; treat as UNRESOLVED); game balance changes between versions (videogamegeek).
+- NOT confirmed (several searches): price ratios (field 1.12, library 1.15, hut 2.5), 0.125/tick, karma/paragon formulas. Remain [M]/[E]. Wiki is on bloodrizer.ru; source code is the authority.

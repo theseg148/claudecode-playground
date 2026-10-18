@@ -17,7 +17,7 @@
 
 ## Cost & production growth formulas
 - Builder income: +5 wood per 10 s (constant), so fire can't go out while building [S].
-- Trap: cost = `(n+1) * 5` wood, max 30 [S]. Hut: cost = `20 + n*60` wood per search (max 20 huts) [S]; actual code: 100 + ... verify [M]. Each hut +4 population [S].
+- Trap: cost = `(n+1) * 5` wood, max 30 [S]. Hut: cost = `20 + n*60` wood per search (max 20 huts)  [S: https://adarkroom.fandom.com/wiki/Buildings_(Mobile) - NOTE this is the MOBILE wiki page; browser-version code values unverified]; actual code: 100 + ... verify [M]. Each hut +4 population [S].
 - Cart: 30 wood, gathering wood becomes 18? per click [S] (original was 10 -> 50 in early versions [M]).
 - Lodge 200 wood, 10 fur, 5 meat; Trading Post 300 wood + 100 fur; Workshop 800 wood, 100 leather, 10 scales [S].
 - Worker output (per 10 s) [M]: gatherer +1 wood, hunter +0.5 fur & +0.5 meat, charcutier -5 meat -> +1 cured meat, miner +1/+3 ore with cured meat/food upkeep; negative-cost jobs create supply chains.
@@ -50,3 +50,10 @@
 4. Random timed events (Shady Builder, Nomad) add variety without combat.
 5. Supply-chain jobs (hunter -> charcutier) create upgrade puzzles with no fighting.
 6. Short 3-5 hr arc with a twist ending is a fine target for a world-hop story.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Confirmed [S] (mobile wiki): trap cost (n+1)*5 wood max 30; hut cost 20+n*60 wood, max 20, +4 pop. Mobile-version caveat: browser code may differ. https://adarkroom.fandom.com/wiki/Buildings_(Mobile)
+- Confirmed [S]: browser version open source MPL-2.0 (railway.com/deploy/adarkroom).
+- NOT confirmed: worker rates, prestige/ship cargo, offline behaviour. Remain [M].

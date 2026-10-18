@@ -6,8 +6,14 @@
 - https://www.moregameslike.com/guava-juice-tub-tapper/steam/ (third-party listing: adventure/idle clicker; build bathtubs to boost bubbles, coins unlock upgrades, mini-games Pop Bubbles and Blowup Bath Bombs) [S]
 - https://businessinsider.nl/roi-fabito-on-his-guava-juice-youtube-channel-merch-business-2020-2/ (business context) [S]
 
+## Update 2026-10-18 (deeper search)
+- Tubefilter 2018-05-24 [S, snippet]: Studio 71 (media co. repping ~1,300 influencers) launched Guava Juice: Tub Tapper (~May 2018) as a mobile title built on Roi Fabito; framed against Kim Kardashian: Hollywood (~$200M reported gross). Gameplay described: tap as many on-screen bubbles as possible, build and automate bathtubs, quick-play challenges. #3 App Store Simulation and #26 overall free in week 1 per Studio 71. https://www.tubefilter.com/2018/05/24/influencers-mobile-games-guava-juice-tub-tapper/
+- Third-party listing [S, low reliability, contains unrelated text]: hundreds of bathtubs, Endless Upgrades, Show off your Swag, Forty Costumes, Unique Power-ups, genres Adventure/Idle Clicker. https://www.moregameslike.com/guava-juice-tub-tapper/steam/
+- Publisher: a search suggested PopReach (Toronto) published it, but no source ties PopReach to the game; UNVERIFIED, do not cite.
+- Not found by any search: App Store / Google Play text, review text, YouTube video coverage, ad/IAP structure, current availability (likely delisted; unknown). Searches for the exact title return unrelated Tapper games.
+
 ## Which game is it
-- "Guava Juice" is Roi Fabito's YouTube channel. The game identified is **Guava Juice: Tub Tapper**, a mobile idle/clicker, launched around May 2018 [S]. Developer/publisher: one search answer attributed it to Studio 71, but a later search did not confirm any developer, so treat it as UNVERIFIED. Other games with similar names (e.g. "Guava Juice R2" on itch.io) appear unrelated.
+- "Guava Juice" is Roi Fabito's YouTube channel. The game identified is **Guava Juice: Tub Tapper**, a mobile idle/clicker, launched around May 2018 [S]. Launched by Studio 71 per Tubefilter [S]; actual developer/publisher still UNVERIFIED. Other games with similar names (e.g. "Guava Juice R2" on itch.io) appear unrelated.
 
 ## Core loop
 - Tap the bathtub to produce bubbles -> earn coins -> buy upgrades and additional tubs ("building bathtubs to boost bubbles") -> unlock "crazy upgrades" themed on the channel [S]. Mini-games interrupt the loop: Pop Bubbles and Blowup Bath Bombs [S].
@@ -42,3 +48,6 @@
 3. Silly themed upgrade names carry personality; give each Rider world a themed upgrade set.
 4. Document public design: with this game little is public, so assume no reliable benchmark data; use other files in this folder for numbers.
 5. Verify the game's developer/store pages directly before citing (this file's gaps are real).
+
+## Verification log
+- 2026-10-18, WebSearch snippets only. Confirmed: Studio 71 launch, May 2018, bubble tapping + automating bathtubs, chart ranks (self/Studio-71 reported). Not confirmed: PopReach, formulas, prestige, offline, monetization, reviews, YouTube coverage. All genre-typical numbers above stay [E].

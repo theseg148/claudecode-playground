@@ -51,3 +51,9 @@
 4. New permanent layers at zone thresholds unlock mid-run (Heirlooms) - drop surprise unlocks at milestones.
 5. Do not copy the opaque late-game spreadsheet culture; give an in-game recommender.
 6. Auto-fight is replaceable with auto-progress through worlds (no fighting rule) while keeping upgrade focus.
+
+
+## Verification log
+Search date 2026-10-18; WebSearch snippets only (pages not opened).
+- Confirmed [S] (trimps.fandom.com/wiki/Broken_Planet): Improbabilities begin at zone 59, last cell of Z59 gives 5x helium; portal first use gives 30 helium (wiki Portal page); Corruption starts zone 181 (tvtropes secondary).
+- NOT confirmed: equipment cost multiplier ~1.2, enemy scaling 1.1-1.2/zone, Heirlooms Z90, Magma/Nature/Universe 2 zones, offline cap. Remain [M]/[E].
