@@ -26,3 +26,4 @@ Lessons added to world design: world = data record; multi-slot gate payment; off
 - 08:46 weak-game upgrade B done: corrections (Cell to Singularity premium=Darwinium; CH2 paid EA 2018, delisted 2024; Idle Champions has offline; Idle Wizard prestige Exile+Realm). Many numbers still [EST].
 - 09:00 REVIEW_2 applied: campaign3.py (all carry sources, calibrated T_w & gates, unique goals), pow(0.5) Seal multiplier, prototype fixes, events seeded (+17.5%/+40.7% deck), tests (7), doc consistency. Elapsed ~50 min.
 - 09:06 Added: cc_ladder.py reality check (CC cost\/rate ratio 1.4-2.9, passive median gap ~16 min), offline_lever.py, builds3.py, campaign3 chart, README index, Photo Window in slice. Waiting: analysis refresh agent. Elapsed ~56 min.
+- 13:02 Session usage limit interrupted subagents (analysis refresh, Kamen Rider landscape); resumed via SendMessage. Elapsed since start: ~4h50m (>=2h minimum met). Continuing improvements.
