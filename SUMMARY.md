@@ -1,22 +1,22 @@
-# SUMMARY — 20 most important findings (v1)
-Evidence tags as in DESIGN_RULES.md. Details in linked files.
-1. Cost growth 1.07–1.15 per unit is the genre standard; 1.12–1.15 for main generators. [CODE/S/PUB] research/formula_tables.md
-2. Tier shape beats constants: cost ratio per tier ≈ 1.2–1.5 × production ratio kept 97 % of goals in a 15–600 s band; ratios ≤1 or >2 gave bursts or walls. [SIM] sim/results.md
-3. ×2 milestone multipliers at 10/25/50/100/200 beat ×3; show them as bars. [CODE/SIM/psychology]
-4. Median 45 s and max 6 min between goals in the best sweep config; walls >30 min correlate with quitting. [SIM/complaints]
-5. Sqrt prestige is the common choice (AdCap, Realm Grinder, Synergism L1); deeper layers use tiny exponents 0.03–0.01. [CODE]
-6. Prestige at 5–10 % per point, threshold ≈ 25-min earnings, reset at ≥2× pending: 8–14 resets in 6 h. 25 %/pt explodes to 9e4×. [SIM]
-7. First prestige/ride within 10–25 min; first automation ~3 min. [PUB/SIM]
-8. Max 2–3 reset layers; 4+ (Clicker Heroes, Synergism, AD) confuse. [analysis/prestige_designs.md]
-9. Offline efficiency is the strongest pacing lever (0→25 % ≈ 9× faster for casual); 4× more sessions only ≈1.5× faster. [SIM]
-10. Offline caps in the wild: 8 h common, 12 h AFK Arena, 24 h Melvor, 3 days Synergism, 75 % Bitburner. [S/CODE]
-11. World length scales as (cost_scale/carryover)^n; equal ratio = equal worlds, carry>cost = trivialising. [SIM]
-12. Best-result carryover (1+best/10, Progress Knight) lets old worlds replay fast but not trivial. [CODE]
-13. 14/14 beloved games change the rules per stage and reveal something every few minutes; skin-only restarts fail. [analysis/beloved_patterns.md, manual tally]
-14. Hard level caps on perks (Trimps, Leaf Blower) give "done" moments. [S]
-15. ~30/37 games get grind-wall complaints; 14/37 ads/IAP pressure (11 of 12 mobile-first). [analysis/anti_patterns.md, manual tally]
-16. Opacity (needing a wiki) is a top complaint for NGU, Realm Grinder, Clicker Heroes; show real numbers. [analysis]
-17. No-fight engagement comes from decisions, unlock beats, small events (Paperclips projects, A Dark Room visitors), not combat. [games/]
-18. Finite arcs (2–10 h: Paperclips, A Dark Room, Spaceplan) work; a post-credits mode extends them. [games/]
-19. Psychology: goal-gradient, loss aversion → frame world hops as gains, preview pending reward, avoid wiping. [research/psychology.md]
-20. Evidence gap: only ~11/37 games have confirmed formulas; Guava Juice Tub Tapper has no public numbers; treat the rest as hypotheses and play-test. [analysis/growth_curves.md, games/guava-juice-tub-tapper.md]
+# SUMMARY — 20 most important findings (v2)
+Confidence: C = confirmed in code/primary data, P = published/convergent, H = hypothesis from toy sim or judgement. Rule numbers refer to DESIGN_RULES.md v2.
+1. **[C] Cost growth 1.12–1.15 per unit** is standard (Cookie Clicker 1.15, Kittens 1.12–1.15, Trimps 1.12–1.24 in code); Synergism uses 1.25, Bitburner nodes 1.85. (R1; research/formula_tables.md)
+2. **[H] Tier ladder shape matters more than the constant:** cost ratio ≈1.2–1.5× the rate ratio kept 97 % of goals in a 15–600 s band; ratio ≤1 gave bursts, >2 gave 2 h walls. Holds for noisy and lazy players. (R2; sim sweep + robustness)
+3. **[P] ×2 milestone multipliers every 10–25 owned**, with visible progress bars. AD ×2 per 10 (code); ×2 beat ×3 in sim. (R3–R4)
+4. **[P] Sqrt prestige is the common design** (AdCap, Realm Grinder, Synergism L1); deeper layers use tiny exponents 0.03–0.01; Cookie Clicker uses cbrt; AD uses 308-OOM log layers. (R15, R20; analysis/prestige_designs.md)
+5. **[H] 2–10 % per prestige point:** 25 %/pt exploded to 9e4× in the sweep. (R15)
+6. **[P] Teach prestige early:** first ride in session 1 (≈7–15 min); 25–35 min is "too late" in the postmortem sources. (R10, R16)
+7. **[H] In a session-based game, rides cluster at session starts** (offline accrual makes pending jump): plan ~1 ride per returning session, 8–12 per 3-day world, not "every 20–45 min". (R16; sim v2)
+8. **[H] Offline efficiency is the strongest pacing lever:** 0→25 % made a 3×10 min/day player ≈9× faster; 4× more sessions only ≈1.5× faster. (R33–R34; sessions sweep)
+9. **[C/P] Offline in the wild:** Bitburner 75 %, Cookie Clicker 5–75 % with a 1 h base cap that upgrades extend, Synergism 72 h cap, AFK Arena 12 h, Melvor 24 h. (R33)
+10. **[H] World length ∝ (cost_scale/carryover)^n.** Ratio 1.0 → 3 d × 9 = 27 d; 1.07 → 3→4 d (33 d); 1.2 → 3→8.7 d (48 d); ≥1.25 gets dry sessions. (R23; campaign sim v2)
+11. **[H] Multi-day worlds need goal density:** an 18-day world had goals in only 34 % of sessions; keep worlds ≤4–5 days or add ≥6 goals per session-day. (R25)
+12. **[P] Carryover that keeps old worlds fast but not trivial:** Progress Knight's 1+best/10 (code), AFK Arena's income growing with stage. (R29)
+13. **[P] 14/14 beloved games reveal something new every few minutes and change the rules per stage;** skin-only restarts (AdCap planets) are criticised. (R11, R26; analysis/beloved_patterns.md, manual tally)
+14. **[C] A world can be a data record** (Shark Game, Evolve's per-reset constants table) with a multi-slot gate that always pays; one generic engine, a rule plug-in per world. (R27–R28)
+15. **[P] ≤3 reset layers, ≤3 visible currencies.** Clicker Heroes, Synergism, NGU show the cost of more. (R20, R26)
+16. **[P] ~30/37 games get grind-wall complaints; 14/37 cite ads/IAP pressure (11 of 12 mobile-first).** (R12, R39; analysis/anti_patterns.md, manual tally)
+17. **[P] Opacity is a top complaint** (NGU, Realm Grinder, Clicker Heroes): real numbers in tooltips, named ranks, additive vs multiplicative labelled. (R40)
+18. **[P] No-fight engagement comes from decisions, unlock beats and small unscheduled events** (Paperclips projects, A Dark Room visitors, golden cookies 5–15 min/13 s). (R13, R38)
+19. **[P] Psychology:** goal-gradient and endowed progress support progress bars and pre-filled world entry; loss aversion is contested, so frame rides as gains and preview results. (R4, R18, R30)
+20. **[Gap] Evidence limits:** only ~11/37+ games have confirmed formulas (now more after source mining), Guava Juice Tub Tapper has no public numbers, all sim results are a toy greedy player, and web access was limited to search snippets and raw GitHub. Treat H rules as hypotheses and play-test (prototypes/decade_slice.html has telemetry).
