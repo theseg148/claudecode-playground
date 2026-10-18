@@ -1,16 +1,23 @@
-<!doctype html><meta charset=utf-8><title>Prestige: Rider Seals</title>
-<style>body{font:15px system-ui;background:#111;color:#eee;max-width:560px;margin:20px auto;padding:0 16px}button{padding:10px 14px;background:#2a3a55;color:#fff;border:0;border-radius:6px;margin:3px}button:disabled{opacity:.4}.card{background:#1d2433;padding:12px;border-radius:8px;margin:10px 0}</style>
-<h3>Prestige ("Rider Seal" — world reset)</h3>
-<div class=card>Energy <b id=g></b> · lifetime this run <b id=l></b> · rate <b id=p></b>/s<br>Seals <b id=s>0</b> → permanent x<b id=m>1</b></div>
-<div class=card>Gen: <b id=o>0</b> owned <button id=b onclick=buy()>Buy</button></div>
-<div class=card>Seals on reset: <b id=pend></b> (formula: floor((lifetime/1e6)^0.5)); worth it when pending ≥ 2x current seals. <button id=pr onclick=pres()>Seal & restart</button></div>
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Prestige: Seals (v2)</title>
+<style>body{font:15px system-ui;background:#12151c;color:#e8ecf4;max-width:560px;margin:0 auto;padding:12px 16px}button{font:inherit;padding:8px 12px;background:#2b3550;color:#e8ecf4;border:0;border-radius:8px;margin:3px;cursor:pointer}button:disabled{opacity:.4}.card{background:#1c2230;padding:10px 12px;border-radius:10px;margin:8px 0}small{color:#8a93a6}table{width:100%}td:last-child{text-align:right}</style>
+<h3>Final Form Ride — Seals (R15–R19)</h3>
+<div class=card>Shots <b id=g></b> · run lifetime <b id=l></b> · rate <b id=p></b>/s<br>Seals <b id=s>0</b> → production ×<b id=m>1</b> = (1+Seals)^0.5</div>
+<div class=card>Generators owned: <b id=o>0</b> <button id=b onclick=buy()>Buy</button><br><small>cost = 15·1.12^n, ×2 at 10/25/50/100/200 owned</small></div>
+<div class=card><b>Ride preview</b><br>Pending Seals <b id=pend></b> → multiplier ×<span id=nm></span> (gain ×<b id=gain></b>)<br><small>Rule: ride only when gain ≥ ×1.5 (otherwise "not worth it"). pending = floor(sqrt(runLifetime/T)), T = 4e4 (DEV)</small><br><button id=pr onclick=pres() disabled>Seal &amp; restart</button> <button onclick="spd=spd==1?50:1">Speed ×<span id=sp>1</span></button></div>
+<div class=card><b>Ride history</b> <small>(each should be ≥×1.5 by construction)</small><table id=hist></table></div>
 <script>
-let gold=15,life=0,own=0,seals=0,TH=1e6;const bonus=.25;
-const cost=()=>15*1.12**own, mult=()=>1+bonus*seals, rate=()=>own*mult()*(1+Math.floor(own/25)),pend=()=>Math.floor((life/TH)**.5);
+let gold=15,life=0,own=0,seals=0,spd=1;const T=4e4,hist=[];
+const mult=n=>2**[10,25,50,100,200].filter(m=>n>=m).length,cost=()=>15*1.12**own,sm=s=>Math.sqrt(1+s);
+const rate=()=>own*mult(own)*sm(seals),pend=()=>Math.floor(Math.sqrt(life/T)),gainOf=()=>sm(seals+pend())/sm(seals);
+const fmt=x=>x<1e4?x.toFixed(x<100?1:0):x.toExponential(2);
 function buy(){if(gold>=cost()){gold-=cost();own++}}
-function pres(){const n=pend();if(n<1)return;seals+=n;gold=15;life=0;own=0}
-setInterval(()=>{const d=rate()/10;gold+=d;life+=d;g.textContent=gold.toFixed(0);l.textContent=life.toExponential(2);p.textContent=rate().toFixed(1);s.textContent=seals;m.textContent=mult().toFixed(2);o.textContent=own;
-b.textContent="Buy "+cost().toFixed(0);b.disabled=gold<cost();pend_.textContent;},100);
-const pend_={};document.getElementById("pend").textContent="";
-setInterval(()=>{document.getElementById("pend").textContent=pend()+(pend()>=Math.max(1,2*seals)?" ✔ recommended":"");document.getElementById("pr").disabled=pend()<1},200);
+function pres(){const g=gainOf();if(pend()<1||g<1.5)return;seals+=pend();hist.push([hist.length+1,seals,sm(seals),g]);gold=15;life=0;own=0}
+setInterval(()=>{const d=rate()/10*spd;gold+=d;life+=d;
+ g.textContent=fmt(gold);l.textContent=fmt(life);p.textContent=fmt(rate());s.textContent=seals;m.textContent=sm(seals).toFixed(2);o.textContent=own;
+ b.textContent="Buy "+fmt(cost());b.disabled=gold<cost();document.getElementById("pend").textContent=pend();nm.textContent=sm(seals+pend()).toFixed(2);gain.textContent=gainOf().toFixed(2);
+ pr.disabled=pend()<1||gainOf()<1.5;pr.textContent=pr.disabled?"Not worth it yet":"Seal & restart ✔";document.getElementById("sp").textContent=spd;
+ hist_.innerHTML="<tr><td>#</td><td>Seals</td><td>mult</td><td>gain</td></tr>"+hist.map(h=>`<tr><td>${h[0]}</td><td>${h[1]}</td><td>×${h[2].toFixed(2)}</td><td>×${h[3].toFixed(2)}</td></tr>`).join("")},100);
+const hist_=document.getElementById("hist");
+// auto-buy so the idle test is hands-free after the first ride (R21)
+setInterval(()=>{if(seals>0&&gold>=cost())buy()},50);
 </script>

@@ -1,10 +1,21 @@
-<!doctype html><meta charset=utf-8><title>World transition</title>
-<style>body{font:15px system-ui;background:#111;color:#eee;max-width:560px;margin:20px auto;padding:0 16px;transition:background 1s}button{padding:12px 16px;background:#2a3a55;color:#fff;border:0;border-radius:6px}.card{background:#1d2433;padding:12px;border-radius:8px;margin:10px 0}#fx{height:60px;line-height:60px;text-align:center;font-size:22px;letter-spacing:4px}</style>
-<h3 id=wn>World 1: Kabuto</h3><div class=card>Progress to Decade Link: <progress id=pg max=100 value=0 style=width:100%></progress> <span id=pc></span></div>
-<div class=card>Energy <b id=e></b> (+<b id=r></b>/s) · Carryover mult x<b id=c>1</b></div>
-<div id=fx></div><button id=go disabled onclick=ride()>Dimension Ride →</button>
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>World transition (v2)</title>
+<style>body{font:15px system-ui;background:#12151c;color:#e8ecf4;max-width:560px;margin:0 auto;padding:12px 16px;transition:filter .5s}button{font:inherit;padding:10px 14px;background:#2b3550;color:#e8ecf4;border:0;border-radius:8px;cursor:pointer}button:disabled{opacity:.4}.card{background:#1c2230;padding:10px 12px;border-radius:10px;margin:8px 0}small{color:#8a93a6}progress{width:100%}.ok{color:#5fd18a}</style>
+<h3 id=wn>World 1: Kabuto</h3>
+<div class=card><b>Gate — 3 named costs</b> <small>(R28: always visible, completing pays a Ride Card)</small>
+<div>① Shots <progress id=p1 max=100 value=0></progress> <small id=t1></small></div>
+<div>② Zecter types collected <progress id=p2 max=3 value=0></progress> <small id=t2></small></div>
+<div>③ Hyper Clock Up used once <span id=t3>☐</span></div></div>
+<div class=card>Shots <b id=e></b> (+<b id=r></b>/s) · carry ×<b id=c>1</b> · <button onclick="act2()">Collect Zecter</button> <button onclick="act3()">Use Hyper Clock Up</button> <button onclick="boost=boost==1?200:1">Speed ×<span id=sp>1</span></button></div>
+<div class=card id=recap style=display:none></div>
+<button id=go disabled onclick=ride()>Dimension Ride →</button>
 <script>
-const W=[["Kabuto","#2b1a1a",1],["Next world (Den-O?)","#1a2540",3]];let w=0,e=0,own=1,carry=1,goal=2e4;
-function ride(){fx.textContent="━━ ATTACK RIDE ━━ KAMEN RIDE ━━";document.body.style.background="#fff";setTimeout(()=>{w=1;e=0;own=1;carry*=3;goal=6e4;document.body.style.background=W[1][1];wn.textContent="World 2: "+W[1][0];fx.textContent="Kept: Mastery ×2, Seals, Auto-buy. Reset: generators.";go.disabled=true;go.textContent="Final world (prototype)"},1200)}
-setInterval(()=>{own+=.02;const rt=own*carry;e+=rt/10;pg.value=Math.min(100,100*e/goal);pc.textContent=pg.value.toFixed(0)+"%";document.getElementById("e").textContent=e.toFixed(0);r.textContent=rt.toFixed(1);c.textContent=carry;if(e>=goal&&w==0)go.disabled=false},100);
+const W=[{n:"Kabuto",goal:2e5,carry:1},{n:"Den-O",goal:6e5,carry:3}];let w=0,e=1,own=1,carry=1,z=0,hc=false,boost=1,tw=0,cards=0;
+function act2(){if(z<3)z++} function act3(){hc=true}
+function ride(){const t=tw;document.body.style.filter="brightness(1.6)";setTimeout(()=>document.body.style.filter="",500);cards++;
+ recap.style.display="block";recap.innerHTML=`<b>Recap: Kabuto cleared</b> in ${(t/60).toFixed(1)} sim-min.<br>Kept: Ride Cards (${cards}), automation, Seals archived (+bonus).<br>Reset: Shots and generators.<br><small>New rule here: Contracts. First purchase affordable within 60 s (R10). Bar starts pre-filled by the carried-over card (endowed progress, R30).</small>`;
+ w=1;carry=3;own=1;z=0;hc=false;tw=0;e=W[1].goal*0.05;wn.textContent="World 2: Den-O";go.disabled=true;go.textContent="Final world (prototype)"}
+setInterval(()=>{own+=0.02*boost;const rt=own*carry,d=rt/10*boost;e+=d;tw+=.1*boost;
+ const g=W[w].goal;p1.max=g;p1.value=Math.min(g,e);t1.textContent=`${Math.floor(e)}/${g}`;p2.value=z;t2.textContent=`${z}/3`;t3.textContent=hc?"☑":"☐";
+ document.getElementById("e").textContent=Math.floor(e);r.textContent=rt.toFixed(1);c.textContent=carry;sp.textContent=boost;
+ go.disabled=!(w==0&&e>=g&&z>=3&&hc)},100);
 </script>

@@ -14,11 +14,8 @@ Implements cost = base*1.12^owned, doublers at 10/25/50/100/200 owned, a progres
 - Weak: never-zero soft cap is good, but the x2 claim as ad placeholder must stay optional (complaints: ads-as-wall, research/player_complaints.md).
 - Change: show a breakdown of what was bought/would be bought; auto-spend on cheapest goal ("while you were gone Decade took photos of...").
 
-## prestige.html — Rider Seal reset
-Seals = floor((lifetime/1e6)^0.5), +25 %/seal, shows pending seals with "recommended" at >=2x current.
-- Applies: sqrt prestige (Adventure Capitalist/Synergism [CODE]), readable pending gain, 2x-rule from prestige sweep [SIM].
-- Weak: +25 %/seal is too strong per sweep (final mult ~1e5); use 5-10 %. First prestige threshold should land ~25 min [SIM].
-- Change: reset keeps "form" unlocks; add a one-time bonus on the first reset so it feels like a reward, not a loss (loss aversion, psychology.md).
+## prestige.html (v2) — Seals with (1+Seals)^0.5 and a ≥×1.5 ride rule
+Implements R15 (sqrt pending, sub-linear multiplier), R17 (ride only if gain ≥×1.5, "Not worth it yet" otherwise), R18 (preview: pending Seals, new multiplier, gain), R21 (auto-buy after the first ride) and a ride-history table. Headless run at ×50: rides gained ×1.73, ×1.53 (both ≥1.5 by construction). Evidence: sim/results.md campaign v3 (linear +8 %/seal exploded; pow 0.5 gave 9–11 rides/world). Weak: single generator (no tiers), T fixed at 4e4 (DEV) rather than per-world calibration, no "reset what" table on screen. Change: show kept/reset lists in the ride confirm, add a cooldown toggle to test R34.
 
 ## unlock_tree.html — 3-branch mastery tree
 Branches Clock Up / Zecter / Hyper with prerequisites, final node "Decade Link" unlocks next world.
@@ -26,10 +23,8 @@ Branches Clock Up / Zecter / Hyper with prerequisites, final node "Decade Link" 
 - Weak: only 12 points and 9 nodes — decisions are trivial. Need ~25 nodes/world with respec.
 - Change: let the tree persist across worlds (carryover) and add one cross-world node per world.
 
-## world_transition.html — Dimension Ride
-Progress bar to goal, then a flash "ATTACK RIDE" transition, new palette, carryover x3.
-- Applies: each world should have its own identity (Idle Wizard realms, Progress Knight layers [CODE/S games/progress-knight.md]); carryover ratio equals cost scale ratio to keep world length constant [SIM].
-- Weak: transition is cosmetic only. Add: new rule per world, a card/photo reward, a recap screen ("Kabuto cleared in 3d 4h, kept: ...").
+## world_transition.html (v2) — gate with 3 named costs, recap card, endowed bar
+Gate = three named costs (Shots, 3 Zecter types, "use Hyper Clock Up once") per R28; Dimension Ride unlocks only when all are met; recap card lists time in world, kept (Ride Cards, automation, archived Seals) and reset (Shots, generators); new world starts with a pre-filled bar and a first purchase affordable at once (R10, R30; no soft-lock); 0.5 s brightness fade instead of a white flash. Weak: still two worlds, gate costs 2–3 are buttons rather than systems, no Ride Card album. Next: connect to decade_slice_v2 state.
 
 ## decade_slice.html — integrated vertical slice (2 worlds)
 Combines R1–R3 (growth 1.12, cost ×8/rate ×6, ×2 milestones with bars), R5 (tier reveal at 5 owned), R15/R17/R19 (sqrt Seals +8 %/pt, pending ≥2× highlight, ride needs 4 tiers seen), R21 (auto-buy after first ride), R29 (cards +10 % each persist), R33/R35 (offline 50 %/25 %, 8 h cap, welcome-back toast), R34c (Photo Op: now 6 s of income per 60 s = +10 %; was 15 s per 45 s = +33 % in the first version), plus live pacing telemetry (goal-gap bars, median/max/in-band %) and ×1/×10/×100 speed for tuning.
