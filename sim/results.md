@@ -61,3 +61,11 @@ Confirms the closed form: world length ratio = s/c. c = s gives equal-length wor
 | good, checks every 10 min | 0 s (batched) | 600 s | 28 % |
 | bad, any player | ~0.1 s | 8,760 s | 4–18 % |
 Findings: the good/bad ranking is independent of player strategy (picking sub-optimally barely changes pacing because costs are tight-ladder); infrequent checkers don't see "gaps" but *bursts* — after a 10-min absence many goals are ready at once, which argues for an auto-spend/"while away" summary (offline card) rather than making the player click through 10 purchases. Bad configs are bad for everyone: a 2.4 h wall appears whatever the player does.
+
+## Charts
+![baseline](baseline.png) baseline gold and goal gaps.
+![sweep](sweep_params.png) mean score by parameter (512-config sweep).
+![worlds](worlds.png) world clear time vs carryover/cost scale.
+![prestige](prestige_first.png) first-prestige timing distribution.
+![sessions](sessions.png) wall-clock hours to clear vs sessions/day and offline efficiency.
+![decade](decade_model.png) 9-world campaign model.
