@@ -163,3 +163,13 @@ Using Cookie Clicker's code-verified building generator (games/cookie-clicker.md
 - Goal gaps (first purchase of each building + every 25th/50th/100th): median ≈ 15–17 min, p90 ≈ 52–66 min, max ≈ 1.5–1.7 h over 6 h; only 25–33 % of gaps inside 15–600 s and 17–25 % over 30 min.
 Interpretation: (1) **Cookie Clicker is deliberately slower and leans on other loops** (clicking, upgrade purchases, golden cookies every 5–15 min, achievements) to keep sessions interesting — a pure passive buyer would hit 15-minute dry spells. (2) Our 15–600 s band and 1.2–1.5 ratio are therefore a *mobile 10-minute-session* target (Guava Juice / AdCap style), not a universal law; a PC incremental can run higher ratios if it supplies other engagement. (3) The sweep's "ratio > 2 ⇒ walls" is confirmed in spirit (CC's passive walls) and is exactly why CC needs upgrades/clicks. R2/R9 are marked accordingly. Limitations: no upgrade ladder (CC's real tier upgrades are doubling at 1/5/25/50/100…, costing ≈10× base), no kitten/milk or prestige effects.
 ![campaign v3](campaign3.png) gate schedule, Seal multiplier, goal density (campaign3.py).
+
+## Offline auto-spend (offline_autobuy.py) [REVIEW_2 §3.1]
+World 1 (gate 6.24e15), exact time: **spend-at-return** vs **greedy auto-buy during the away window** (at the stepped average efficiency; rides stay manual):
+| schedule | spend at return | offline auto-buy | speed-up |
+|---|---|---|---|
+| 1/day | 9.10 d | 6.34 d | ×1.44 |
+| 2/day 12/12 h | 4.55 d | 3.34 d | ×1.36 |
+| 3/day 5/8/11 h | 3.22 d | 2.54 d | ×1.27 |
+| 6/day 4 h | 2.11 d | 1.67 d | ×1.26 |
+Conclusion: R21/R37 (auto-spend while away) **shortens worlds by 26–44 %**, bigger for infrequent players — it must be included when gates are calibrated (the 3.2-day figure assumes spend-at-return; with auto-spend the same gates clear in ≈2.5 d), or the gate schedule scaled up ≈×1.3. Also a fairness lever: light players gain the most.

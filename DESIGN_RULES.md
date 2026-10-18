@@ -48,7 +48,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R34c [H] Active-tools budget:** Clock Up ≤1.25× average, Photo Op ≤1.1×, Photo Windows ≈1.05–1.1× of *daily* progress; all active tools together ≤1.5× in an active session (prototype v2: Clock Up ×2/8 s per 4 Charge, Photo Op 6 s/60 s) [Sim events.py + prototype]. Active-session gain from Windows alone is +33–52 % at 3 sessions/day (hit rate 30–90 %).
 **R35 [P] Welcome-back card: ignore absences <1–2 min, measure from saved quit time, cap + clamp boosters, offer 1–2 decisions, list what happened.** design_talks_postmortems 4.5, complaints C7.
 **R36 [P] Banked offline time as optional spendable speed (×5) next to automatic gains.** Idle Loops [CODE games/idle-loops.md].
-**R37 [H] Infrequent returners get bursts, not gaps — auto-spend/summary rather than 10 manual buys.** Robustness sim: 10-min checkers see 28 % in-band but batched goals [Sim].
+**R37 [H] Infrequent returners get bursts, not gaps — auto-spend/summary rather than 10 manual buys; auto-spending while away shortens worlds ×1.26 (6/day) to ×1.44 (1/day) so calibrate gates with it on (offline_autobuy.py).** Robustness sim: 10-min checkers see 28 % in-band but batched goals [Sim].
 
 ## F. Engagement events
 **R38 [P, superseded by R38b for 10-min sessions] Cookie Clicker golden cookies: spawn gap 5–15 min, lifetime 13 s.** Cookie Clicker golden cookies 5–15 min base, 13 s lifetime [CODE games/cookie-clicker.md]; variable reward psychology (delight only, no punishment).

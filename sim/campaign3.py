@@ -28,10 +28,10 @@ class World:
         s.cfg=cfg;n=cfg.n_tiers;s.n=n;s.carry=carry;s.T=T;s.goal=goal;s.bonus=bonus;s.mode=mode;s.p=p;s.ride_gain=ride_gain
         s.c0=[cfg.base_cost*cfg.tier_cost_ratio**i*cost_scale for i in range(n)]; s.r0=[cfg.base_rate*cfg.tier_rate_ratio**i for i in range(n)]
         s.owned=[0]*n; s.gold=s.c0[0]; s.life=0.0; s.run_life=0.0; s.t=0.0; s.seals=0.0; s.maxtier=0
-        s.uniq=set(); s.rides=[]; s.goal_sessions=set(); s.cur=0; s.ride_sessions=set(); s.first_ride_t=None
+        s.uniq=set(); s.rides=[]; s.goal_sessions=set(); s.cur=0; s.ride_sessions=set(); s.first_ride_t=None; s.scale=1.0; s.no_ride=False
     def smult(s,seals): return 1+s.bonus*seals if s.mode=="lin" else (1+seals)**s.p
     def unit_out(s,i,n): return n*s.r0[i]*tier_mult(n,s.cfg)
-    def prod(s): return s.carry*s.smult(s.seals)*sum(s.unit_out(i,s.owned[i]) for i in range(s.n))
+    def prod(s): return s.scale*s.carry*s.smult(s.seals)*sum(s.unit_out(i,s.owned[i]) for i in range(s.n))
     def pend(s): return math.floor(math.sqrt(s.run_life/s.T))
     def mark(s,key):
         if key not in s.uniq: s.uniq.add(key); s.goal_sessions.add(s.cur)
@@ -42,7 +42,7 @@ class World:
             for i in range(s.n):
                 if not (i==0 or s.owned[i-1]>=5): continue
                 c=s.c0[i]*s.cfg.growth**s.owned[i]
-                g=(s.unit_out(i,s.owned[i]+1)-s.unit_out(i,s.owned[i]))*s.carry*s.smult(s.seals)
+                g=(s.unit_out(i,s.owned[i]+1)-s.unit_out(i,s.owned[i]))*s.scale*s.carry*s.smult(s.seals)
                 w=max(0,(c-s.gold)/P) if P>0 else (0 if c<=s.gold else math.inf)
                 sc=c/g+w
                 if best is None or sc<best[0]: best=(sc,i,c,w)
@@ -56,7 +56,7 @@ class World:
             s.t+=w; s.gold+=P*w-c; s.life+=P*w; s.run_life+=P*w; s.owned[i]+=1; s.maxtier=max(s.maxtier,i)
             if s.owned[i]==1 or s.owned[i] in s.cfg.milestones: s.mark(("t",i,s.owned[i]))
             p=s.pend()
-            if s.maxtier>=3 and p>=1:
+            if s.maxtier>=3 and p>=1 and not s.no_ride:
                 new=s.seals+p
                 if s.smult(new)/s.smult(s.seals)>=s.ride_gain:
                     s.seals=new; s.rides.append((s.t,s.seals)); s.mark(("ride",len(s.rides))); s.ride_sessions.add(s.cur)
