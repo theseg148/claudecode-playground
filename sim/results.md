@@ -69,3 +69,20 @@ Findings: the good/bad ranking is independent of player strategy (picking sub-op
 ![prestige](prestige_first.png) first-prestige timing distribution.
 ![sessions](sessions.png) wall-clock hours to clear vs sessions/day and offline efficiency.
 ![decade](decade_model.png) 9-world campaign model.
+
+## Campaign sim v2 — sessions + stepped offline + Final Form Rides + world hops (campaign.py, campaign.json) [answers REVIEW_1 #1, #2, #4]
+Setup: 8 tiers/world (×8 cost, ×6 rate), growth 1.12, milestones 10/25/50/100/200 ×2; world w costs ×s^w; carryover c^w; Seals = floor(sqrt(run_lifetime/T)), +8 %/seal, player rides when pending ≥ 2× seals and ≥4 tiers seen; world cleared when lifetime shots ≥ goal·s^w. Player: 3 sessions/day × 10 min; offline = 50 % for first 2 h, 25 % beyond, cap 8 h (R23, avg ≈0.31 for an 8 h gap). Metrics at *session* level: share of sessions containing ≥1 goal (first purchase of a tier, milestone, or ride) and longest run of "dry" sessions.
+Goal size sets world length (cost x3, carry x3; days per world): goal 1e17 → 2.0 d, 1e18 → 3.0 d, 1e19 → 5.0 d, 1e21 → 18.7 d (with 34 % of sessions containing a goal and 25 dry sessions in a row = 8 days of nothing new).
+Goal 1e18, 9 worlds, days per world (total days):
+| cost scale / carry | W1 … W9 | total | share sessions with goal (W1–W4) | max dry sessions |
+|---|---|---|---|---|
+| 3 / 3 (ratio 1.00) | 3.0 flat | 27 | 100 % | 0 |
+| 3 / 2.8 (1.07) | 3.0, 3.3, 3.3, 3.7, 3.7, 4.0, 4.0, 4.0, 4.0 | 33 | 90–100 % | 1 |
+| 3 / 2.5 (1.20) | 3.0, 3.3, 4.0, 4.0, 4.7, 6.0, 7.0, 7.7, 8.7 | 48 | 83–100 % | 2 |
+| 4 / 3.2 (1.25) | 3.0 … 11.3 | 57 | 79–100 % | 2 |
+Findings:
+1. Ratio and length reconcile: ratio 1.0–1.07 gives "3–4 days every world, ~4.5 weeks total"; ratio 1.2 gives 3 → 8.7 days, ~7 weeks; ratio ≥1.25 makes late worlds 11+ days with dry sessions. Previous docs' mixed statements (1.0–1.5, 5–8 weeks vs 4–6) are superseded: **use ratio 1.0–1.2; flat worlds ≈ 27–33 d, lengthening worlds ≈ 48 d.**
+2. Rides in a session model cluster at session starts: with T = 1e6, world 1 has its first ride at ~7 min (inside session 1) and then **one ride cluster per returning session** (rides at ~480 min, 490 min, 966 min, 1440 min…) because a night of offline accrual makes pending seals jump. So "20–45 min cycles" (from the continuous-time prestige sweep) is not the right unit for a mobile game; the right unit is **1 ride per 1–2 sessions, ≈ 8–12 per 3-day world**.
+3. Raising T0 delays the first ride (T = 1e4 → 3 min, 1e5 → 4 min, 1e6 → 7 min, 1e7 → 9 min of first-session play) but also stretches the world (1 d → 6.3 d): ride frequency is the main world-length lever, not the generator costs.
+4. Goal density at multi-day length: a world with 8 tiers × (1 + 5 milestones) ≈ 48 purchases-goals + ~11 rides ≈ 60 goals. At 3 days (9 sessions) that gives ≥1 goal in 90–100 % of sessions. At 18 days only 34 % of sessions had a goal. → a world must contain ≥ ~6 goals per session-day ≈ 15–20 content beats per world-day or be ≤4–5 days long (R19 revised).
+Limitations: still greedy, 3 sessions/day exactly, no active layer, gap metric counts a goal only if it is a tier/milestone/ride (a smarter model would include upgrade-tree purchases, adding goals).
