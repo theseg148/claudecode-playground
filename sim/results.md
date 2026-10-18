@@ -104,3 +104,8 @@ Design consequence: **a build branch that only changes offline efficiency is a t
 2. **Form Deck** (6 forms × 3 slots, 3:2:1 strengths, each form splits an equal power budget randomly over production/offline/charge, with axis values 1.0/0.6/0.4): best loadout is **+17.6 % over the median loadout and +41 % over the worst** (400 random decks), but the top-3 loadouts are within ≈1 % of each other. So the choice matters (a bad deck costs ~30 % vs the best) yet there are several equally good decks — good for R13b (≥2 viable builds) and no single "solved" deck. Sim only covers one axis weighting; add synergies for real depth.
 3. **Achievement multiplier** 1.05^rows·1.01^count: world 1 ×1.29, world 3 ×2.16, world 6 ×4.67, world 9 ×10.09 (matches the agent's hand calc). Keep it applied to base Shots only and cap total from collections near ×10 so it doesn't overwhelm world carry (c≈2.5–3 per world).
 Not simulated yet: challenge reward budget (automation vs ×1.15 stack, ≤×3.1), garden adjacency board cap (+20–25 % for 9 cards).
+
+## Tooling
+- `sim/pacing_report.py [growth cost_ratio rate_ratio]` — prints PASS/FAIL checks against DESIGN_RULES (R2, R9, R10, R16, R25). Recommended config 1.12/8/6 passes all; the "bad" config 1.15/5/14 fails 7 of 9 checks.
+- `sim/test_sim.py` — unit tests (cost formula, milestones, stepped offline, no soft-lock after reset, flat worlds at ratio 1).
+- Re-run order: `python3 sweep.py; python3 prestige_sweep.py; python3 sessions_sweep.py; python3 worlds.py; python3 decade_model.py; python3 campaign.py 1e18; python3 campaign_sweep.py; python3 builds.py; python3 events.py; python3 robustness.py`.
