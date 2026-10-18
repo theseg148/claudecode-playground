@@ -8,3 +8,4 @@
 - 08:16 raw.githubusercontent.com WORKS via curl -> source-code formula mining agent launched ([CODE] tag). Batch C (10 zone games) done; only Progress Knight formulas from source.
 - 08:17 verify batch 2 done: Paperclips MegaClipper 1000*1.07^n [S]; CC 1.15^n, cube-root prestige [S]; Guava Juice Tub Tapper launched by Studio 71 per Tubefilter 2018-05-24 (otherwise little public).
 - 08:18 verify batch1 done: AD DimBoost uses 8th dim 20+15/boost; CH monster HP x1.145/zone; Melvor offline cap 24h; Egg Inc soul egg +10% linear. Several earlier [M] numbers corrected.
+- 08:19 math_of_idle_games.md (273 lines) + design_talks_postmortems.md (262) done. Key: r 1.07-1.15; AdCap r drops .01/tier, base x12/tier; milestone M~r^S; prestige reset when pending>=50-200% of current; targets first buy 60s, automation 3min, first prestige 10-15min (blog opinions).
