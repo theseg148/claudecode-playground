@@ -26,7 +26,7 @@ Evidence tags: **[CODE]** read from open-source game code; **[S]** confirmed in 
 **R17. First prestige shop must contain automation + a QoL perk, and the first reset should feel like a gain (bonus on first use).** [PUB; psychology.md]; CC Twin Gates etc.
 
 ## D. Worlds
-**R18. World clear time ∝ (cost_scale / carryover)^n; choose ratio 0.8–1.0 for slowly lengthening worlds and never < 0.5 (trivial) or > 1.5 (walls).** [SIM sim/results.md]; examples carry×2/cost×3: 8.4→63.6 min; carry×2/cost×1: 0.3 min.
+**R18. World clear time ∝ (cost_scale / carryover)^n; choose cost_scale/carryover = 1.0 (equal worlds) to 1.3 (each world ~30 % longer); below 0.8 later worlds become trivial, above 1.5 they become walls.** [SIM sim/results.md]; examples carry×2/cost×3: 8.4→63.6 min; carry×2/cost×1: 0.3 min.
 **R19. Target 3–5 days per world for a 3×10-min/day player, ~2 days for a heavy player; 9 worlds ≈ 5–8 weeks.** Sessions sweep [SIM]; GUESS on total campaign length.
 **R20. Each world adds exactly one new rule/mechanic and (from world 3) one world-local currency; ≤3 visible currencies.** sequential_worlds.md S1/S2/S11 (tally of ~12 games) [analysis]; failure: skin-only restarts (AdCap planets).
 **R21. Carryover stack: permanent unlocks/collection never reset; best-result multiplier 1+best/10 for revisits; cleared worlds lift passive income immediately.** Progress Knight 1+maxLevel/10 [CODE]; AFK Arena income grows with stage [S].

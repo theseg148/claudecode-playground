@@ -48,3 +48,14 @@
 - [ ] Prototype evaluations (prototypes/EVALUATIONS.md)
 - [ ] Sim: add offline/active-play modes, per-world prestige inside worlds, Decade world model with real Rider order
 - [ ] 30+ games total (currently 16 + batches C/D pending)
+
+## Improvement backlog (run 1, after v1 deliverables)
+- [ ] Review DESIGN_RULES for contradictions (fixed R18 ratio direction); cross-check each rule vs sources
+- [ ] Sim: active-layer (golden-cookie-style events) model; in-world prestige + world hops combined; multi-seed robustness (random player strategies, not just greedy)
+- [ ] Sim: sensitivity of goal-gap band to number of tiers (4,6,8,10) and per-world 'new mechanic' unlock cadence
+- [ ] Sim: model the "wall" rate vs. players abandoning (retention proxy)
+- [ ] More games (target 45): Idle Heroes, Egg Inc done, Hades Star?, Cell Lab?, Clicker Heroes done, Fallout Shelter idle?, Tap Tap Plane?, Soda Dungeon, Realm Grinder done, Derivative Clicker, Idle Loops, Universal Paperclips done, "Reddit: top 20 incrementals" list, Gnorp Apologue, Orb of Creation, Shark Game(Fishing), Sandcastle Builder, Doodle Farm?
+- [ ] Prototype: full vertical slice combining milestones+ride+offline+tree (prototypes/decade_slice.html), with a pacing telemetry overlay
+- [ ] Verify Kabuto/other Rider world details by WebSearch (names of Zecters etc.)
+- [ ] Re-run verification where web access allows; review [M]/[E] tags
+- [ ] Charts embedded in sim/results.md (png references)
