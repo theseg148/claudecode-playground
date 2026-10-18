@@ -9,7 +9,7 @@ Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels
 
 ## 2. Structure
 **Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
-**Layer 1 — Final Form Ride (in-world, R15–R19):** Seals = floor(sqrt(run_lifetime/T_w)), +5 % per point initially (tuning range 2–10 %). First ride available ≈7–15 min into session 1 (R10), ride when pending ≥2× current (highlighted, with before/after preview). Expected rhythm ≈1 ride per 1–2 returning sessions, 8–12 per world (R16). T_w scales with world cost so world length stays on plan.
+**Layer 1 — Final Form Ride (in-world, R15–R19):** Seals pending = floor(sqrt(run_lifetime/T_w)); production multiplier = (1+Seals)^0.5 (sim v3; linear +8 %/seal explodes). Player rides when it raises production ≥1.5× (highlighted, with before/after preview). T_w is calibrated so the first ride lands ≈8 min into play in every world (R10, R16). Rhythm: ≈9–11 rides per 3.2-day world (≈3.4/day), each ≥1.5× production by construction. The prototype slice still uses a DEV linear formula (+8 %/seal) for quick feel-testing.
 **Layer 2 — Dimension Ride (to next world, R24):** NOT a formula: a fixed carry multiplier c per cleared world (c ≈ cost-scale s / 1.0–1.2) plus one Ride Card; gated by the world objective (§4). Number of hops: 8.
 **Layer 3 — "All Riders" (post-game, R31):** only layer with a formula (log-scaled), unlocked after world 9.
 Layers ≤3 (R20).
@@ -47,7 +47,7 @@ Worlds 3–9 gates are placeholders to fill during content design. **Main-screen
 Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: 1e18·s^w in the sim = ~3 days), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
 
 ## 5. Pacing plan and check table (from sim/results.md v2)
-- **Recommended: gentle variant s=3, c=2.8 (ratio 1.07): 3.0→4.0 d/world, 33 d for a 3-session/day player (21 d heavy, 99 d for 1 session/day; sim/results.md population).** Flat variant: s=3, c=3 → 3 d/world, 27 d. Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
+- **Recommended (sim v3): s=3, total carry budget c≈2.25 plus cards/archive/achievements so that drift d≈1.0; gates ×2.5–3.5 per world (6.2e15 → 4.0e19 for 3.2-day worlds); ≈29 d (≈4 weeks) for a 3-session/day player; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d (population sim).** Every permanent carry source must be inside the budget (R23). Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
 - Per world: 8 tiers × (1 + 5 milestones) + ~11 rides ≈ 60 goals ⇒ ≥1 goal in 90–100 % of sessions (R25). If worlds are >5 days, add mid-world beats (tree nodes, set bonuses, events) to keep ≥6 goals/session-day.
 - Offline: stepped 50 %/25 %, cap 8 h (upgradable to 24 h) (R33). Active-tools budget (R34c): Clock Up ≤1.25× average, Photo Op ≤1.1×, Photo Windows ≈1.05–1.1× of daily progress; all together ≤1.5× in an active session.
 - Check: each ride ≥2× faster than previous start; first ride ≤15 min; rides per session ≤2.
