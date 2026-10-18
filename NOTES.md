@@ -4,3 +4,4 @@
 - Built sim/ (sim.py, sweep.py, worlds.py, results.md v1). Launched 6 subagents (math, psychology/complaints, 4 game batches).
 - Key: cost_ratio/rate_ratio ~1.2-1.5 best; world time ~ (cost_scale/carry)^n.
 - 08:14 psychology.md (155 lines) + player_complaints.md (171) done by subagent (its handback text said only 'placeholder'; files verified OK, cited, evidence-tagged [V]/[B]/[P]).
+- 08:16 ENVIRONMENT LIMIT: WebFetch/curl are blocked (DNS/proxy) for wikis, reddit, wikipedia; only WebSearch snippets work. Game files from batches A,B (16 games) carry tags [S]=search snippet, [M]=memory, [E]=estimate. Only Cookie Clicker cost formula is source-confirmed. DESIGN_RULES must label evidence strength honestly. Guava Juice game = "Tub Tapper" (Roi Fabito, 2018), no public formulas.
