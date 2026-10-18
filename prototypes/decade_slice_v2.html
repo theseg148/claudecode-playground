@@ -22,7 +22,7 @@ small{color:var(--dim)}.g{color:var(--ok)}.w{color:var(--warn)}#tel span{display
 <div id=toast class=card style="display:none"></div>
 </main>
 <script>
-// Rules (DESIGN_RULES v2): R1 growth 1.12, R2 cost x8/rate x6, R3 x2 at 10/25/50/100/200, R5 reveal at 5 owned, R15 sqrt prestige +8%/pt (DEV values), R19 ride needs 4 tiers seen, R33 offline 50%/25% cap 8h, R34 active tools budget (Clock Up <=1.25x avg, Photo Op <=1.1x).
+// Rules (DESIGN_RULES v2): R1 growth 1.12, R2 cost x8/rate x6, R3 x2 at 10/25/50/100/200, R5 reveal at 5 owned, R15 sqrt Seals, multiplier (1+Seals)^0.5, ride when gain ≥1.5×, R19 ride needs 4 tiers seen, R33 offline 50%/25% cap 8h, R34 active tools budget (Clock Up <=1.25x avg, Photo Op <=1.1x).
 // DEV GATES: GOALMULT is tiny (3e6) so a bot can clear a world in minutes; the real plan uses ~1e18-1e20*3^w (sim/campaign3.py). Gate counts WORLD lifetime (S.wlife), not per-run.
 const WORLDS=[{n:"Kabuto",t:["Cast-Off Cells","Zecter Charges","Clock-Up Cores","Hyper Zecters","ZECT Forges","Sōji's Kitchen"]},{n:"Den-O",t:["Rail Segments","Imagin Contracts","DenLiner Cars","Owner's Tickets","Time Tunnels","Terminal Stations"]}];
 const G=1.12,MS=[10,25,50,100,200],TH=1e5,BONUS=.08,GOALMULT=[3e6,3e8];
@@ -35,11 +35,12 @@ function hardReset(){try{localStorage.removeItem("decadeSliceV2")}catch(e){}loca
 const cs=i=>15*8**i*Math.pow(3,S.w), rt=i=>6**i;
 const castoff=(n,i)=>(S.w==0&&i>=3&&n>=40)?(S.tree.includes('co2')?3:S.tree.includes('co1')?2:1):1;
 const mult=(n,i)=>2**MS.filter(m=>n>=m).length*castoff(n,i), cost=i=>cs(i)*G**S.own[i];
-const sealMult=()=>1+BONUS*S.seals, carry=()=>3**S.w*(1+.1*S.cards)*(1+.02*Math.sqrt(S.arch||0));
+const sealMult=()=>Math.sqrt(1+S.seals), carry=()=>3**S.w*(1+.1*S.cards)*(1+.02*Math.sqrt(S.arch||0));
 const rate=i=>S.own[i]*rt(i)*mult(S.own[i],i);
 const treeMult=()=>(S.tree.includes('sp1')?1.3:1)*(S.tree.includes('sp2')?1.3:1);
 const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry()*treeMult()*(S.clock>0?(S.tree.includes('sp2')?3:2):1);
 const avail=i=>i==0||S.own[i-1]>=5;
+const rideGain=()=>Math.sqrt(1+S.seals+pend())/Math.sqrt(1+S.seals), canRide=()=>pend()>=1&&S.maxTier>=3&&rideGain()>=1.5;
 const pend=()=>Math.floor(Math.sqrt(S.life/(TH*(S.tree.includes('rc1')?.5:1)*Math.pow(3,S.w))));
 const SUF=['','K','M','B','T','Qa','Qi','Sx','Sp','Oc','No','Dc'];const fmt=x=>{if(x<1e3)return x.toFixed(x<100?1:0);let e=Math.min(SUF.length-1,Math.floor(Math.log10(x)/3));if(e>=SUF.length-1&&x>=1e36)return x.toExponential(2);return (x/Math.pow(10,3*e)).toFixed(2)+SUF[e]};
 const $=id=>document.getElementById(id);
@@ -48,7 +49,7 @@ function buy(i){const c=cost(i);if(S.gold<c)return;S.gold-=c;S.own[i]++;S.maxTie
  if(S.own[i]==1||MS.includes(S.own[i])||(S.w==0&&S.own[i]==40))goal();render()}
 $("clock").onclick=()=>{if(S.w!=0||S.charge<4||S.clock>0)return;S.charge-=4;S.clock=8};
 $("photo").onclick=()=>{if(S.photoCD>0)return;const v=prod()*6;S.gold+=v;S.life+=v;S.wlife+=v;S.photoCD=60;};  // active layer ≈ 6 s of income per 60 s (+10 %)
-$("ffr").onclick=()=>{const p=pend();if(p<1||S.maxTier<3)return;S.seals+=p;S.mp++;S.gold=cs(0);S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
+$("ffr").onclick=()=>{const p=pend();if(!canRide())return;S.seals+=p;S.mp++;S.gold=cs(0);S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
 $("dim").onclick=()=>{if(S.w>=WORLDS.length-1)return;S.arch=(S.arch||0)+S.seals;S.seals=0;S.w++;S.cards++;S.gold=cs(0);S.life=0;S.wlife=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;document.body.style.transition="filter .5s";document.body.style.filter="brightness(1.5)";setTimeout(()=>document.body.style.filter="",500);toast(`KAMEN RIDE — ${WORLDS[S.w].n}! Seals archived (+bonus), Cards kept (+10% each). New rule here.`)};
 const TREE=[["sp1","Speed I: ×1.3 production",1,null],["sp2","Speed II: Clock Up ×5, ×1.3 more",2,"sp1"],["co1","Cast Off I: ×2 at 40 owned",1,null],["co2","Cast Off II: ×3 at 40 owned",2,"co1"],["rc1","Recipes I: offline 50%→65%, rides need 50% less",1,null],["rc2","Recipes II: +1 Charge cap, Charge regen ×2",2,"rc1"]];
 function buyNode(id){const n=TREE.find(t=>t[0]==id);if(S.tree.includes(id)||S.mp<n[2]||(n[3]&&!S.tree.includes(n[3])))return;S.mp-=n[2];S.tree.push(id);render()}
@@ -58,12 +59,12 @@ let _lastSig='';function render(){
  const sg=sig(),structural=sg!==_lastSig;_lastSig=sg;
  $("clockcard").style.display=S.w==0?"block":"none";$("clock").disabled=S.charge<4||S.clock>0;$("cinfo").textContent=S.clock>0?`active ${S.clock.toFixed(0)}s`:`Charge ${S.charge.toFixed(1)}/${S.tree.includes('rc2')?15:10}`;
  $("mp").textContent=S.mp;if(structural)$("tree").innerHTML=TREE.map(t=>`<button style="margin:3px" ${S.tree.includes(t[0])||S.mp<t[2]||(t[3]&&!S.tree.includes(t[3]))?"disabled":""} onclick="buyNode('${t[0]}')">${S.tree.includes(t[0])?"✔ ":""}${t[1]} (${t[2]})</button>`).join("");
- const p=pend(),ns=S.seals+p,ratio=(1+BONUS*ns)/(1+BONUS*S.seals);$("prevtxt").textContent=p>=1?`Ride preview: +${p} Seals → ×${ratio.toFixed(2)} production on restart, +1 mastery point. Run restarts from 0 generators.`:"Ride preview: not enough progress yet.";
+ const p=pend(),ns=S.seals+p,ratio=Math.sqrt(1+ns)/Math.sqrt(1+S.seals);$("prevtxt").textContent=canRide()?`Ride preview: +${p} Seals → ×${ratio.toFixed(2)} production on restart, +1 mastery point. Run restarts from 0 generators.`:"Ride preview: not enough progress yet.";
  $("title").textContent=`World ${S.w+1}: ${WORLDS[S.w].n}`;$("gold").textContent=fmt(S.gold);$("ps").textContent=fmt(prod());
  $("seals").textContent=S.seals;$("sm").textContent=sealMult().toFixed(2);$("cards").textContent=S.cards;
  const gl=GOALMULT[S.w]||1e12;$("goalv").textContent=`${fmt(S.wlife)} / ${fmt(gl)} world-lifetime Shots (DEV gate)`;$("goalbar").style.width=Math.min(100,100*S.wlife/gl)+"%";
  $("dim").disabled=S.wlife<gl||S.w>=WORLDS.length-1;$("dinfo").textContent=S.w>=WORLDS.length-1?"(final world of the slice)":"(needs goal; keeps Seals+Cards)";
- $("ffr").disabled=pend()<1||S.maxTier<3;$("ffrinfo").textContent=`pending ${pend()} Seals${pend()>=Math.max(1,2*S.seals)?" ✔ worth it (≥2×)":""}${S.maxTier<3?" · need 4 tiers seen":""}`;
+ $("ffr").disabled=!canRide();$("ffrinfo").textContent=`pending ${pend()} Seals · gain ×${rideGain().toFixed(2)}${canRide()?" ✔ worth it (≥×1.5)":" (rides need ≥×1.5)"}${S.maxTier<3?" · need 4 tiers seen":""}`;
  $("photo").disabled=S.photoCD>0;$("photo").textContent=S.photoCD>0?`Photo Op (${Math.ceil(S.photoCD)}s)`:"Photo Op!";
  let h="";for(let i=0;i<6;i++){if(!avail(i))continue;const n=S.own[i],nx=MS.find(m=>m>n),pv=[0,...MS].filter(m=>m<=n).pop();
   h+=`<div class=card><div class=row><div><b>${WORLDS[S.w].t[i]}</b> ×${n} <small>(×${mult(n)}; ${fmt(rt(i)*mult(n))}/s each)</small><br><small>${nx?`×2 in ${nx-n}`:"maxed"}</small></div><button ${S.gold<cost(i)?"disabled":""} onclick="buy(${i})">${fmt(cost(i))}</button></div><div class=bar><i style="width:${nx?100*(n-pv)/(nx-pv):100}%"></i></div></div>`}
