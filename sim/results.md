@@ -25,3 +25,18 @@ Params: threshold (1e6/1e8/1e10 lifetime), point exponent (0.4/0.5/0.7), bonus p
 - Exponent 0.5-0.7 with rebuy rule "prestige at >= 2x gain" gives a 22-45 min cycle repeating 8-14 times; exponent 0.4 shrinks returns (cycles stretch to ~48 min).
 - Strong bonus (25 %/pt, exp 0.7) explodes final multiplier (9e4x) -> numbers outrun content; 5-10 %/pt keeps final mult 2e2-6e3x.
 - Rule of thumb: first prestige ~25 min, then cycles 20-45 min, each cycle must be >= 2x faster to repeat the same content. Don't allow prestige before the player has seen >=60 % of the world's tiers.
+
+## Sessions & offline efficiency (sim2.py, sessions_sweep.py, sessions.png; 48 configs)
+World sized to take ~1.5-19 days (base cost 2e3, 6 tiers). Player does N sessions/day of M minutes; offline gains at efficiency `eff` capped at 8 h. Wall-clock minutes to clear (table cells = minutes):
+| sessions/day x min | eff 0 | eff 0.25 | eff 0.5 | eff 1.0 |
+|---|---|---|---|---|
+| 1 x 10 | never (>60 d) | 25,930 (18 d) | 17,290 (12 d) | 11,530 (8 d) |
+| 3 x 10 | 80,170 (56 d) | 9,130 (6.3 d) | 5,770 (4 d) | 4,330 (3 d) |
+| 6 x 10 | 40,090 | 7,210 | 4,330 | 2,890 |
+| 12 x 10 | 20,050 | 5,770 | 3,730 | 2,290 |
+Findings:
+- Offline efficiency is the dominant lever: going from eff 0 to 0.25 speeds a 3x10 player ~9x; 0.25 -> 1.0 gives only another ~2x.
+- Quadrupling sessions (3->12/day) at eff 0.5 speeds the world just 1.5x (5,770 -> 3,730 min): heavy players are not hugely rewarded, light players are not punished — good for "no-fight" casual design but means the active layer must carry its own appeal (events/clicks), not raw speed.
+- Session length barely matters at eff >= 0.25 (3, 10, 30-min sessions all within ~25 %) because greedy purchasing is gated by accumulated gold, not by attention.
+- Design consequence: choose offline eff 0.5 (cap 8 h) and size a world as ~3-5 days for a 3-sessions/day player, ~2 days for a heavy one.
+Caveat: toy model with a purely greedy buyer; real players also decide among upgrade types, which this ignores.
