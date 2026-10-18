@@ -1,0 +1,66 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Decade Idle — vertical slice</title>
+<style>
+:root{--bg:#12151c;--card:#1c2230;--ink:#e8ecf4;--dim:#8a93a6;--acc:#e0457b;--ok:#5fd18a;--warn:#f0b64a}
+body{margin:0;font:15px system-ui;background:var(--bg);color:var(--ink)}main{max-width:620px;margin:0 auto;padding:12px 16px 60px}
+h1{font-size:18px;margin:8px 0}.card{background:var(--card);border-radius:10px;padding:10px 12px;margin:8px 0}
+button{font:inherit;color:var(--ink);background:#2b3550;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}button:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between}.bar{height:6px;background:#2a3142;border-radius:3px;margin-top:6px}.bar i{display:block;height:100%;background:var(--acc);border-radius:3px}
+small{color:var(--dim)}.g{color:var(--ok)}.w{color:var(--warn)}#tel span{display:inline-block;width:8px;margin-right:1px;background:var(--ok)}
+</style><main>
+<h1 id=title></h1>
+<div class=card><div class=row><div>Shots <b id=gold></b> <small>(+<span id=ps></span>/s)</small></div><div><small>Seals <b id=seals>0</b> ×<span id=sm>1</span> · Cards <b id=cards>0</b></small></div></div>
+<div class=row style="margin-top:6px"><small>World goal: <span id=goalv></span></small><button id=photo>Photo Op!</button></div>
+<div class=bar><i id=goalbar style="width:0"></i></div></div>
+<div id=gens></div>
+<div class=card><div class=row><div>Final Form Ride <small id=ffrinfo></small></div><button id=ffr>Ride</button></div></div>
+<div class=card><div class=row><div>Dimension Ride <small id=dinfo></small></div><button id=dim disabled>Ride →</button></div></div>
+<div class=card><small>Speed: </small><button onclick="spd=1">×1</button> <button onclick="spd=10">×10</button> <button onclick="spd=100">×100</button> <button onclick="hardReset()">Reset save</button>
+<div><small>Goal gaps (s, telemetry): <span id=tel></span></small></div><div><small id=stats></small></div></div>
+<div id=toast class=card style="display:none"></div>
+</main>
+<script>
+// Rules: R1 growth 1.12, R2 cost x8 / rate x6, R3 x2 at 10/25/50/100/200, R5 reveal at 5 owned, R12 sqrt prestige +8%/pt, R15 ride >=60% tiers seen, R23 offline 50%/25% cap 8h
+const WORLDS=[{n:"Kabuto",t:["Cast-Off Cells","Zecter Charges","Clock-Up Cores","Hyper Zecters","ZECT Forges","Sōji's Kitchen"]},{n:"Den-O",t:["Rail Segments","Imagin Contracts","DenLiner Cars","Owner's Tickets","Time Tunnels","Terminal Stations"]}];
+const G=1.12,MS=[10,25,50,100,200],TH=1e5,BONUS=.08,GOALMULT=[3e6,3e8];
+let S=load()||{gold:15,own:[0,0,0,0,0,0],seals:0,life:0,w:0,cards:0,t0:Date.now(),last:Date.now(),goals:[],lastGoal:0,run:0,photoCD:0,maxTier:0};
+let spd=1,sinceGoal=0;
+function load(){try{return JSON.parse(localStorage.getItem("decadeSlice"))}catch(e){return null}}
+function save(){try{S.last=Date.now();localStorage.setItem("decadeSlice",JSON.stringify(S))}catch(e){}}
+function hardReset(){try{localStorage.removeItem("decadeSlice")}catch(e){}location.reload()}
+const cs=i=>15*8**i*Math.pow(3,S.w), rt=i=>6**i;
+const mult=n=>2**MS.filter(m=>n>=m).length, cost=i=>cs(i)*G**S.own[i];
+const sealMult=()=>1+BONUS*S.seals, carry=()=>3**S.w*(1+.1*S.cards);
+const rate=i=>S.own[i]*rt(i)*mult(S.own[i]);
+const prod=()=>S.own.reduce((s,_,i)=>s+rate(i),0)*sealMult()*carry();
+const avail=i=>i==0||S.own[i-1]>=5;
+const pend=()=>Math.floor(Math.sqrt(S.life/(TH*Math.pow(3,S.w))));
+const fmt=x=>x<1e4?x.toFixed(x<100?1:0):x.toExponential(2);
+const $=id=>document.getElementById(id);
+function goal(why){const now=S.run;const gap=now-S.lastGoal;S.lastGoal=now;S.goals.push(gap);if(S.goals.length>40)S.goals.shift();}
+function buy(i){const c=cost(i);if(S.gold<c)return;S.gold-=c;S.own[i]++;S.maxTier=Math.max(S.maxTier,i);
+ if(S.own[i]==1||MS.includes(S.own[i]))goal();render()}
+$("photo").onclick=()=>{if(S.photoCD>0)return;S.gold+=prod()*15;S.life+=prod()*15;S.photoCD=45;};  // R24 active layer ≈ 15 s of income, 45 s CD
+$("ffr").onclick=()=>{const p=pend();if(p<1||S.maxTier<3)return;S.seals+=p;S.gold=15;S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
+$("dim").onclick=()=>{if(S.w>=WORLDS.length-1)return;S.w++;S.cards++;S.gold=15;S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;document.body.style.background="#fff";setTimeout(()=>document.body.style.background="",250);toast(`KAMEN RIDE — ${WORLDS[S.w].n}! Kept: Seals, Cards (+10% each). New rule here.`)};
+function toast(m){const t=$("toast");t.style.display="block";t.textContent=m;setTimeout(()=>t.style.display="none",5000)}
+function offline(){const s=Math.min((Date.now()-S.last)/1000,8*3600);if(s<30)return;const a=Math.min(s,7200)*.5+Math.max(0,s-7200)*.25;const e=prod()*a;S.gold+=e;S.life+=e;toast(`Welcome back! Away ${(s/60).toFixed(0)} min → +${fmt(e)} Shots (${(100*a/s).toFixed(0)}% efficiency)`)}
+function render(){
+ $("title").textContent=`World ${S.w+1}: ${WORLDS[S.w].n}`;$("gold").textContent=fmt(S.gold);$("ps").textContent=fmt(prod());
+ $("seals").textContent=S.seals;$("sm").textContent=sealMult().toFixed(2);$("cards").textContent=S.cards;
+ const gl=GOALMULT[S.w]||1e12;$("goalv").textContent=`${fmt(S.life)} / ${fmt(gl)} lifetime Shots`;$("goalbar").style.width=Math.min(100,100*S.life/gl)+"%";
+ $("dim").disabled=S.life<gl||S.w>=WORLDS.length-1;$("dinfo").textContent=S.w>=WORLDS.length-1?"(final world of the slice)":"(needs goal; keeps Seals+Cards)";
+ $("ffr").disabled=pend()<1||S.maxTier<3;$("ffrinfo").textContent=`pending ${pend()} Seals${pend()>=Math.max(1,2*S.seals)?" ✔ worth it (≥2×)":""}${S.maxTier<3?" · need 4 tiers seen":""}`;
+ $("photo").disabled=S.photoCD>0;$("photo").textContent=S.photoCD>0?`Photo Op (${Math.ceil(S.photoCD)}s)`:"Photo Op!";
+ let h="";for(let i=0;i<6;i++){if(!avail(i))continue;const n=S.own[i],nx=MS.find(m=>m>n),pv=[0,...MS].filter(m=>m<=n).pop();
+  h+=`<div class=card><div class=row><div><b>${WORLDS[S.w].t[i]}</b> ×${n} <small>(×${mult(n)}; ${fmt(rt(i)*mult(n))}/s each)</small><br><small>${nx?`×2 in ${nx-n}`:"maxed"}</small></div><button ${S.gold<cost(i)?"disabled":""} onclick="buy(${i})">${fmt(cost(i))}</button></div><div class=bar><i style="width:${nx?100*(n-pv)/(nx-pv):100}%"></i></div></div>`}
+ $("gens").innerHTML=h;
+ $("tel").innerHTML=S.goals.map(g=>`<span title="${g.toFixed(0)}s" style="height:${Math.min(40,3+Math.log10(1+g)*9)}px;background:${g>600?"#f0b64a":g<15?"#8a93a6":"#5fd18a"}"></span>`).join("");
+ const gs=S.goals.slice().sort((a,b)=>a-b);$("stats").textContent=gs.length?`median gap ${gs[gs.length>>1].toFixed(0)}s · max ${gs[gs.length-1].toFixed(0)}s · in-band(15–600s) ${(100*gs.filter(g=>g>=15&&g<=600).length/gs.length).toFixed(0)}%`:"";
+}
+offline();render();
+let last=performance.now();setInterval(()=>{const now=performance.now(),dt=(now-last)/1000*spd;last=now;const e=prod()*dt;S.gold+=e;S.life+=e;S.run+=dt;S.photoCD=Math.max(0,S.photoCD-dt);
+ // auto-buy after first ride (R17): cheapest
+ if(S.seals>0){for(let k=0;k<3;k++){let b=-1,bc=1e300;for(let i=0;i<6;i++)if(avail(i)&&cost(i)<bc&&S.gold>=cost(i)){b=i;bc=cost(i)}if(b>=0)buy(b)}}
+ render();},100);
+setInterval(save,5000);addEventListener("beforeunload",save);
+</script>

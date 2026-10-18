@@ -29,3 +29,8 @@ Branches Clock Up / Zecter / Hyper with prerequisites, final node "Decade Link" 
 Progress bar to goal, then a flash "ATTACK RIDE" transition, new palette, carryover x3.
 - Applies: each world should have its own identity (Idle Wizard realms, Progress Knight layers [CODE/S games/progress-knight.md]); carryover ratio equals cost scale ratio to keep world length constant [SIM].
 - Weak: transition is cosmetic only. Add: new rule per world, a card/photo reward, a recap screen ("Kabuto cleared in 3d 4h, kept: ...").
+
+## decade_slice.html — integrated vertical slice (2 worlds)
+Combines R1–R3 (growth 1.12, cost ×8/rate ×6, ×2 milestones with bars), R5 (tier reveal at 5 owned), R12–R15 (sqrt Seals +8 %/pt, pending ≥2× highlight, ride needs 4 tiers seen), R17 (auto-buy after first ride), R21 (cards +10 % each persist), R23 (offline 50 %/25 %, 8 h cap, welcome-back toast), R24 (Photo Op: 15 s of income, 45 s cooldown), plus live pacing telemetry (goal-gap bars, median/max/in-band %) and ×1/×10/×100 speed for tuning.
+Headless test (Playwright + Chromium, greedy bot, ×100 speed, 25 simulated minutes, no JS errors): 18 goals, median gap 80 s, max 160 s, 94 % in the 15–600 s band — consistent with sim sweep [SIM].
+Not yet good: only 2 worlds, no distinct per-world rule (only names), no mastery tree, ride gating is by tier count not an objective, Seals reset all generators (no preview of post-reset rate), world-2 cost scale hard-coded ×3 with carry ×3 (ratio 1.0 → equal-length worlds). Next: add per-world rule (Clock Up button), preview panel, mastery tree persistence.
