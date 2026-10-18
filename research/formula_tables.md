@@ -1,6 +1,6 @@
 # Source-verified formula comparison
 
-Every row tagged [CODE] was read from the game's open-source repository this session (raw.githubusercontent.com); file paths and line numbers are in each game's `## Source-verified formulas` section in `games/<game>.md`. Not found / not verified: Candy Box 2 source (404), AD `gainedInfinityPoints` definition, Kittens `game.js`, Synergism offline cap, Cookie Clicker (closed source).
+Every row tagged [CODE] was read from the game's open-source repository this session (raw.githubusercontent.com); file paths and line numbers are in each game's `## Source-verified formulas` section in `games/<game>.md`. Round 2 (below) resolves AD IP/EP, Kittens game.js, Synergism offline cap and Cookie Clicker (public mirror). Still not found: Candy Box 2 source, see "Round 2 > Still unverified".
 
 ## 1. Cost ratio per building / purchase
 
@@ -55,3 +55,42 @@ Every row tagged [CODE] was read from the game's open-source repository this ses
 2. Cheap "block" multipliers (AD x2 per 10) pair with a 10x-per-block cost step to keep breakpoints readable.
 3. Prestige exponents fall per layer (Synergism 0.5 -> 0.03 -> 0.01; Evolve log scale), keeping reset gains small even when raw currency explodes.
 4. Linear costs with hard caps (A Dark Room) produce a story-paced, non-exponential early game.
+
+## Round 2
+
+Sources: IvarK/AntimatterDimensionsSourceCode `src/game.js`, `src/core/machines.js`; bloodrizer/kittensgame root `game.js`; ozh/cookieclicker (gh-pages) `main.js`; ianfixes/universal_paperclips `main.js`/`globals.js`; Pseudo-Corp/SynergismOfficial `src/Calculate.ts`; Acamaeda/The-Modding-Tree `js/game.js`; jacorb90/Prestige-Tree `js/layers.js`. Details and excerpts in `games/*.md` (`### Round 2` / `## Source-verified formulas`). Resolves the earlier "not found" items for AD IP/EP, Kittens game.js, Synergism offline, and Cookie Clicker (a public mirror exists, so "closed source" is superseded). All [CODE].
+
+### R2.1 Prestige gain formulas
+| Game | Formula | Cite |
+|---|---|---|
+| AD Infinity Points | broken: `10^(log10(maxAM)/308 - 0.75) * mult` (floor); unbroken: 1 IP | game.js L89-118 |
+| AD Eternity Points | `5^(log10(IP)/308 - 0.7) * mult` (x5 per +308 OoM of IP); min IP 1.79e308 | game.js L138-163 |
+| AD Reality Machines | `1000^(log10(EP)/4000 - 1) * mult`, `<10` uses linear `27/4000*logEP - 26`; hardcap 1e1000; pre-Reality log cap 8000 (75% penalty past 6000) | machines.js L1-32 |
+| Kittens reset | paragon = `kittens - 70` (>70); karma kittens piecewise +1/+3/+4/+5/+10/+15 per kitten past 35/60/100/150/300/750 | game.js `getResetPrestige` |
+| Cookie Clicker | `prestige = (lifetimeCookies/1e12)^(1/3)` (HCfactor 3), +1% CpS per level | main.js L4185-4192 |
+| Modding Tree "normal" | `floor(((base/req)^exponent * gainMult)^gainExp)`, softcap `g^p * c^(1-p)` | game.js L10-33 |
+| Modding Tree "static" | `floor(log_base(base/req/gainMult)*gainExp)^(1/exponent)`; cost of n-th = `req * base^(n^exponent/gainExp)` | game.js L24-60 |
+
+### R2.2 Cost curves
+| Game | Formula | Cite |
+|---|---|---|
+| Cookie Clicker | `base * 1.15^(owned-free)`; bases generated: `(n+9+[n>=5](n-5)^1.75*5)*10^n*max(1,n-14)` (2 sig. digits), CpS `n^(0.5n+2)`; Grandma 100/1 ... Portal 1e12/1e7 ... You 5.4e26/5.1e14 | main.js L7972, L8018-8031 |
+| Universal Paperclips | AutoClipper `1.1^n+5`; MegaClipper `1000*1.07^n`; ads x2 per buy, effect `1.1^(lvl-1)`; wire +0.05 per buy, -0.1%/250 ticks, +-6 sine noise | main.js L1661, L1674, L2334, L3341, L12-50 |
+| Prestige Tree (jacorb90) | P: req 10, exp 0.5 (normal); Boosters req 200 exp 1.25 base 5 (static); Generators req 200 exp 1.25 base 5; Time/Space (1e120+ req) exp 1.85 base 1e15; Enhance exp 0.02; Hindrance req 1e30; Quirk req 1e512 | layers.js L1-30, L281-293, L552-564, L897-918, L1302-1321 |
+
+### R2.3 Timers, caps and offline
+| Game | Value | Cite |
+|---|---|---|
+| Cookie Clicker golden | spawn gap 5-15 min base (x0.5 Lucky day, x0.5 Serendipity, x0.95 Golden goose egg...), lifetime 13 s | main.js L5934-6000, L5617 |
+| Cookie Clicker offline | needs Twin Gates: 1 h cap (doubles per 7 demon upgrades) at 5% + 10%/angel tier (max 75%); past cap 10% rate; Perfect idling = unlimited 100% | main.js L3537-3580 |
+| Cookie Clicker misc | wrinkler hard limit 14; Radiant Appetite aura x2 production; Dragon's Fortune +123% per golden | main.js L14589, L15158 |
+| Synergism offline | cap 72 h + 4 h each of research 31/32, x paid buff; simulated in 200 ticks | Calculate.ts L826-840 |
+| AD offline | Infinity upgrade `ipOffline`: 50% of best IP/ms; default `offlineTicks` 1e5 | game.js L935; player.js L798 |
+| Modding Tree | template `offlineLimit: 1` hour | mod.js |
+| UPC | ops cap = memory*1000; trust at Fibonacci*1000 clips (3000, 5000, 8000, 13000...); matter 6e27 galaxy / 3e55 universe | main.js L2436, L2606; globals.js |
+
+### R2.4 Open-source zone/world progression
+Gooboo (Tendsty/gooboo, `src/js/modules/horde.js`, `horde/upgradePrestige.js`) was found: prestige upgrade costs like `100*1.55^lvl` (butcher), `1000*(1.55+0.01*lvl)^lvl` (precision/resolve), attack/health per level x1.15. The per-zone enemy HP/gold scaling file was not located (zone data not in the paths tried). No open-source Clicker Heroes clone with the canonical `1.55^zone` HP curve was found via code search.
+
+### R2.5 Still unverified
+Cookie Clicker lifetime-to-chip in-game Heavenly upgrade prices beyond the list above, wrinkler suck rate; UPC drone/probe/combat constants (only partially read); Kittens production multipliers in `resources.js`/`village.js` (downloaded, not parsed); AD Time Study/Dilation EP formulas; Trimps/Clicker Heroes zone HP scaling in the Gooboo-like clones; Idle Game Maker not searched; the live Paperclips site may differ from the ianfixes mirror version.
