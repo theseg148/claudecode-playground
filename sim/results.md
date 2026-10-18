@@ -40,3 +40,12 @@ Findings:
 - Session length barely matters at eff >= 0.25 (3, 10, 30-min sessions all within ~25 %) because greedy purchasing is gated by accumulated gold, not by attention.
 - Design consequence: choose offline eff 0.5 (cap 8 h) and size a world as ~3-5 days for a 3-sessions/day player, ~2 days for a heavy one.
 Caveat: toy model with a purely greedy buyer; real players also decide among upgrade types, which this ignores.
+
+## Decade campaign model (decade_model.py, decade_model.json, decade_model.png)
+9 worlds (Kabuto, Den-O, Faiz, Ryuki, Blade, Kiva, Agito, Hibiki, Kuuga); 6-tier ladder each; world w costs scale by s^w; carryover multiplier c^w; 3 sessions/day x 10 min, offline eff 0.5, cap 8 h; world clear = top tier x25. Clear times in days (checked only at session granularity, so values are quantised to ~0.33 d):
+| cost scale s / carry c | per-world days (W1..W9) | total |
+|---|---|---|
+| 3 / 3, 4 / 4, 5 / 5, 8 / 8 (c = s) | 1.3 every world | 12.1 d |
+| 3 / 4 (c = 1.33 s) | 1.3, 1.0, 1.0, 0.7, 0.7, 0.7, 0.3, 0.3, 0.3 | 6.4 d |
+| 5 / 7 (c = 1.4 s) | 1.3, 1.0, 1.0, 0.7, 0.7, 0.3 ... | 6.1 d |
+Confirms the closed form: world length ratio = s/c. c = s gives equal-length worlds; c > s makes the campaign accelerate (late worlds feel trivial) — the toy model's carry is too generous at c = 1.33 s, so aim c ~ 0.8-1.0 s (slightly lengthening worlds) and instead raise the *reward density* (new mechanics) in late worlds. Base world length of 1.3 d here is only a scale choice (base_cost); real target: 3-5 days/world for casual (see sessions table) -> 9 worlds ~ 4-6 weeks.
