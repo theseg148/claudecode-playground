@@ -126,6 +126,20 @@ Counter-evidence: the same lack of skill creates boredom: "no meaningful choices
 
 ---
 
+## 11. Reading list and open questions
+
+- Alharthi et al. 2018 (taxonomy): https://par.nsf.gov/biblio/10061230
+- Spiel et al. 2019 (designer interviews): https://par.nsf.gov/biblio/10174274
+- Deterding 2016 (boundary work): https://dl.digra.org/index.php/dl/article/view/851
+- Kivetz, Urminsky & Zheng 2006: https://business.columbia.edu/sites/default/files-efs/pubfiles/1200/goalgradient.pdf
+- Ghibellini & Meier 2025 meta-analysis: https://ideas.repec.org/a/pal/palcom/v12y2025i1d10.1057_s41599-025-05000-w.html
+- Gal & Rucker 2018 critique (secondary): https://www.jasoncollins.blog/posts/the-case-against-loss-aversion
+- Schull 2012: https://muse.jhu.edu/book/61897
+- Open question 1: no peer-reviewed study found that measures retention effects of prestige timing; only designer postmortems (https://dev.to/aguier/i-built-7-idle-games-in-30-days-what-i-learned-about-incremental-design-5d3f). Plan to A/B test in our own game.
+- Open question 2: whether endowed progress still works when the player can see the "fake" head start through a transparent UI; the moderating "justified head start" note is the only guidance found.
+
+---
+
 ## Implications for a Kamen Rider Decade world-progression upgrade idle game
 
 Decade's premise (a Rider who passes through parallel Rider worlds, collecting their powers via Kamen Ride cards, ending in the Final Form Ride / Dimension Kick) is a near-perfect carrier for the psychology above. Concrete proposals:

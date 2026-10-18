@@ -2,8 +2,8 @@
 
 ## Phase 1: Foundations -> research/
 - [ ] research/math_of_idle_games.md (Pecorella Kongregate series, Gamasutra/GDC)
-- [ ] research/psychology.md (compulsion loops, variable rewards, goal gradient, numbers go up)
-- [ ] research/player_complaints.md (reddit, reviews, quit reasons)
+- [x] research/psychology.md (compulsion loops, variable rewards, goal gradient, numbers go up)
+- [x] research/player_complaints.md (reddit, reviews, quit reasons)
 - [ ] research/design_talks_postmortems.md
 
 ## Phase 2: Games -> games/<name>.md (30+; template in games/_TEMPLATE.md)
