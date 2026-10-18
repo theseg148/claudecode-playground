@@ -78,3 +78,41 @@ Evidence tags used in this file: [SRC] = read directly from the open-source code
 6. Gate big resets behind a challenge (Ascension needs Challenge 10): in a no-fighting game use "Rider trial" upgrade puzzles.
 7. Keep a meta currency (Quarks) that is free-earnable; monetization should only buff offline caps/speeds.
 8. Do not copy menu sprawl; show 2-3 screens max per world. [EST based on complaints]
+
+
+## Source-verified formulas
+All excerpts [CODE]. Current repo is `Pseudo-Corp/SynergismOfficial` (branch `master`); base: `https://raw.githubusercontent.com/Pseudo-Corp/SynergismOfficial/master/` (files `src/Buy.ts`, `src/Synergism.ts`, `src/Cubes.ts`). The older `Pseudonian/SynergismOfficial` repo only has a v2.1.2 `Synergism.js` snapshot (`https://raw.githubusercontent.com/Pseudonian/SynergismOfficial/master/Synergism.js`), used below as a cross-check. `Calculate.ts` offline-cap logic (`runOfflineProgress`) was not read.
+
+**Building base costs and growth** [CODE] `src/Buy.ts` L14-40 (`producerData`)
+```ts
+coin:    costs: [100, 1000, 2e4, 4e5, 8e6],   growth: [1, 2, 3, 4, 5]
+diamond: costs: [100, 1e5, 1e15, 1e40, 1e100], growth: [1, 3, 6, 10, 15]
+mythos:  costs: [1, 1e2, 1e4, 1e8, 1e16],      growth: [1, 3, 6, 10, 15]
+```
+**Cost formula** [CODE] `src/Buy.ts` L131-195 (`createBuildingCostCalculator`)
+```ts
+const add1s = 1 / (Math.pow(1.25, growth) - 1)
+let steps = growth * owned           // cost *= 1.25^steps
+cost = baseCost.times(decimalBases.building.pow(steps)); cost = cost.subtract(add1s)
+```
+So the per-purchase ratio of tier k is `1.25^growth_k`: coin tiers 1.25, 1.5625, 1.953, 2.441, 3.052; diamond/mythos tiers 1.25, 1.953, 3.815, 9.31, 28.4. Extra softcaps stack at owned >= 1000 (factorial + (1+growth/2)/1000 term), 5000 (100+100*growth), 20000 (1e7+1e7*growth), 250000 (x1.03 per extra) [CODE] same function L165-190.
+
+**Tesseract buildings (ascension tier)** [CODE] `src/Buy.ts` L666, L737, L809
+```ts
+price = tesseractBuildingCosts[i] * Math.pow(owned + 1, 3)   // base [1,10,100,1000,10000]
+```
+Polynomial (cubic) cost instead of exponential for late-layer buildings.
+
+**Prestige gain formulas (falling exponent per layer)** [CODE] `src/Synergism.ts` L3434-3456; same in old v2.1.2 `Synergism.js` L2321-2345
+```ts
+let prestigePow = 0.5 + CalcECC('transcend', player.challengecompletions[5]) / 100
+let transcendPow = 0.03
+prestigePointGain  = floor((coinsThisPrestige / 1e12) ^ prestigePow)
+transcendPointGain = floor((coinsThisTranscension / 1e100) ^ transcendPow)
+reincarnationPointGain = floor((transcendShards / 1e300) ^ 0.01)
+```
+Reset availability [CODE] `Synergism.js` (v2.1.2) L2363-2380: prestige when `coinsThisPrestige >= 1e16 || prestigePointGain >= 100`; transcend when `coinsThisTranscension >= 1e100 || transcendPointGain >= 0.5`.
+
+**Multiplier base** [CODE] `Synergism.js` (v2.1.2) L1613: accelerator power `acceleratorPower = Math.pow(1.1 + ..., ...)` i.e. each Accelerator is ~+10% speed baseline.
+
+**Design takeaways**: prestige currency = sqrt-ish of raw currency (^0.5) at layer 1, ^0.03 at layer 2, ^0.01 at layer 3; building ratio ladders are 1.25^(1,2,3,4,5) per tier so each next tier is harsher.

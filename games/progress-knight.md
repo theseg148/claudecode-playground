@@ -71,3 +71,28 @@
 - Make each world's ladder different (different job/skill tree per Rider) but reuse the same carryover rule so the player understands it.
 - Add a small economy tension (coins vs upkeep) to make choices meaningful without combat.
 - Offline is a gap to fix: unlike Progress Knight, grant offline progress at a reduced rate so the mobile loop works.
+
+
+## Source-verified formulas
+All excerpts [CODE] from `ihtasham42/progress-knight` (branch `master`). Base: `https://raw.githubusercontent.com/ihtasham42/progress-knight/master/` (files `js/classes.js`, `js/main.js`).
+
+**Task XP requirement** [CODE] `js/classes.js` L10-12, L18-25, L27-29
+```js
+getMaxXp() { return Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(1.01, this.level)) }
+getMaxLevelMultiplier() { return 1 + this.maxLevel / 10 }       // +10% XP per previous-life max level
+getXpGain() { return applyMultipliers(10, this.xpMultipliers) }  // 10 xp base per second-tick
+```
+So XP to level L is `base * (L+1) * 1.01^L` (polynomial x mild exponential, ratio 1.01 per level).
+
+**Job income** [CODE] `js/classes.js` L51-54: `getLevelMultiplier() = 1 + Math.log10(this.level + 1)` (log growth); `getIncome() = applyMultipliers(baseData.income, incomeMultipliers)`.
+Job base table [CODE] `js/main.js` L36-57 (name: maxXp, income): Beggar 50/5, Farmer 100/9, Fisherman 200/15, Miner 400/40, Blacksmith 800/80, Merchant 1600/150, Squire 100/5, Footman 1000/50, Veteran footman 1e4/120, Knight 1e5/300, Veteran knight 1e6/1000, Elite knight 7.5e6/3000, Holy knight 4e7/15000, Legendary knight 1.5e8/50000, Student 1e5/100, Apprentice mage 1e6/1000, Mage 1e7/7500, Wizard 1e8/50000, Master wizard 1e10/250000, Chairman 1e12/1e6.
+
+**Skill effects** [CODE] `js/classes.js` `getEffect() = 1 + baseData.effect * level` (linear +1%/level), special log effects in `js/main.js` L263-290:
+```js
+Bargaining/Intimidation: 1 - getBaseLog(7, level+1)/10   (floor 0.1)
+Time warping:  1 + getBaseLog(13, level+1)    // gamespeed
+Immortality:   1 + getBaseLog(33, level+1)    // lifespan
+```
+**Constants / rebirth** [CODE] `js/main.js`: `updateSpeed = 20`, `baseGameSpeed = 4`, `baseLifespan = 365 * 70` days. Homes: Homeless 0, Tent 15/1.4x, Wooden hut 100/2x, Cottage 750/3.5x, House 3000/6x, Large house 25000/12x, Small palace 300000/25x, Grand palace 5e6/60x (expense/day, happiness multiplier) [CODE] L85-92. Rebirth 2 grants `gameData.evil += getEvilGain()` where evilGain = Evil control x Blood meditation effects (L318-323).
+
+**Design takeaways**: income within one job grows only with log10(level), so the long-term lever is *new* jobs (maxXp and income both roughly 10x per tier at the top end) and rebirth multipliers (+10% XP per prior max level).

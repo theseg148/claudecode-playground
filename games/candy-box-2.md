@@ -63,3 +63,7 @@ CONFIDENCE WARNING: the sandbox could only reach raw.githubusercontent.com. Wiki
 6. Hidden easter-egg unlocks (secret cards, hidden forms) reward curiosity and give community talking points.
 7. Include auto-save from day one; manual-save loss is a recurring complaint.
 8. Treat its absence of prestige as a deliberate option: first release can ship world 1-3 as a campaign and add prestige later.
+
+
+## Source-verified formulas
+No verified source code could be fetched this session: the candidate raw URLs for the Candy Box 2 repository (`candybox2/candybox2.github.io`, `candybox2/candybox2`, `aniwey/candybox2`) returned 404 on raw.githubusercontent.com, and the GitHub tree API is not available in this sandbox. No [CODE] tags are claimed for this game; all numbers elsewhere in this file remain [MEM]/[EST]. Retry later with the correct owner/repo.

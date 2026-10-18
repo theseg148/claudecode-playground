@@ -83,3 +83,44 @@ Tags: [SRC] = read from open-source code this session; [MEM] = recalled, unverif
 6. Cut early micromanagement for a no-fighting game: drop job assignment; keep the *choice of build* as one-time picks per world (Rider form), not continuous juggling.
 7. Offline: "bank time and spend later" suits games with complex interactions; for a simple upgrade idle, a capped closed-form is better.
 8. Keep rule: no easy-mode shortcuts in the base game; sell cosmetics only (Rider suit skins) if monetized.
+
+
+## Source-verified formulas
+All excerpts [CODE] from `pmotschmann/Evolve` (branch `master`). Base: `https://raw.githubusercontent.com/pmotschmann/Evolve/master/` (files `src/functions.js`, `src/actions.js`, `src/resources.js`). `src/prestige.js` does not exist (404); prestige math is in `src/functions.js`.
+
+**Universal cost function** [CODE] `src/functions.js` L776-833 (`costMultiplier`)
+```js
+if (multiplier < 1.005){ multiplier = 1.005; }                    // hard floor on ratio
+return Math.round((multiplier ** count) * base);
+```
+Ratio is reduced by traits/tech/CRISPR (`genes.creep`: -0.01 per level), e.g. `housing_reduction` -0.02 per level on basic_housing/cottage.
+
+**Sample (base, ratio)** [CODE] `src/actions.js`
+| Building | Costs `costMultiplier(name, offset, base, ratio)` |
+|---|---|
+| basic_housing (L1389-1397) | Money(20, 1.17) (free first 5), Lumber(10, 1.23) |
+| cottage (L1441-1445) | Money(900, 1.15), Plywood(25, 1.25), Brick(20, 1.25), Wrought Iron(15, 1.25) |
+| smokehouse | Money(85, 1.32), Lumber(65, 1.36), Stone(50, 1.36) |
+| farm | Money(50, 1.32), Lumber(20, 1.36), Stone(10, 1.36) |
+| lumber_yard | Money(5, 1.85), Lumber(6, 1.9), Stone(2, 1.95) |
+| warehouse | Money(400, 1.26), Cement(75, 1.26), Sheet Metal(25, 1.25) |
+| smelter | Money(1000, 1.32), Iron(500, 1.33) |
+| mine | Money(60, 1.6), Lumber(175, 1.38) |
+| coal_mine | Money(480, 1.4), Lumber(250, 1.36), Wrought Iron(18, 1.36) |
+Evolution (RNA/DNA) costs are LINEAR: `evolveCosts = count * mult + base` [CODE] L5669-5672.
+
+**Plasmid (prestige) gain** [CODE] `src/functions.js` L1494-1660 (`getResetConstants`, `calcPrestige`)
+```js
+// per reset type: pop_divisor, k_inc, k_mult, phage_mult, plasmid_cap
+mad:      pop_divisor 3,   k_inc 100000, k_mult 1.1,   cap 150
+bioseed:  pop_divisor 3,   k_inc 50000,  k_mult 1.015, phage_mult 1, cap 400
+ai:       pop_divisor 2.5, k_inc 45000,  k_mult 1.014, phage_mult 2, cap 600
+bigbang:  pop_divisor 2.2, k_inc 40000,  k_mult 1.012, phage_mult 2.5, cap 800
+new_plasmid = Math.round(pop / pop_divisor);
+while (k_base > k_inc){ new_plasmid++; k_base -= k_inc; k_inc *= k_mult; }   // +1 plasmid per knowledge chunk, chunk grows by k_mult
+// above cap: overflow = floor(overflow / (overflow + cap) * cap)
+phage = floor(Math.log2(plasmid) * Math.E * phage_mult)
+```
+**Plasmid effect (diminishing log)** [CODE] `src/resources.js` L3238-3246: `standard = (Math.log(plasmids + 50) - 3.91202) / 2.888` (3.91202 = ln 50) i.e. `ln(1 + plasmids/50) / 2.888` (scale of the final multiplier not verified), flatter log past `p_cap = 250 + Phage`.
+
+**Design takeaways**: floors the ratio at 1.005; most early buildings are 1.15-1.36 with 2-3 resource types per building; prestige currency = population + stepped knowledge with soft cap and logarithmic effect.

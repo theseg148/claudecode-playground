@@ -57,3 +57,45 @@
 Search date 2026-10-18; WebSearch snippets only (pages not opened).
 - Confirmed [S] (trimps.fandom.com/wiki/Broken_Planet): Improbabilities begin at zone 59, last cell of Z59 gives 5x helium; portal first use gives 30 helium (wiki Portal page); Corruption starts zone 181 (tvtropes secondary).
 - NOT confirmed: equipment cost multiplier ~1.2, enemy scaling 1.1-1.2/zone, Heirlooms Z90, Magma/Nature/Universe 2 zones, offline cap. Remain [M]/[E].
+
+
+## Source-verified formulas
+All excerpts [CODE] from `Trimps/Trimps.github.io` (branch `master`). Base: `https://raw.githubusercontent.com/Trimps/Trimps.github.io/master/` (files `main.js`, `config.js`).
+
+**Generic building price** [CODE] `main.js` L4819-4833 (`getBuildingItemPrice`)
+```js
+price = Math.floor((thisCost[0] * Math.pow(thisCost[1], toBuy[compare])) * ((Math.pow(thisCost[1], purchaseAmt) - 1) / (thisCost[1] - 1)));
+```
+i.e. cost = base x ratio^owned, with geometric-series bulk pricing.
+
+**Building cost table (`[base, ratio]`)** [CODE] `config.js` L11450-11740
+| Building | Cost [base, ratio] |
+|---|---|
+| Hut | food [125, 1.24], wood [75, 1.24] |
+| House | food [1500, 1.22], wood [750, 1.22], metal [150, 1.22] |
+| Mansion | gems [100, 1.2], food [3000, 1.2], wood [2000, 1.2], metal [500, 1.2] |
+| Hotel | gems [2000, 1.18], food [10000, 1.18], wood [12000, 1.18], metal [5000, 1.18] |
+| Resort | gems [20000, 1.16], food [1e5, 1.16], wood [1.2e5, 1.16], metal [5e4, 1.16] |
+| Gateway | fragments [3000, 1.14], gems [20000, 1.14], metal [75000, 1.14] |
+| Collector | gems [5e11, 1.12] |
+| Warpstation | gems [1e14, 1.4], metal [1e15, 1.4] |
+| Gym | wood [400, 1.185] |
+| Tribute | food [10000, 1.05] |
+Pattern: ratio drops by 0.02 per housing tier (1.24 -> 1.12) while base cost rises ~10x per tier. Barn uses (verified; Shed/Forge not checked) `calculatePercentageBuildingCost(what,res,0.25)` = `floor(0.25 * resourceMax * increase.by^(purchased-owned))` (cost = 25% of current max storage) [CODE] `main.js` L5017-5023.
+
+**Equipment prestige** [CODE] `main.js` L5953-5970
+```js
+prestigeMod = (nextPrestigeCount >= 4) ? ((nextPrestigeCount - 3) * 0.85) + 2 : nextPrestigeCount - 1;
+cost  = Math.round(equipment.oc * Math.pow(1.069, prestigeMod * game.global.prestige.cost + 1));
+stat  = Math.round(equipment[stat] * Math.pow(1.19, equipment.prestige * game.global.prestige[stat] + 1));
+```
++19% stat per prestige level vs +6.9% cost.
+
+**Perks (portal / meta prestige currency, Helium)** [CODE] `main.js` L3846-3880 (`getPortalUpgradePrice`) and `config.js` L2959-2995
+```js
+var growth = (toCheck.specialGrowth) ? toCheck.specialGrowth : 1.3;
+amt += Math.ceil(((tempLevel + x) / 2) + toCheck.priceBase * Math.pow(growth, tempLevel + x));
+```
+Power: modifier 0.05, priceBase 1 (+5% attack/level); Looting: modifier 0.05, priceBase 1; Carpentry modifier 0.1 (+10% housing, compounds) priceBase 25; Resourceful priceBase 50000 (-5% costs, compounding); Coordinated priceBase 150000. So a typical perk costs 1.3^level helium, with a +level/2 additive term.
+
+**Design takeaways**: building ratios 1.24 -> 1.12 across the housing line (soft tapering curves), perks cost 1.3^L but give flat +5%/level (the cost curve, not a hard cap, is what limits perk levels).

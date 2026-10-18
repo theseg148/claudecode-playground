@@ -57,3 +57,41 @@
 Search date 2026-10-18; WebSearch snippets only (pages not opened).
 - Confirmed only weakly [S]: catnip field production varies strongly by season (forum: +50% summer, -75% winter - differs from my [M] values; treat as UNRESOLVED); game balance changes between versions (videogamegeek).
 - NOT confirmed (several searches): price ratios (field 1.12, library 1.15, hut 2.5), 0.125/tick, karma/paragon formulas. Remain [M]/[E]. Wiki is on bloodrizer.ru; source code is the authority.
+
+
+## Source-verified formulas
+All excerpts [CODE] from `bloodrizer/kittensgame` (branch `master`). Base: `https://raw.githubusercontent.com/bloodrizer/kittensgame/master/`. (`js/game.js` / `js/kittens.js` returned 404, so the generic paragon-gain-on-reset code and some core production functions were not verified.)
+
+**Building price formula** [CODE] `js/buildings.js` L2589-2607 (`getPricesWithAccessor`) and L2567-2578
+```js
+var cost = bldPrices[i].val * Math.pow(ratio, bldVal + fakeBought) * priceModifier * resPriceModifier;
+// ratio = priceRatio + dynamic reductions (limited diminishing returns): getLimitedDR(ratioDiff, ratio-1)
+```
+**priceRatio per building** [CODE] `js/buildings.js` (field L358, hut L491, barn L799, library/mine/workshop etc.)
+- Ratios seen across the ~50 building defs: field 1.12 (10 catnip), hut 2.5 (5 wood, L484-491), barn 1.75 (L799), mine/workshop and most others 1.15, a few later ones 1.25 / 1.35 / 1.5 / 1.75 (L1289, L2197, L1797, L2040). Modal value is 1.15.
+```js
+name: "field", prices: [{ name:"catnip", val:10 }], priceRatio: 1.12, effects: { "catnipPerTickBase": 0.125 }
+```
+
+**Time scale** [CODE] `js/calendar.js` L217-218: `ticksPerDay: 10, daysPerSeason: 100` (400 days per year, year = 4 seasons).
+
+**Paragon (prestige) bonuses** [CODE] `js/prestige.js` L549-576
+```js
+getParagonProductionRatio: productionRatioParagon = paragon * 0.010 * paragonRatio;  // limited DR cap 2*paragonRatio
+ + burnedParagon * 0.010 * paragonRatio  // cap 1*paragonRatio (4x after dark future)
+getParagonStorageRatio: (paragon/1000)*paragonRatio  // "every 100 paragon = +10% storage"
+getBurnedParagonRatio: getUnlimitedDR(burnedParagon, 500)
+```
+Paragon income: +1 paragon per millennium (1000 years) [CODE] `js/calendar.js` L968-972 (`milleniums * paragonRatio`). Paragon upgrade costs range 5 ... 60000 paragon [CODE] `js/prestige.js`.
+
+**Faith / Apocrypha (religion prestige)** [CODE] `js/religion.js` L1549-1557, L1648-1651
+```js
+getApocryphaBonus: getUnlimitedDR(this.faithRatio, 0.1) * 0.1
+_resetFaithInternal: this.faithRatio += this.faith / 1000000 * ttPlus1 * ttPlus1 * bonusRatio;  // ttPlus1 = transcendenceTier+1
+getSolarRevolutionRatio: getLimitedDR(getUnlimitedDR(faith,1000)/100, 10 + solarRevolutionLimit)
+```
+Production bonus for "adore" ("Epiphany") is quadratic in transcendence tier.
+
+**Diminishing-returns helpers** `getLimitedDR(value, limit)` (asymptote) and `getUnlimitedDR(value, stretch)` are used across the game to keep every % bonus capped or sub-linear [CODE call sites above].
+
+**Design takeaways**: single universal price ratio of 1.15 (1.12 first-tier, 2.5/1.75 for gating buildings) plus dynamic ratio reduction effects; prestige scales with how long you waited (calendar years), not with currency.

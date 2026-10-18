@@ -76,3 +76,38 @@ All formulas below are [SRC] unless marked.
 6. Each BitNode changes global multipliers (`currentNodeMults`): model each Rider world as a multiplier table; only a few tuned numbers per world yields strong variety.
 7. Unlock new subsystems only through the outer prestige (Source Files) to keep each loop simple at first.
 8. Skip scripting; give a lightweight automation option (auto-buy toggles) so players still feel "I optimized this".
+
+
+## Source-verified formulas
+All excerpts [CODE] from `bitburner-official/bitburner-src` (branch `dev`). Base: `https://raw.githubusercontent.com/bitburner-official/bitburner-src/dev/` (files `src/Hacknet/data/Constants.ts`, `src/Hacknet/formulas/HacknetNodes.ts`, `src/Constants.ts`, `src/Hacking.ts`).
+
+**Hacknet Nodes** [CODE] `src/Hacknet/data/Constants.ts`
+```ts
+MoneyGainPerLevel: 1.5, BaseCost: 1000, LevelBaseCost: 500, RamBaseCost: 30e3, CoreBaseCost: 500e3,
+PurchaseNextMult: 1.85, UpgradeLevelMult: 1.04, UpgradeRamMult: 1.28, UpgradeCoreMult: 1.48,
+MaxLevel: 200, MaxRam: 64, MaxCores: 16
+```
+`src/Hacknet/formulas/HacknetNodes.ts` L4-11, L87-92:
+```ts
+gain = level*1.5 * Math.pow(1.035, ram-1) * ((cores+5)/6) * mult
+calculateNodeCost(n) = BaseCost * Math.pow(1.85, n-1) * mult      // 1000 * 1.85^(n-1)
+level upgrade cost  = LevelBaseCost * sum(1.04^level) ; ram = 30e3 * 1.28^k ; core = 500e3 * 1.48^k
+```
+Production is linear in level (x1.5), exponential-mild in RAM (x1.035 per RAM unit), ratio 1.85 to buy another node: so ROI per node drops fast (design lesson: producer count cost ratio 1.85 vs. upgrade ratio 1.04).
+
+**Hacknet Servers (hashes)** [CODE] same file: `HashesPerLevel 0.001, BaseCost 50e3, PurchaseMult 3.2, UpgradeLevelMult 1.1, UpgradeRamMult 1.4, UpgradeCoreMult 1.55, UpgradeCacheMult 1.85, MaxServers 20, MaxLevel 300, MaxRam 8192, MaxCores 128`.
+
+**Global constants** [CODE] `src/Constants.ts` L10-45
+```ts
+MilliPerCycle: 200,                 // 5 game cycles / second
+OfflineHackingIncome: 0.75,         // offline script income multiplier
+NeuroFluxGovernorLevelMult: 1.14,   // NFG cost ratio per level
+MultipleAugMultiplier: 1.9,         // each augmentation bought this run raises prices x1.9
+BaseFavorToDonate: 150, DonateMoneyToRepDivisor: 1e6,  // $1M donated = 1 rep (with favor>=150)
+CorpFactionRepRequirement: 400e3, TravelCost: 200e3, MaxSkillLevel: 975
+```
+Augmentation (prestige) price ladder: each augmentation purchased in a run multiplies the next price by 1.9; NeuroFlux Governor stacks at 1.14 per level.
+
+**Hacking exp** [CODE] `src/Hacking.ts` L30-37: `expGain = baseExpGain + baseDifficulty * diffFactor`, times `hacking_exp` mult.
+
+**Design takeaways**: the only prestige in Bitburner is Augmentation install; the cost ladder x1.9 per aug bought is a deliberate "buy the expensive ones first" order-rule. Offline income is a flat 75% rate.

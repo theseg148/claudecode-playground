@@ -77,3 +77,68 @@ Confirmed [S]:
 Unconfirmed [unverified]:
 - Middle dimension costs/multipliers, tickspeed starting cost, exact EP formula text, Reality unlock requirement (1e4000 EP claim was a misattribution), play-time estimates, offline defaults.
 Note: boost/galaxy/IP figures come from an old community how-to and may differ in the current Reality-era version.
+
+
+## Source-verified formulas
+All excerpts [CODE], read from `IvarK/AntimatterDimensionsSourceCode` (branch `master`) via raw.githubusercontent.com. Base: `https://raw.githubusercontent.com/IvarK/AntimatterDimensionsSourceCode/master/`. Note: the definition of `gainedInfinityPoints()` / `gainedEternityPoints()` was not located in the files fetched, so IP/EP gain formulas are NOT verified here.
+
+**Antimatter Dimension costs (8 tiers)** [CODE] `src/core/dimensions/antimatter-dimension.js` L337-340, L363
+```js
+const BASE_COSTS = [null, 10, 100, 1e4, 1e6, 1e9, 1e13, 1e18, 1e24];
+const BASE_COST_MULTIPLIERS = [null, 1e3, 1e4, 1e5, 1e6, 1e8, 1e10, 1e12, 1e15];
+return this.costScale.calculateCost(Math.floor(this.bought / 10) + this.costBumps);
+```
+Cost steps once per block of 10 bought (price multiplier per block = tier ratio above: 1e3 ... 1e15), then an extra quadratic-in-log scaling after Number.MAX_VALUE.
+
+**Milestone multiplier (every 10 bought)** [CODE] `src/core/dimensions/antimatter-dimension.js` L632-636
+```js
+get buyTenMultiplier() { ... let mult = DC.D2.plusEffectsOf(Achievement(141).effects.buyTenMult, EternityChallenge(3).reward);
+```
+Base x2 per 10 bought of a tier (so each block of 10 doubles that tier AND costs 1e3..1e15 more).
+
+**Tickspeed** [CODE] `src/core/tickspeed.js` L154-160 and L38-43
+```js
+new ExponentialCostScaling({ baseCost: 1000, baseIncrease: 10, costScale: Player.tickSpeedMultDecrease, scalingCostThreshold: Number.MAX_VALUE });
+let baseMultiplier = 1 / 1.1245;  // <3 galaxies; 1/1.11888888 at 1, 1/1.11267177 at 2
+```
+Tickspeed cost: 1000 x 10^n (ratio 10). Each purchase multiplies speed by 1.1245 at 0 galaxies; galaxies add `0.02 * effects` to the per-purchase step.
+
+**Dimension Boost** [CODE] `src/core/dimboost.js` L16-29 (power), L92-110 (requirement)
+```js
+let boost = Effects.max(2, InfinityUpgrade.dimboostMult, InfinityChallenge(7).reward, ...)
+let amount = 20;                                  // first boosts need 20 of tier (targetResets+3)
+if (tier === 8) amount += Math.round((targetResets - 5) * (15 - discount));
+```
+Boost multiplier x2 base to affected dimensions; boosts 1-5 unlock tiers 5-8 (tier = resets+3, max 8), then cost 20 + 15 x (boosts - 5) of 8th dimension.
+
+**Galaxy** [CODE] `src/core/galaxy.js` L69-75, L42-43, L98-105
+```js
+baseCost: 80 ; costMult: 60   // amount = 80 + galaxies * 60 (8th dims)
+amount += Math.pow(galaxiesBeforeDistant, 2) + galaxiesBeforeDistant;  // distant galaxies, scaling starts at 100
+static get costScalingStart() { return 100 + ... }
+```
+
+**Cost scaling helper** [CODE] `src/core/math.js` L377-384
+```js
+const logCost = excess > 0 ? currentPurchases*logMult + logBase + 0.5*excess*(excess+1)*this._logCostScale
+                           : currentPurchases*logMult + logBase;
+```
+Geometric ratio `baseIncrease`, then each purchase past the threshold adds one more factor of `costScale` (cost grows like exp(n^2)).
+
+**Infinity Dimensions** [CODE] `src/core/dimensions/infinity-dimension.js` L53-57, L151
+```js
+COST_MULTS = [null, 1e3, 1e6, 1e8, 1e10, 1e15, 1e20, 1e25, 1e30];
+BASE_COSTS = [null, 1e8, 1e9, 1e10, 1e20, 1e140, 1e200, 1e250, 1e280];
+POWER_MULTS = [null, 50, 30, 10, 5, 5, 5, 5, 5];   // multiplier per 10 bought: x50, x30, x10, x5...
+mult = mult.times(Decimal.pow(this.powerMultiplier, Math.floor(this.baseAmount / 10)));
+```
+
+**Time Dimensions** [CODE] `src/core/dimensions/time-dimension.js` L143-150, L162-180
+```js
+BASE_COSTS = [null, 1, 5, 1e2, 1e3, 1e2350, 1e2650, 1e3000, 1e3350] (EP);  COST_MULTS = [null, 3, 9, 27, 81, 24300, 72900, 218700, 656100];
+costMultIncreases = [1, 1.5, 2.2]; thresholds [Number.MAX_VALUE, 1e1300, 1e6000]  // ratio x1.5 past 1.8e308, x2.2 past 1e1300
+```
+
+**Misc constants**: Infinity limit = `Decimal.NUMBER_MAX_VALUE` (1.79e308), tickspeed/dimension purchases lock without Break Infinity: `player.break || this.cost.lt(Decimal.NUMBER_MAX_VALUE)` [CODE] `src/core/tickspeed.js` L131-135. Infinity upgrade IP costs start at 1,1,1,... then 2,3,5,7 [CODE] `src/core/secret-formula/infinity/infinity-upgrades.js`. Dimension infinity-count upgrade: `Currency.infinitiesTotal.value.times(0.2).plus(1)` (+20% per infinity) [CODE] same file L4.
+
+**Design takeaways**: per-tier ratios 1e3..1e15 (10x between tiers) with x2 per 10 bought is the verified "readable breakpoint" engine; time dimensions use small ratios 3/9/27/81 early.

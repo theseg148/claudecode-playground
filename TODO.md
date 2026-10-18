@@ -25,8 +25,8 @@
 - [x] Guava Juice's game
 - [ ] Others (world/zone progression): AFK Arena, Idle Heroes, Swamp Attack, Cell to Singularity, Idle Breakout, Candy Box 2, Evolve, Progress Knight, Increlution, Spaceplan, Clicker Heroes 2, Hero Wars idle, Tap Titans 2, Idle Champions, Bitburner, Synergism, Magic Research, Idle Wizard, Cultist Simulator-ish, Farm idle, Egg Inc already, Mr. Mine, Idle Mining Empire
 ## Phase 3: Analysis -> analysis/
-- [ ] growth curves compare
-- [ ] prestige designs
+- [x] growth curves compare
+- [x] prestige designs
 - [ ] beloved patterns / anti-patterns
 - [ ] sequential worlds freshness
 ## Phase 4: Simulation -> sim/

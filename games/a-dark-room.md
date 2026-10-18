@@ -57,3 +57,29 @@ Search date 2026-10-18; WebSearch snippets only (pages not opened).
 - Confirmed [S] (mobile wiki): trap cost (n+1)*5 wood max 30; hut cost 20+n*60 wood, max 20, +4 pop. Mobile-version caveat: browser code may differ. https://adarkroom.fandom.com/wiki/Buildings_(Mobile)
 - Confirmed [S]: browser version open source MPL-2.0 (railway.com/deploy/adarkroom).
 - NOT confirmed: worker rates, prestige/ship cargo, offline behaviour. Remain [M].
+
+
+## Source-verified formulas
+All excerpts [CODE] from `doublespeakgames/adarkroom` (branch `master`). Base: `https://raw.githubusercontent.com/doublespeakgames/adarkroom/master/`.
+
+**Building costs are LINEAR in count, not exponential** [CODE] `script/room.js` L13-58
+```js
+'trap':  maximum 10; cost: wood 10 + (n * 10)
+'cart':  maximum 1;  wood 30
+'hut':   maximum 20; wood 100 + (n * 50)
+'lodge': maximum 1;  wood 200, fur 10, meat 5
+```
+(Other buildings: tannery/smokehouse/workshop/steelworks/armoury are one-offs with mixed resource costs, see L90-170.) Caps (10 traps, 20 huts) bound the whole build economy.
+
+**Village population & income** [CODE] `script/outside.js` L8-11, L13-95
+```js
+_GATHER_DELAY: 60, _TRAPS_DELAY: 90, _POP_DELAY: [0.5, 3], _HUT_ROOM: 4,
+gatherer: delay 10 (seconds), wood +1 ; hunter: fur +0.5, meat +0.5 ; trapper: meat -1, bait +1
+tanner: fur -5, leather +1 ; charcutier: meat -5, wood -5, cured meat +1
+iron miner / coal miner / sulphur miner: cured meat -1, +1 ore ; steelworker: iron -1, coal -1, steel +1
+```
+Population capacity = huts x 4 (max 80); a new villager arrives every 0.5-3 minutes. Each worker ticks every 10 s.
+
+**Pacing timers** [CODE] `script/room.js` L6-10: `_FIRE_COOL_DELAY 5 min` (fire cools after stoke), `_ROOM_WARM_DELAY 30 s`, `_BUILDER_STATE_DELAY 30 s`, `_STOKE_COOLDOWN 10 s`, `_NEED_WOOD_DELAY 15 s`.
+
+**Design takeaways**: unlocks are gated by story beats and hard caps, not by exponential cost; a 1:1 / -N input-output chain (fur -5 -> leather +1) makes upgrades feel like a supply chain.
