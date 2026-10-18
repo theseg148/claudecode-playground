@@ -7,7 +7,7 @@ Confidence: C = confirmed in code/primary data, P = published/convergent, H = hy
 5. **[H] 2–10 % per prestige point:** 25 %/pt exploded to 9e4× in the sweep. (R15)
 6. **[P] Teach prestige early:** first ride in session 1 (≈7–15 min); 25–35 min is "too late" in the postmortem sources. (R10, R16)
 7. **[H] In a session-based game, rides cluster at session starts** (offline accrual makes pending jump): plan ~1 ride per returning session, 8–12 per 3-day world, not "every 20–45 min". (R16; sim v2)
-8. **[H] Offline efficiency is the strongest pacing lever:** 0→25 % made a 3×10 min/day player ≈9× faster; 4× more sessions only ≈1.5× faster. (R33–R34; sessions sweep)
+8. **[H] Without prestige, offline efficiency is the strongest lever (0→25 % ≈ 9× faster for a casual player; 4× sessions only 1.5×). With rides, frequency of play dominates:** 1→6 sessions/day = 4.2× faster, while an offline cap beyond 8 h changes little (×1.1–1.3). Size worlds for the 2-session median (≈5.8 d) and decide if you want a ride cooldown. (R33–R34; sessions + campaign sweeps)
 9. **[C/P] Offline in the wild:** Bitburner 75 %, Cookie Clicker 5–75 % with a 1 h base cap that upgrades extend, Synergism 72 h cap, AFK Arena 12 h, Melvor 24 h. (R33)
 10. **[H] World length ∝ (cost_scale/carryover)^n.** Ratio 1.0 → 3 d × 9 = 27 d; 1.07 → 3→4 d (33 d); 1.2 → 3→8.7 d (48 d); ≥1.25 gets dry sessions. (R23; campaign sim v2)
 11. **[H] Multi-day worlds need goal density:** an 18-day world had goals in only 34 % of sessions; keep worlds ≤4–5 days or add ≥6 goals per session-day. (R25)
