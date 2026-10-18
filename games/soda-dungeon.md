@@ -18,11 +18,12 @@
 
 ## Cost & production growth formulas (public or estimated; mark which)
 - Soda reputation values range +1 to +90 across ten tiers. [S]
-- Other costs not found. [E]
+- Class unlocks: patron = tavern reputation + a specific soda, e.g. Fighter needs 250 Reputation and Grappling Grape, Conjurer 400 and Cherry Charm; Gnomes upgrade gives +5% Essence per Gnomes level up to level 6 [S https://sodadungeon.fandom.com/wiki/Tavern_upgrades]. Stools and tables raise reputation [S]. Other costs not found. [E]
 - Likely escalating gold costs per tavern upgrade and per class unlock. [E]
 
 ## Prestige structure
-- Deeper floors and a "retire/ascend" style reset exist in the sequel; original has a reset that gives a bonus currency. [M] low confidence
+- Original game has dimension resets: tavern upgrades are PERMANENT and survive entering a new dimension [S https://sodadungeon.fandom.com/wiki/Tavern_upgrades]; resetting is described as trading the game state for rare powerful items [S giantbomb]. A 2017 Steam thread argues there is no true outer-loop prestige and resets run out at the Warrior's Dimension [S https://steamcommunity.com/app/564710/discussions/0/133261907136068020].
+- Soda Dungeon 2 FAQ: each new dimension grants a relic of your choice (first five portals give a bonus relic) but you lose gold, dungeon progress, most equipment and most materials; a Blacksmith upgrade keeps some materials; final dimension is D11 Warrior's Dimension [S https://www.magicgameworld.com/?p=124638].
 - Sequel Soda Dungeon 2 released on the same three platforms. [S]
 - Town buildings (blacksmith, etc.) persist across runs. [M]
 
@@ -32,11 +33,10 @@
 - New soda each rep step gives a short-term goal. [S]
 
 ## Offline progress
-- Mobile version offers offline tavern income, limited. [M] low confidence
+- Soda Dungeon 2 store text: players earn Battle Credits while away and redeem them later for loot [S https://apps.apple.com/app/id1454882086]. Original game offline behaviour not found [M] low confidence.
 
 ## Monetization effects
-- Rewarded video ads for boosts, gem packs. [M]
-- Ad-based speed-ups. [M]
+- Soda Dungeon 2: free with IAP; store says no timers, lives or paywall and everything buyable with in-game currency; mobile shows ads removable via in-game currency or a $8.49 Starter Bundle (2020 early-access review) [S https://apps.apple.com/app/id1454882086, https://mobilesyrup.com/?p=760570]. Original game monetization not verified [M]. Gem-as-premium-currency not confirmed (FAQ mentions gems only as equipment gem slots).
 
 ## What players love
 - Humor and charm; many character classes. [M]
@@ -54,7 +54,11 @@
 5. Tie rewarded ads (if any) to an optional boost, never to the gate. [M]
 6. Keep the humor in the item names; it carried this game. [M]
 
-## Verification log
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 3 more WebSearch queries. Wiki tavern/patron numbers and SD2 FAQ reset rules are [S] snippets; no source repo. 
+- Mixed evidence: dimension-reset details for the ORIGINAL come from forum/wiki snippets, the relic/D11 details from the SD2 FAQ; do not treat SD2 as equal to the original. Premium currency, ad boosts and original offline remain [M]/unknown.
+
+### Previous log (superseded, kept for history)
 - Search gave only the soda/rep detail and basic genre facts. Prestige, offline, and monetization lines are from memory and flagged low confidence.
 - Search for the town wiki returned unrelated Elder Scrolls Blades pages; ignore them.
 - Confidence ranking: prestige/offline/monetization lines are memory, flagged low confidence above.

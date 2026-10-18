@@ -1,13 +1,16 @@
 # Swamp Attack
 **Sources:** (URLs, required)
-- https://swamp-attack.fileplanet.com/apk (store-style description: 70+ missions in four chapters)
+- https://swamp-attack.fileplanet.com/apk (older listing: 70+ missions in four chapters)
+- https://apps.apple.com/app/id718153412 and https://apps.apple.com/py/app/swamp-attack/id718153412?l=en-GB (App Store; developer Moving Eye)
+- https://www.apkmirror.com/apk/outfit7/swamp-attack/ (credits Outfit7)
+- https://www.supercheats.com/android/swamp-attack/ and https://finance.yahoo.com/news/2014-05-12-swamp-attack-cheats-and-tips.html (tips)
 - https://en.wikipedia.org/wiki/Incremental_game (general genre context)
 - https://www.gamedeveloper.com/design/the-math-of-idle-games-part-iii
-- Honest note: Swamp Attack (Chillingo) is a tower-defence/shooter with stage progression, NOT a true idle game and has no confirmed prestige. Search found no wiki data. Everything beyond the 70+ missions / four chapters claim is [EST] (recollection) and low confidence.
+- CORRECTION: earlier "Chillingo" attribution is unsupported; stores list Moving Eye (App Store) / Outfit7 (APKMirror) [S]. Honest note: Swamp Attack is a tower-defence/shooter with stage progression, NOT a true idle game and has no confirmed prestige. Search found no wiki data. Everything beyond the 70+ missions / four chapters claim is [EST] (recollection) and low confidence.
 ## Core loop
 - Player defends a swamp shack from waves of zombie-like critters; fire weapons with taps (active), use grenades/airstrikes/turrets.
-- Missions come in sequence across four chapters (~70+ missions total) [PUB-ish].
-- Earn cash and stars/XP per mission; spend on weapons, upgrades, characters (e.g. Duke vs Bubba?), and gadgets [EST].
+- Mission counts vary by version [S]: older listing 70+ missions in 4 chapters; 2014-era about 390 levels / 45 monsters; Microsoft Store 300+ levels, 8 episodes; latest App Store 540+ levels in 11 episodes, 90+ monsters (another App Store page says 10 episodes, 510 levels). A sequel Swamp Attack 2 exists [S].
+- Earn coins per level and spend them at a store on weapons and upgrades; weapons include shotgun, minigun, atom bomb, flamethrower, crossbow, molotov, dynamite, blob-thrower, 35+ defense tools; tap/hold to shoot, drag explosives onto monsters, switch weapons mid-battle [S App Store]. Tips sites advise farming old levels for money [S]. The "Duke vs Bubba" characters were a guess and are UNCONFIRMED.
 - Retry missions for more cash; difficulty rises smoothly with new enemy types.
 ## Resource types
 - Cash (soft), Gems/Gold (premium), Stars (ratings) [EST], Ammo consumables / items [EST].
@@ -29,9 +32,9 @@
 - Paywalled speed: buying items "passes levels faster" [PUB via description].
 ## Offline progress
 - None known; session-based play [EST].
-- Energy timers on some modes [EST].
+- Store lists a potion to instantly top up energy and a potion to continue after death, so an energy mechanic exists [S App Store].
 ## Monetization effects
-- Premium currency buys weapons/upgrades and passes levels faster [PUB-ish].
+- Free with IAP; purchases described as passing levels faster; potions to continue/top up energy [S App Store]. Premium-currency name not found.
 - Ads for double rewards [EST].
 - Pay-to-win pressure grows in later chapters [EST].
 ## What players love
@@ -46,3 +49,7 @@
 - Don't copy the grind-wall-to-sell-currency pattern.
 - Without prestige, freshness comes from varied content; idle needs stronger reuse via carryover.
 - This is the weakest reference; weight other files more.
+
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 2 more WebSearch queries. Fixed publisher (not Chillingo), mission-count conflict across versions, weapon list, energy/continue potions [S]. No wiki found, no code.
+- Still [EST]: cost curves, enemy HP scaling, ad rewards, star ratings, grind-wall claims. Counts depend on app version; do not quote one number.

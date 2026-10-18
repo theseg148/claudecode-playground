@@ -25,7 +25,7 @@
 ## Prestige structure
 - Per-adventure reset: you "Reset" an adventure at an area; gold and champion levels reset; Favor and champion gear persist [PUB-ish].
 - Patron Favor is the real prestige currency: reaching deeper areas earns more Favor, which buys permanent patron boosts.
-- Modron Core automates resets and formation switching: "automated prestige" [EST].
+- Resetting an adventure converts the run into Divine Favor for that campaign; unspent Favor passively raises gold find, and Favor spent on a Blessing stops counting toward it [S https://earlyguides.com/idle-champions-of-the-forgotten-realms]. Extra familiars unlock bench slots which, paired with the Modron Core, auto-load a saved formation at the start of each adventure [S Steam forum https://steamcommunity.com/app/627690/discussions/0/2148721524004872020]. The Split the Party adventure unlocks multi-party and modron cores and is a separate campaign with no Favor [S https://idlechampions.fandom.com/wiki/Split_The_Party]. Exact reset timing and core automation rules not found [EST].
 - Variants: constrained versions of the same adventure (restrictions, e.g., only X champions) that re-skin the same levels with new rules and extra rewards [PUB].
 - Seasonal/Event adventures give limited-time champions.
 ## Unlock pacing
@@ -34,10 +34,10 @@
 - Champion unlock via chests, events, or gems.
 - Time to first patron: hours; to Modron automation: weeks of play [EST].
 ## Offline progress
-- No true offline progress for the adventure itself while closed (must stay open) — the game's identity is active-idle; the "Idle" is you leave it running [EST]. Offline chest/Blacksmith timers exist.
+- CONFLICT: App Store text says champions keep fighting until defeated even when the game is closed [S https://apps.apple.com/app/id1339874088], contradicting the earlier guess of no offline progress. Cap and rate not found; earlier claim withdrawn [EST]. Offline chest/Blacksmith timers [EST].
 - Modron core and Briv-style skip-ahead champions let you automate while the client is open.
 ## Monetization effects
-- Gems (premium) buy chests; chests contain champions/gear; time-limited events; Sales; skins [EST].
+- Free with IAP; the premium currency in store listings is Platinum, spent on Champions, Familiars, potions and skins; bundles such as 8,000 Platinum plus 1,333 bonus; Teen rating for random items [S https://store.epicgames.com/web-shop/idle-champions-of-the-forgotten-realms-8000-platinum-f8c89b]. Chests with champions/gear, events, sales [EST].
 - Pay-to-power via champion unlocks and gear; free route slow but possible [EST].
 ## What players love
 - Formation puzzle and synergy discovery; each new champion changes optimal builds.
@@ -54,3 +54,7 @@
 - Formation/slot synergies = card deck synergies (no fighting needed): "Attack Ride" slots with adjacency bonuses.
 - Automate resets once the player proves mastery (Modron analog = "Decade Driver auto").
 - Introduce one new gimmick per world; do not just increase numbers.
+
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 2 more WebSearch queries. Added Divine Favor/Modron/Split the Party facts, fixed premium currency (Platinum) and the offline conflict [S]. Wiki formula pages still not retrievable; no code (commercial).
+- Still [EST]: enemy HP scaling, level cost ratio, Favor formula, area counts per adventure, chest rules, Modron automation timing. Forum bug reports about automation after reset are anecdotal.

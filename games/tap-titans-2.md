@@ -14,7 +14,7 @@
 ## Resource types
 - Gold (per run), Relics (prestige currency) [PUB], Skill Points, Artifacts, Equipment, Pets, Hero weapons, Clan Credits, Diamonds (premium), Fairy gold/ Mana [EST], Tournament tokens.
 - Artifacts raise damage, gold, mana regen [PUB].
-- Skill tree: points per prestige; limited choice of branches [EST].
+- Skill tree: four trees (Knight, Warlord, Sorcerer, Rogue); a skill point per new 50 stages passed at each reset [S https://giantbomb.com/wiki/Games/Tap_Titans_2, bluestacks guides]. Artifacts (about 97 total per one guide) and Pets/Skill Trees persist through prestige [S]. Equipment has five slots (weapon, helmet, armor etc.) [S giantbomb]. Clans give an All Damage bonus and Advanced Start [S reddit newplayerguide].
 ## Cost & production growth formulas (public or estimated; mark which)
 - Relics: TT1 chart: ~1 relic per 10 stages after stage 80, with 3-12 bonus relics [PUB, old, reddit]. TT2 formula grows faster: relics ~ depends on stage^something and artifact multipliers [EST].
 - Hero/Sword Master upgrade cost: ~x1.07-1.1 per level geometric [EST].
@@ -34,11 +34,11 @@
 - Pet, Equipment, Clan, Tournament unlock at specific stage levels (e.g., stage 150 clan?) [EST].
 - New "Realms"/Biomes visual changes every set number of stages; bosses have thematic names.
 ## Offline progress
-- Offline earning exists: offline time grants gold, capped by hours; Tournaments/Clan bosses are timers [EST].
+- Store text only says the game can be played offline (without internet); offline EARNINGS and caps are not confirmed [S App Store]. Tournaments/Clan bosses are timers [EST].
 - Fairy / Auto-prestige perk (VIP) [EST].
 - Offline gold relative to active is small [EST].
 ## Monetization effects
-- Diamonds for chests, skill points, speed boosts; "Fairy/Adwatch" ads for doubling; battle pass [EST].
+- Diamonds sold in bundles (e.g. 180 for 300 yen up to 14,000 for $99.99) and a Season Pass; global tournaments with prizes [S https://apps.apple.com/app/tap-titans-2/id1120294802]. What diamonds buy, ad doubling and fairies are [EST].
 - Heavy spenders reach deeper stages; clan competition drives pay [EST].
 ## What players love
 - Satisfying dopamine, many parallel systems (pets, equipment, artifacts), social clans [PUB].
@@ -54,3 +54,7 @@
 - Many systems is a trap; ship with 3-4 (cards, forms, items, world bonus).
 - Stage bosses on a timer can become "build deadlines" (no combat required): timed assembly challenges.
 - Clan analogue: shared community goals, optional.
+
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 2 more WebSearch queries. Added skill trees, artifact persistence, equipment, clan bonus and App Store monetization facts [S]. No fandom wiki text retrieved; no code (commercial).
+- Still [EST]: relic formula for TT2, cost ratios, hero count, unlock stages for clans/pets, offline cap, VIP auto-prestige. The 2015 relic chart is TT1 only. Conflict: one guide says prestige after level 600, store/guides say stage 60 unlocks it.

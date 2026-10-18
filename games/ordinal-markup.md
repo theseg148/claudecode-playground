@@ -2,7 +2,7 @@
 **Sources:**
 - https://www.mobygames.com/game/153495/ordinal-markup/ (description) [S]
 - https://metafilter.com/188626/Next-Ordinal-Level-is-at-2 (thread, Sept 2020) [S]
-- No GitHub repo found: two WebSearch queries returned nothing. No raw.githubusercontent.com source was read.
+- No GitHub repo found: three WebSearch queries and a GitHub repository search ("ordinal markup incremental game", 0 hits) returned nothing relevant. No source was read ([CODE] none).
 - Tags: [S] snippet, [CODE] source (none), [M] memory, [E] estimate.
 
 ## Core loop
@@ -14,7 +14,7 @@
 ## Resource types
 - Ordinal value (main), charge/click value, autoclicker count. [M]
 - Factor count and base: a factor shift lowers the base so the number goes straight from, e.g., 44 to 100 with base 5. [S]
-- Later: Factor Boosts, Aleph Power and Singularities. [S]
+- Later: Factor Boosts, Booster Upgrades, challenges, Aleph Power and Singularities, "and many more" [S https://www.mobygames.com/game/153495/ordinal-markup/].
 
 ## Cost & production growth formulas (public or estimated; mark which)
 - Not found. [E]
@@ -55,7 +55,11 @@
 5. Theming a number system (ordinals) gives zone-like progression with no combat; use named tiers in place of zones. [E]
 6. Keep notation readable: show a plain-language description beside the formal one. [E]
 
-## Verification log
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 3 further WebSearch queries (wiki, reddit/math terms, GitHub) plus GitHub repo search: still no wiki, repo or formulas. Only new fact: MobyGames also lists Booster Upgrades and challenges [S].
+- Everything about costs, offline, monetization stays [E]/[M]. Do not cite any code. Pages other than snippets not opened.
+
+### Previous log (superseded, kept for history)
 - Only MobyGames and Metafilter snippets via WebSearch; pages not opened. Mechanics beyond the first three upgrades are extrapolated and marked [E].
 - No repository located; do not cite any code.
 - The ordinal notation lines in "Core loop" are from the thread title only.

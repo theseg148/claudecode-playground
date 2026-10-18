@@ -9,12 +9,12 @@
 - Spend entropy to unlock Milestones along an evolution tree: Cell -> Multicellular -> Fish -> Land animals -> Mammals -> Humans (Anthropocene) -> Industrial -> Information Age -> Singularity [PUB general].
 - Each tree entry is an "upgrade card" with an educational description of an evolutionary milestone.
 - Ideas (a secondary currency) come from Humans/tech nodes and unlock the later eras [EST].
-- Periodically you "Reboot" for Metabits.
+- Periodically you "Reboot" for Metabits [S]. Timing conflict: Wikipedia says reaching the Singularity triggers the reset; an EarlyGuides walkthrough says that since the Nov 2025 Reality Reboot update the first prestige unlocks when you reach Ideas [S https://en.wikipedia.org/wiki/Cell_to_Singularity, https://earlyguides.com/cell-to-singularity-evolution-never-ends]. The update (with Octocube Games) overhauled core mechanics with 200+ new upgrades [S https://www.pocketgamer.com/cell-to-singularity-beyond/reality-reboot-update]. Older numbers below may predate it.
 ## Resource types
 - Entropy (main), Ideas (tech era), Metabits (prestige) [PUB], Trilobites / Dark Matter / Black Holes in the "Singularity" or Reality Engine layer [EST].
 - Reality Engine: Metabits upgrade it (global multipliers) [PUB].
-- Mesozoic Valley: a sub-game (stage/area) with its own mini-puzzle currencies [EST].
-- Premium currency: Trilobites/Dino bucks? ("Vault" gems) [EST].
+- Mesozoic Valley: a separate dinosaur simulation with its own currency and reset; Mutagen and Fossils are tied to it and Mutagen survives a Primary Simulation prestige [S earlyguides, https://cell-to-singularity.fandom.com/wiki/Main_Page].
+- Premium currency: Darwinium (boosts, double earnings, Dark Matter and more) [S https://cell-to-singularity.fandom.com/wiki/Main_Page]. Earlier guesses "Trilobites"/"Dino bucks" are NOT confirmed. Metabits are produced from Entropy and Ideas output together and spent in the Reality Engine [S].
 - Animals/Species count as collection (Biome).
 ## Cost & production growth formulas (public or estimated; mark which)
 - Generator cost: standard idle form `cost_n = base * r^n` with r near 1.07-1.15 [EST].
@@ -41,7 +41,7 @@
 - Offline plus daily check-ins is core to its mobile retention.
 ## Monetization effects
 - Rewarded ads for 2x boosts, speed-ups; IAP for Trilobites (premium), removing ads [EST].
-- "Dino bucks"/Trilobites buy Tree Instant unlocks and cosmetics [EST].
+- Darwinium buys boosts, double earnings, Dark Matter etc. [S fandom main page]; "Trilobites"/"Dino bucks" claim withdrawn. Instant unlocks and cosmetics unverified [EST].
 - Ad boost must be used to hit pacing; non-payers still progress [EST].
 ## What players love
 - Educational and thematic: evolution timeline gives meaning to each upgrade [PUB].
@@ -59,3 +59,7 @@
 - Metabit sublinear payout: model it as sqrt/log of progress; communicate the next-reward threshold.
 - Keep a visible "milestone" list for constant micro-goals.
 - Avoid ad-pressure: pacing should not require ad-boosts.
+
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18: 4 more WebSearch queries (wiki, Reality Reboot, currencies). Corrected premium currency (Darwinium, not Trilobites), added Mutagen/Fossils, Metabits sourcing, the Nov 2025 overhaul and prestige-timing conflict [S]. Developer attribution also conflicts across sources (Computer Lunch vs Octocube Games partner); not relied on.
+- Still [EST]: all cost/production formulas, era cost jumps, Dark Matter/Eternal Reboot layers, offline cap and ad doubling, unlock timings. No code (commercial).

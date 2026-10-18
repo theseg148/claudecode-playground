@@ -35,10 +35,10 @@
 ## Unlock pacing
 - Early game introduces Gnorps and shard routes; later systems (Compression, talents) are gated by prestige count. [S]/[M]
 - Compression tiers unlock more as you progress through prestiges. [S]
-- No world/zone sequence known. [E]
+- No world/zone sequence known. [E] An "Epilogue" update added a new mode with extra mechanics and a new ending; dev design rules for talents: not openly synergistic, open new exploration, carry a workable downside [S https://steamdb.info/patchnotes/13036305 via search snippet]. Achievements exist for first Compression event, first prestige, prestiging with 10 talent points, 3 unspent Zybellium [S https://steamcommunity.com/id/emuapple/stats/1473350/achievements].
 
 ## Offline progress
-- Not found. Assumed pauses or mild catch-up as it is a physical simulation. [E]
+- No offline-gain description found. [E] Verified save behaviour: the "Saving Update" added cloud saving, a quit button and a default-on "Save on quit"; saves got much smaller but projectiles and shards are no longer fully stored, and a "Recover save" button grants talent points based on Steam achievements [S https://steamdb.info/patchnotes/13914174].
 
 ## Monetization effects
 - Paid Steam game; no microtransactions known. [M]
@@ -60,6 +60,10 @@
 5. Keep the world physical and visible; for zone progression, each Rider world could be a small scene that changes as the economy grows rather than a menu entry. [E]
 6. One-line unlock rule ("prestige N times to open Compression tier N") beats hidden gating. [S]
 
-## Verification log
+## Verification log (refreshed 2026-10-18)
+- Refreshed 2026-10-18 with 3 more WebSearch queries (wiki, offline, patch notes). No wiki or formulas exist in indexed results; no source repo (commercial). Added only save/Epilogue/achievement facts from SteamDB patch notes and Steam achievement lists [S].
+- Still unknown: prestige formula, Compression numbers, offline behaviour. Previous caveats stand; ten tiers and 25 runners remain snippet-only.
+
+### Previous log (superseded, kept for history)
 - Only WebSearch snippets (summaries of Steam forum threads, a review aggregator, and a Destructoid article) were used. I did not open the pages. All numbers (ten tiers, 25 runners) come from the snippets.
 - No official docs; no source. Everything else is [M] or [E] and should be re-checked in-game before design decisions.
