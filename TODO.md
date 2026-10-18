@@ -59,3 +59,13 @@
 - [ ] Verify Kabuto/other Rider world details by WebSearch (names of Zecters etc.)
 - [ ] Re-run verification where web access allows; review [M]/[E] tags
 - [ ] Charts embedded in sim/results.md (png references)
+
+## Round 2 backlog (after REVIEW_1 applied)
+- [x] REVIEW_1 applied -> DESIGN_RULES v2, DECADE v2, SUMMARY v2
+- [ ] research/retention_monetization.md, ui_and_numbers.md, events_and_choices.md (agents running)
+- [ ] Prototype v2: decade_slice with Kabuto Clock Up rule, mastery tree (build fork), ride preview panel, reset table, Cast Off at 40
+- [ ] Sim v3: tree decisions/builds (>=2 viable builds each reach gate within +-15%), Photo Op active layer budget, upgrade-tree goals raising goal density
+- [ ] Sim: sensitivity to T0, bonus/pt, sessions/day (1,2,3,6), offline cap -> world length table
+- [ ] REVIEW_2 (second adversarial pass) after next edits
+- [ ] Per-world gate tables for worlds 3-9, mid-world beats list for worlds 4-6 (lull audit)
+- [ ] Unit tests for sim (cost formula, milestones, offline) in sim/test_sim.py
