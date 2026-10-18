@@ -145,3 +145,14 @@ Setup: campaign3 world 1 (gate 6.24e15, pow Seals, T calibrated), greedy bot tha
 | 2/day (12 h gaps) | 4.55 d | 2.95 | 2.54 | 3.77 |
 | 4/day (6 h gaps) | 2.62 d | 1.64 | 1.49 | 2.23 |
 Search over f ∈ {1.2,1.3,1.5}, (a,b) ∈ {(1.5,2),(2,3),(3,5)}, r ∈ {0.3,0.5,0.7} (27 combos × 3 schedules): **best spread (slowest build / fastest build) = 1.19×** at f = 1.2, (a,b) = (1.5,2), r = 0.3 (spreads 1.16–1.19 across schedules); the earlier numbers (f 1.3, (2,3), r 0.5) give 1.26–1.36×, i.e. outside the ≤25 % target once measured at exact resolution. Findings: (1) **any build clears the world ≈20–45 % faster than no build**, so gates calibrated for a no-build player are too small for a player with a tree — calibrate gates *with* the intended build mix; (2) balanced parameters: Speed ×1.2/node, Cast Off ×1.5 then ×2, Recipes rides need 70 % less; (3) a point cap of 4/world plus a starting point at world entry makes the fork possible before the first ride (REVIEW_2: points otherwise arrive only after ≈8 min).
+
+## Offline lever under the v3 campaign model (offline_lever.py / offline_lever.json) [REVIEW_2 §3.3 / P0-5]
+World 1 (gate 6.24e15, pow Seals), exact completion time in days:
+| schedule | no offline | flat 50 % cap 8 h | stepped 50/25 % cap 8 h | stepped cap 24 h |
+|---|---|---|---|---|
+| 1/day | 78 | 8.0 | 9.1 | 6.2 |
+| 2/day 12/12 h | 39 | 4.0 | 4.55 | 4.2 |
+| 3/day 5/8/11 h | 26 | 2.5 | 3.2 | 3.1 |
+| 3/day 8/8/8 h | 26 | 2.7 | 3.07 | 3.07 |
+| 6/day 4 h | 13 | 1.8 | 2.1 | 2.1 |
+Findings: (1) **Offline production is existential**: removing it makes worlds ≈10× longer (26 d vs 2.5–3.2 d at 3 sessions/day); (2) stepped 50/25 % is only **+13–28 % slower than flat 50 %** (not "1.5–2×" — that was the v1 no-ride model); (3) **raising the cap from 8 h to 24 h matters only when gaps exceed ~8 h**: ×1.47 faster at 1 session/day, ×1.08 at 12/12 h, ≤×1.05 at 3/day, ×1.0 at 6/day. So make the cap upgrade a late, *light-player* perk, not a pacing lever for everyone.

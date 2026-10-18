@@ -26,7 +26,7 @@ small{color:var(--dim)}.g{color:var(--ok)}.w{color:var(--warn)}#tel span{display
 // DEV GATES: GOALMULT is tiny (3e6) so a bot can clear a world in minutes; the real plan uses ~1e18-1e20*3^w (sim/campaign3.py). Gate counts WORLD lifetime (S.wlife), not per-run.
 const WORLDS=[{n:"Kabuto",t:["Cast-Off Cells","Zecter Charges","Clock-Up Cores","Hyper Zecters","ZECT Forges","Sōji's Kitchen"]},{n:"Den-O",t:["Rail Segments","Imagin Contracts","DenLiner Cars","Owner's Tickets","Time Tunnels","Terminal Stations"]}];
 const G=1.12,MS=[10,25,50,100,200],TH=1e5,BONUS=.08,GOALMULT=[3e6,3e8];
-let S=load()||{charge:5,clock:0,mp:0,tree:[],gold:15,own:[0,0,0,0,0,0],seals:0,life:0,w:0,cards:0,t0:Date.now(),last:Date.now(),goals:[],lastGoal:0,run:0,photoCD:0,maxTier:0};
+let S=load()||{charge:5,clock:0,mp:1,tree:[],gold:15,own:[0,0,0,0,0,0],seals:0,life:0,w:0,cards:0,t0:Date.now(),last:Date.now(),goals:[],lastGoal:0,run:0,photoCD:0,maxTier:0};
 let spd=1,sinceGoal=0;
 S.wlife=S.wlife||S.life||0;S.charge=S.charge??5;S.clock=S.clock||0;S.mp=(S.mp===undefined)?1:S.mp;S.tree=S.tree||[];
 function load(){try{return JSON.parse(localStorage.getItem("decadeSliceV2"))}catch(e){return null}}
