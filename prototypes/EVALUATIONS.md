@@ -1,4 +1,5 @@
 # Prototype evaluations
+_Rule numbers refer to DESIGN_RULES.md v2/v3 (older text in this file may use v1 numbers where flagged)._
 Each prototype is a single HTML file (open in a browser; no build). Rules referenced come from research/*, games/*, sim/results.md. Evidence tags: [CODE] source code, [S] search-snippet, [SIM] our simulation, [M] memory.
 
 ## milestones.html — generator ladder with x2 milestone bars
@@ -31,7 +32,7 @@ Progress bar to goal, then a flash "ATTACK RIDE" transition, new palette, carryo
 - Weak: transition is cosmetic only. Add: new rule per world, a card/photo reward, a recap screen ("Kabuto cleared in 3d 4h, kept: ...").
 
 ## decade_slice.html — integrated vertical slice (2 worlds)
-Combines R1–R3 (growth 1.12, cost ×8/rate ×6, ×2 milestones with bars), R5 (tier reveal at 5 owned), R12–R15 (sqrt Seals +8 %/pt, pending ≥2× highlight, ride needs 4 tiers seen), R17 (auto-buy after first ride), R21 (cards +10 % each persist), R23 (offline 50 %/25 %, 8 h cap, welcome-back toast), R24 (Photo Op: 15 s of income, 45 s cooldown), plus live pacing telemetry (goal-gap bars, median/max/in-band %) and ×1/×10/×100 speed for tuning.
+Combines R1–R3 (growth 1.12, cost ×8/rate ×6, ×2 milestones with bars), R5 (tier reveal at 5 owned), R15/R17/R19 (sqrt Seals +8 %/pt, pending ≥2× highlight, ride needs 4 tiers seen), R21 (auto-buy after first ride), R29 (cards +10 % each persist), R33/R35 (offline 50 %/25 %, 8 h cap, welcome-back toast), R34c (Photo Op: now 6 s of income per 60 s = +10 %; was 15 s per 45 s = +33 % in the first version), plus live pacing telemetry (goal-gap bars, median/max/in-band %) and ×1/×10/×100 speed for tuning.
 Headless test (Playwright + Chromium, greedy bot, ×100 speed, 25 simulated minutes, no JS errors): 18 goals, median gap 80 s, max 160 s, 94 % in the 15–600 s band — consistent with sim sweep [SIM].
 Not yet good: only 2 worlds, no distinct per-world rule (only names), no mastery tree, ride gating is by tier count not an objective, Seals reset all generators (no preview of post-reset rate), world-2 cost scale hard-coded ×3 with carry ×3 (ratio 1.0 → equal-length worlds). Next: add per-world rule (Clock Up button), preview panel, mastery tree persistence.
 
@@ -43,3 +44,12 @@ Still missing: second world rule, objective with 3 named costs (currently a sing
 
 ## offline_v2.html — welcome-back card (R35, R36, R38b)
 Slider-driven card: ignores <2 min, measures capped time (8 h), stepped efficiency (50 %/25 %), Exposure bank (1 per 30 min, cap 6, half value), banked Time Skip (20 % of time as ×5 speed), auto-spend suggestion and two decisions (spend vs save, use Exposures now vs keep). Evaluation: implements every R35/R36 clause; the numbers (Time Skip 20 %, Exposure half value) are untested [H]. Missing: the cap upgrades (8→24 h), the ride-preview link, and a persisted quit timestamp (v2 slice has it).
+
+## REVIEW_2 fixes applied to decade_slice_v2.html (all verified headless)
+1. Gate counts world-lifetime Shots (`S.wlife`), not per-run `S.life` (a ride no longer erases gate progress). Gates remain DEV-sized (3e6 / 3e8) so a tester can finish a world in minutes — real gates are ~1e18–1e22 (sim/campaign3.py).
+2. Hidden/throttled tab: any real-time gap >2 s goes through the offline model (50 %/25 %, 8 h cap) instead of being credited at 100 %.
+3. DOM is rebuilt only when the structural signature changes (own counts, affordability, tree, charge), not every 100 ms — real mouse clicks registered 30/30 in Playwright.
+4. Number format uses K/M/B/T… suffixes to 1e36 (R40); dimension-ride flash replaced by a 0.5 s brightness fade (no full-white flash).
+5. Cast Off applies to tiers ≥4 only (matches builds.py); Clock Up now ×2 for 8 s for 4 Charge (regen 1/8 s ⇒ ≈×1.25 average), Speed II ×3; Photo Op +10 %: active tools stay inside the R34c budget (≤1.5× total).
+6. Auto-buy after the first ride is payback-greedy like the sim (not cheapest-first). Separate localStorage key `decadeSliceV2`.
+Known gaps: still two worlds, a single-bar gate instead of 3 named costs, no Photo Window event, no Album/Form Deck (they arrive in World 2 per DECADE_IDLE_DESIGN §12).
