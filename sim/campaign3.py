@@ -30,7 +30,8 @@ class World:
         s.owned=[0]*n; s.gold=s.c0[0]; s.life=0.0; s.run_life=0.0; s.t=0.0; s.seals=0.0; s.maxtier=0
         s.uniq=set(); s.rides=[]; s.goal_sessions=set(); s.cur=0; s.ride_sessions=set(); s.first_ride_t=None
     def smult(s,seals): return 1+s.bonus*seals if s.mode=="lin" else (1+seals)**s.p
-    def prod(s): return s.carry*s.smult(s.seals)*sum(s.owned[i]*s.r0[i]*tier_mult(s.owned[i],s.cfg) for i in range(s.n))
+    def unit_out(s,i,n): return n*s.r0[i]*tier_mult(n,s.cfg)
+    def prod(s): return s.carry*s.smult(s.seals)*sum(s.unit_out(i,s.owned[i]) for i in range(s.n))
     def pend(s): return math.floor(math.sqrt(s.run_life/s.T))
     def mark(s,key):
         if key not in s.uniq: s.uniq.add(key); s.goal_sessions.add(s.cur)
@@ -41,7 +42,7 @@ class World:
             for i in range(s.n):
                 if not (i==0 or s.owned[i-1]>=5): continue
                 c=s.c0[i]*s.cfg.growth**s.owned[i]
-                g=((s.owned[i]+1)*s.r0[i]*tier_mult(s.owned[i]+1,s.cfg)-s.owned[i]*s.r0[i]*tier_mult(s.owned[i],s.cfg))*s.carry*s.smult(s.seals)
+                g=(s.unit_out(i,s.owned[i]+1)-s.unit_out(i,s.owned[i]))*s.carry*s.smult(s.seals)
                 w=max(0,(c-s.gold)/P) if P>0 else (0 if c<=s.gold else math.inf)
                 sc=c/g+w
                 if best is None or sc<best[0]: best=(sc,i,c,w)
@@ -74,9 +75,12 @@ def play(w,gates,carry,cost_scale,T,mode="lin",bonus=.08,p=.5,gaps=GAPS_3,spd=3,
         for k in range(len(gaps)):
             W.cur=d*len(gaps)+k
             W.advance(W.t+600)
+            if W.done(): W.t_exact=W.t; return W,W.cur+1
+            e=off_eff(gaps[k]); P=W.prod()
+            if P>0 and W.life+P*e>=W.goal: W.t_exact=W.t+gaps[k]*((W.goal-W.life)/(P*e))
+            else: W.t_exact=None
+            W.gold+=P*e; W.life+=P*e; W.run_life+=P*e; W.t+=gaps[k]
             if W.done(): return W,W.cur+1
-            e=off_eff(gaps[k]); P=W.prod(); W.gold+=P*e; W.life+=P*e; W.run_life+=P*e; W.t+=gaps[k]
-            if W.done(): W.cur+=0; return W,W.cur+1
     return W,W.cur+1
 
 def calibrate_goal(w,carry,cost_scale,T,target_days,lo=1e6,hi=1e40,iters=26,**kw):
