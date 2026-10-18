@@ -64,3 +64,14 @@
 Search date 2026-10-18; WebSearch snippets only (pages not opened).
 - CONFIRMED [S]: MegaClipper cost `1000*1.07^A` (arithmetic match with wiki table), x500 output, unlock at 75 AutoClippers. https://universalpaperclips.fandom.com/wiki/MegaClippers
 - NOT confirmed (searches returned nothing relevant): AutoClipper cost `1.07^level+5`, Wire price range, marketing cost constants, ops cap = memory x1000, total clips ~3e55, clear time 6-10h. Remain [M]/[E].
+
+## Source-verified formulas
+All [CODE] from the public mirror `ianfixes/universal_paperclips` (branch master): https://raw.githubusercontent.com/ianfixes/universal_paperclips/master/main.js (168 KB) and https://raw.githubusercontent.com/ianfixes/universal_paperclips/master/globals.js. May be an older game version than the live site; treat as data.
+
+**AutoClipper cost** [CODE] main.js L1661: `clipperCost = 1.1^clipmakerLevel + 5`.
+**MegaClipper cost** [CODE] main.js L1674: `megaClipperCost = 1.07^megaClipperLevel * 1000` (globals initial 500).
+**Marketing** [CODE] main.js L2334-2336, L3341-3343: ad cost starts 100 and doubles per purchase (`adCost = floor(adCost*2)`); `marketing = 1.1^(marketingLvl-1)`; `demand = (0.8/margin * marketing * marketingEffectiveness * demandBoost)`, then `+ demand/10 * prestigeU`. (Demand is thus inversely proportional to the price margin; margin starts 0.25.)
+**Wire price** [CODE] main.js L12-50: base 20; each wire purchase `wireBasePrice += 0.05` (resets the decay timer); every >250 ticks without buying and base > 15 `wireBasePrice -= base/1000`; displayed cost `ceil(base + 6*sin(counter))`, counter advances with probability 0.015 per tick. Wire per purchase 1000 (`wireSupply`).
+**Trust (Fibonacci)** [CODE] main.js L2606-2615: trust +1 at clips >= nextTrust; `nextTrust = (fib1+fib2)*1000` with fib1=2, fib2=3 initially (start 3000 clips, 5000, 8000, 13000...). Start trust 2.
+**Ops cap** [CODE] main.js L2436, L2658: max operations = `memory * 1000`.
+**Matter** [CODE] globals.js: availableMatter = 6000e24 = 6e27 in-galaxy; totalMatter = 30e54 = 3e55 (the "~3e55 total clips" figure is confirmed as the universe matter constant). Start values: wire 1000, factoryCost 1e8, harvesterCost/wireDroneCost 1e6, farmCost 1e7, batteryCost 1e6, bribe 1e6, qChipCost 1e4.

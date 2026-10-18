@@ -116,3 +116,12 @@ Reset availability [CODE] `Synergism.js` (v2.1.2) L2363-2380: prestige when `coi
 **Multiplier base** [CODE] `Synergism.js` (v2.1.2) L1613: accelerator power `acceleratorPower = Math.pow(1.1 + ..., ...)` i.e. each Accelerator is ~+10% speed baseline.
 
 **Design takeaways**: prestige currency = sqrt-ish of raw currency (^0.5) at layer 1, ^0.03 at layer 2, ^0.01 at layer 3; building ratio ladders are 1.25^(1,2,3,4,5) per tier so each next tier is harsher.
+
+### Round 2: offline cap [CODE]
+`src/Calculate.ts` (https://raw.githubusercontent.com/Pseudo-Corp/SynergismOfficial/master/src/Calculate.ts) L826-840 `runOfflineProgress`:
+```ts
+const maximumTimer = !fromTips ? (86400 * 3 + 7200*2*player.researches[31] + 7200*2*player.researches[32]) * PCoinUpgradeEffects.OFFLINE_TIMER_CAP_BUFF : 1e100
+const timeAdd = Math.min(maximumTimer, Math.max(forceTime, (now - player.offlinetick)/1000))
+const timeTick = timeAdd / 200;  // 200 simulated resource ticks
+```
+Base offline cap = 72 h (3 days); research 31 and 32 each add +4 h; multiplied by a paid-upgrade buff. Simulated in 200 slices; prestige/transcend/reincarnation counts credited as `timeAdd / max(0.25, fastestX)`.

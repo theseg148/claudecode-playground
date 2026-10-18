@@ -82,3 +82,49 @@ Search date 2026-10-18; WebSearch snippets only (pages not opened).
 - Confirmed [S]: building price = base * 1.15^(owned - free), rounded up (wiki.gg Buildings; twinfinite); Classic used 1.1; Classic Cursor base 15 (modern Cursor 15 not directly confirmed).
 - Confirmed [S]: prestige = cube root of lifetime cookies in trillions, +1%/level, chips 1:1; Twin Gates 5% for 1h, 0.5% after, 1 chip; Angels/Dominions totals 15%/45% (https://cookieclicker.wiki.gg/wiki/Prestige).
 - Ascend-timing numbers (200/440) are community advice, not rules. Late-building reveal timing remains [estimate].
+
+## Source-verified formulas
+All [CODE] from the public mirror `ozh/cookieclicker` (branch gh-pages = master), file `main.js` (976 KB): https://raw.githubusercontent.com/ozh/cookieclicker/gh-pages/main.js. Treat as data. Line numbers refer to that file.
+
+**Building price** [CODE] L7972, L8092: `Game.priceIncrease=1.15`; `price = basePrice * 1.15^max(0, amount - free)`.
+**Base price / CpS are generated, not hand-tabled** [CODE] L8018-8031 (Game.Object ctor, n = building id >= 1)
+```js
+baseCps   = ceil(n^(n*0.5+2) * 10)/10   // rounded to 2 sig. digits
+basePrice = (n + 9 + (n<5 ? 0 : (n-5)^1.75 * 5)) * 10^n * max(1, n-14)   // rounded to 2 sig. digits
+if (id>=16) *=10; if (id>=17) *=10; if (id>=18) *=10; if (id>=19) *=20
+```
+Cursor: base price 15 (L8979), 0.1 CpS base. Computed from the formula (matches in-game values):
+| id | building | base price | base CpS |
+|---|---|---|---|
+| 1 | Grandma | 100 | 1 |
+| 2 | Farm | 1.1e3 | 8 |
+| 3 | Mine | 1.2e4 | 47 |
+| 4 | Factory | 1.3e5 | 260 |
+| 5 | Bank | 1.4e6 | 1.4e3 |
+| 6 | Temple | 2e7 | 7.8e3 |
+| 7 | Wizard tower | 3.3e8 | 4.4e4 |
+| 8 | Shipment | 5.1e9 | 2.6e5 |
+| 9 | Alchemy lab | 7.5e10 | 1.6e6 |
+| 10 | Portal | 1e12 | 1e7 |
+| 11 | Time machine | 1.4e13 | 6.5e7 |
+| 12 | Antimatter condenser | 1.7e14 | 4.3e8 |
+| 13 | Prism | 2.1e15 | 2.9e9 |
+| 14 | Chancemaker | 2.6e16 | 2.1e10 |
+| 15 | Fractal engine | 3.1e17 | 1.5e11 |
+| 16 | Javascript console | 7.1e19 | 1.1e12 |
+| 17 | Idleverse | 1.2e22 | 8.3e12 |
+| 18 | Cortex baker | 1.9e24 | 6.4e13 |
+| 19 | You | 5.4e26 | 5.1e14 |
+(The explicit price args in the source, e.g. Farm 500, Mine 10000, are overridden by the generator for n != 0; the table is my calculation of the generator, so [CODE]-derived, not a literal table.) Each building also gets `(1 + level*0.01)` from sugar-lump levels (L5280).
+
+**Prestige** [CODE] L4185-4192: `HCfactor = 3`; `prestige = (cookiesReset / 1e12)^(1/3)`; inverse `cookies = chips^3 * 1e12`. Heavenly multiplier items: +5% (Heavenly chip secret), +20%, +25%, +25%, +25% (L4211-4218), x1.01 for each of Lucky digit/number/payout, Dragon God aura +5%.
+**Golden cookie timing** [CODE] L5934-5990: spawn gap = `ceil(30fps*60*m)` s with base **min 5 min, max 15 min** (m=5 / 15), then multipliers: Lucky day /2, Serendipity /2, Golden goose egg x0.95, Heavenly luck x0.95, Green yeast x0.99, Arcane Aura x0.95, Sugar blessing x0.9; chain cookies m=0.05, Gold hoard m=0.01. Lifetime L5617-5622: base **13 s**, x2 Lucky day, x2 Serendipity, x1.05 Decisive fate, x1.01 each Lucky digit/number/payout; x0.95 per other golden on screen.
+**Dragon auras** [CODE] L15158-15180 (22): Breath of Milk kittens +5%; Dragon Cursor click +5%; Elder Battalion grandmas +1% per non-grandma building; Earth Shatterer sell 50% (vs 25%); Master of the Armory upgrades -2%; Fierce Hoarder buildings -2%; Dragon God prestige effect +5%; Arcane Aura golden freq +5%; Ancestral Metamorphosis golden +10%; Unholy Dominion wrath +10%; Epoch Manipulator effect duration +5%; Mind Over Matter drops +25%; **Radiant Appetite all production x2**; Dragon's Fortune +123% CpS per golden on screen; Dragon's Curve lumps +5%; Reality Bending 1/10 of all other auras; Dragon Guts +2 wrinklers, +20% digest and burst.
+**Wrinklers** [CODE] L14589: hard limit 14 regardless of boosts.
+**Offline (needs Twin Gates or Perfect idling)** [CODE] L3537-3580
+```js
+maxTime = 3600 s; x2 for each of Belphegor, Mammon, Abaddon, Satan, Asmodeus, Beelzebub, Lucifer (up to 128 h); Chimera +2 days, +5%
+percent = 5; +10 each for Angels, Archangels, Virtues, Dominions, Cherubim, Seraphim, God (total 75%); Chimera +5; Fern tea +3; Ichor syrup +7; Fortune #102 +1
+amount = (min(t,maxTime) + max(0,t-maxTime)*0.1) * cookiesPs * percent/100
+```
+Perfect idling: unlimited time at 100%. Without either upgrade there is no offline gain.

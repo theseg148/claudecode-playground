@@ -80,7 +80,7 @@ Note: boost/galaxy/IP figures come from an old community how-to and may differ i
 
 
 ## Source-verified formulas
-All excerpts [CODE], read from `IvarK/AntimatterDimensionsSourceCode` (branch `master`) via raw.githubusercontent.com. Base: `https://raw.githubusercontent.com/IvarK/AntimatterDimensionsSourceCode/master/`. Note: the definition of `gainedInfinityPoints()` / `gainedEternityPoints()` was not located in the files fetched, so IP/EP gain formulas are NOT verified here.
+All excerpts [CODE], read from `IvarK/AntimatterDimensionsSourceCode` (branch `master`) via raw.githubusercontent.com. Base: `https://raw.githubusercontent.com/IvarK/AntimatterDimensionsSourceCode/master/`. Round 2 (below) located `gainedInfinityPoints()` / `gainedEternityPoints()` in `src/game.js`.
 
 **Antimatter Dimension costs (8 tiers)** [CODE] `src/core/dimensions/antimatter-dimension.js` L337-340, L363
 ```js
@@ -142,3 +142,34 @@ costMultIncreases = [1, 1.5, 2.2]; thresholds [Number.MAX_VALUE, 1e1300, 1e6000]
 **Misc constants**: Infinity limit = `Decimal.NUMBER_MAX_VALUE` (1.79e308), tickspeed/dimension purchases lock without Break Infinity: `player.break || this.cost.lt(Decimal.NUMBER_MAX_VALUE)` [CODE] `src/core/tickspeed.js` L131-135. Infinity upgrade IP costs start at 1,1,1,... then 2,3,5,7 [CODE] `src/core/secret-formula/infinity/infinity-upgrades.js`. Dimension infinity-count upgrade: `Currency.infinitiesTotal.value.times(0.2).plus(1)` (+20% per infinity) [CODE] same file L4.
 
 **Design takeaways**: per-tier ratios 1e3..1e15 (10x between tiers) with x2 per 10 bought is the verified "readable breakpoint" engine; time dimensions use small ratios 3/9/27/81 early.
+
+### Round 2: IP / EP / Reality gains [CODE]
+Files: `src/game.js` (https://raw.githubusercontent.com/IvarK/AntimatterDimensionsSourceCode/master/src/game.js) L89-160, `src/core/machines.js` (https://raw.githubusercontent.com/IvarK/AntimatterDimensionsSourceCode/master/src/core/machines.js). (Earlier `src/core/*.js` guesses were 404; definition is in `src/game.js`.)
+
+**Infinity Points** [CODE] `src/game.js` L89-118
+```js
+const div = Effects.min(308, Achievement(103), TimeStudy(111));   // 308 -> lower with those
+let ip = player.break ? Decimal.pow10(player.records.thisInfinity.maxAM.log10() / div - 0.75) : new Decimal(308 / div);
+ip = ip.times(GameCache.totalIPMult.value);  // Teresa run ^0.55, V run ^0.5
+return ip.floor();
+```
+So un-broken infinity always gives 1 IP (308/308); broken: IP = 10^(log10(maxAM)/308 - 0.75) x mults, i.e. one more power of 10 per +308 orders of antimatter (maxAM 1e308 -> 10^0.25 = 1.78).
+
+**Eternity Points** [CODE] `src/game.js` L138-157
+```js
+let ep = DC.D5.pow(player.records.thisEternity.maxIP.plus(gainedInfinityPoints()).log10() / (308 - PelleRifts.recursion.effectValue.toNumber()) - 0.7).times(totalEPMult());
+```
+EP = 5^(log10(IP)/308 - 0.7) x mults: x5 EP per +308 orders of IP. Inverse: `requiredIPForEP(ep) = 10^(308*(log5(ep/mult)+0.7))`, min 1.79e308 (L160).
+
+**Reality Machines** [CODE] `src/core/machines.js` L1-32
+```js
+baseRMCap = 1e1000;  // hardcap
+let log10FinalEP = player.records.thisReality.maxEP.plus(gainedEternityPoints()).log10();
+// before first Reality: cap 8000, and above 6000 only 25% counts
+let rmGain = 1000 ^ (log10FinalEP / 4000 - 1);   // = 10^(3*(logEP/4000 - 1))
+if (rmGain >= 1 && rmGain < 10) rmGain = 27/4000 * log10FinalEP - 26;
+rmGain = floor(rmGain * realityMachineMultiplier);
+```
+So Reality needs ~1e4000 EP for 1 RM (the 1e4000 claim from notes is therefore correct for the *RM gain* anchor; unlock gate itself not read). Each +4000 orders of EP = x1000 RM.
+
+**Offline** [CODE] `src/game.js` L935: Infinity upgrade `ipOffline` adds `bestIPMsWithoutMaxAll * seconds*1000 / 2` IP offline (i.e. 50% of best IP/ms rate). Default option `offlineTicks: 1e5` (`src/core/player.js` L798).

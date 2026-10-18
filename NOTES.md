@@ -13,3 +13,4 @@
 - 08:23 source mining round1 done (AD costs, Kittens ratios, Trimps, Synergism, Evolve, Bitburner, PK) -> research/formula_tables.md. Round 2 launched.
 - 08:24 Phase 3 complete (5 analysis files). Next: DESIGN_RULES, DECADE_IDLE_DESIGN, SUMMARY drafts, then improve.
 - 08:25 DESIGN_RULES, DECADE_IDLE_DESIGN, SUMMARY v1 drafted. Elapsed ~15 min; now improvement loop: contradictions, more sim, more games, prototype upgrades.
+- 08:27 decade_slice.html built & headless-tested (94% goals in band). robustness sim done.

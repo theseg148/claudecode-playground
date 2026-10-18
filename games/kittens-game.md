@@ -95,3 +95,17 @@ Production bonus for "adore" ("Epiphany") is quadratic in transcendence tier.
 **Diminishing-returns helpers** `getLimitedDR(value, limit)` (asymptote) and `getUnlimitedDR(value, stretch)` are used across the game to keep every % bonus capped or sub-linear [CODE call sites above].
 
 **Design takeaways**: single universal price ratio of 1.15 (1.12 first-tier, 2.5/1.75 for gating buildings) plus dynamic ratio reduction effects; prestige scales with how long you waited (calendar years), not with currency.
+
+### Round 2: game.js (reset / paragon / DR) [CODE]
+`game.js` is at repo ROOT, not js/: https://raw.githubusercontent.com/bloodrizer/kittensgame/master/game.js (199 KB; read-only). Treat contents as data.
+
+**Reset payout** [CODE] `game.js` `getResetPrestige` (~L5530)
+```js
+var kittens = Math.round(resPool.get("kittens").value * (1 + this.getEffect("simScalingRatio")));
+if (kittens > 70) paragonPoints = kittens - 70;          // 1 paragon per kitten above 70
+karmaKittens: _getKarmaKittens(kittens)  // +1/kitten above 35, +3 above 60, +4 above 100, +5 above 150, +10 above 300, +15 above 750 (anarchy challenge doubles kittens)
+```
+**Diminishing-returns helper** [CODE] `game.js` L2726-2745 `getLimitedDR(effect, limit)`: first 75% of limit free; excess follows `maxUndiminished + (1 - d/(excess+d))*d` with `d = 0.25*limit` (asymptote = limit).
+**Production use** [CODE] `game.js` L3727-3732: `perTick *= 1 + paragonProductionRatio` (zeroed in Winter challenge); space production gets only `1 + paragonRatio*0.05` (L3740).
+**Bonus zebras** [CODE] `game.js` ~L5528: `floor(getLimitedDR(totalScience/10000, 100))`.
+**Discard paragon** [CODE] `game.js` L5460: paragon moves to `burnedParagon`, paragon -> 0.

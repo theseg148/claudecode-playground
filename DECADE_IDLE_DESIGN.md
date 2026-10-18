@@ -16,7 +16,7 @@ Each world = one rule (R20) + a themed upgrade family + a world-local currency f
 
 | # | World | Rule (new verb) | Themed upgrades | Local currency |
 |---|---|---|---|---|
-| 1 | **Kabuto** | *Clock Up*: spend Charge to run time ×N for 10 s, Cast-Off at 25 owned doubles a tier | Zecter levels, Cast-Off armour, Hyper Clock Up speed, ZECT base, Sōji's kitchen (income ×) | none (teach basics) |
+| 1 | **Kabuto** | *Clock Up*: spend Charge to run time ×N for 10 s; *Cast Off* at 25 owned sheds a tier for a stronger one | Clock Up Prep Station, Hyper Clock Up time-skip, Cast Off / Put On tier swap, Zecter Roster (Kabuto, Gatack, Drake, Sasword, Hercus, TheBee as worker types), Grandma's Recipes menu, ZECT Logistics, Phylloxera Mirror (ride that copies your build) | none (teach basics) |
 | 2 | Den-O | *Contracts*: assign Imagin to generators (time-skip +) | Rail extensions (DenLiner), Imagin contracts, Owner's tickets, time-skip | Train Tickets |
 | 3 | Faiz | *Routing*: Photon lines link generators (adjacency bonus) | Photon-blood channels, phone codes, gear | Photon Stream |
 | 4 | Ryuki | *Advent Cards*: collect contract-monster cards, slot 3 | Card packs by milestone, mirror-world dividers | Mirror Shards |
@@ -51,3 +51,8 @@ Cosmetic Driver skins/photo frames; optional rewarded "x2 offline claim" (never 
 - Only ~11/37 reference games have confirmed formulas (analysis/growth_curves.md).
 - Nine unique rules is large content cost: ship 3 worlds (Kabuto, Den-O, Faiz) first.
 - Prototype set exists in prototypes/ (milestones, offline, prestige, unlock tree, world transition).
+
+## 8. Lore verification & IP caution
+- Kabuto, Kiva, Ryuki, Blade, Faiz, Kuuga, Hibiki and Den-O hooks were checked against fan-wiki/Wikipedia snippets in research/decade_worlds.md ([S] tags); Agito is memory-only, and "Tenshi" Zecter / "Misaki Kaoru" were NOT found — do not use them. The Hikari Studio travel framing is unverified; the design uses only Decade's Rider Cards, camera and Dimension Ride.
+- Ryuki's Decade arc is the Rider War (a battle royale): reframe as "Advent Card collecting" with no duel. Kabuto's Clock Up and Cast Off are verified [S] and map cleanly to speed/tier-swap upgrades.
+- Fan project: no copied art/audio/logos/card images/catchphrase audio, no trademarked names in the title, non-commercial "unofficial fan work" disclaimer. Names above are descriptive references; consider renaming mechanics (e.g. "Clock Up" → "Hyper Tempo") before any public release.
