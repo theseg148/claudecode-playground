@@ -11,6 +11,9 @@ Tsukasa's camera captures a world's energy ("Shots"). Shots buy upgrades; upgrad
 - **Layers:** L1 Final Form Ride (per world), L2 Dimension Ride (cross-world, smaller exponent ~0.14–0.25), optional L3 "All Riders" post-game (R16).
 - **Time budget:** 3–5 days per world for casual, 9 worlds ≈ 5–8 weeks (R19). Kabuto should be shorter (tutorial world, ~1 day) so the first hop lands in session 2–3.
 
+## 2b. World as data (R28–R29)
+World record = {name, tier names/ratios, rule id, local currency, gate = 3–4 named costs (e.g. "Shots 3e6 · 5 Zecter Charges · Cast-Off ×3"), carryover contributions}. Gate pays a flat Ride Card on completion; the engine is one generic ladder + a rule plug-in per world. Offline time banks into a "Time Skip" charge usable as ×5 speed (R30).
+
 ## 3. The nine worlds (order is free; Kabuto first)
 Each world = one rule (R20) + a themed upgrade family + a world-local currency from world 3.
 

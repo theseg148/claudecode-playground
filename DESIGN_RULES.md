@@ -37,6 +37,10 @@ Evidence tags: **[CODE]** read from open-source game code; **[S]** confirmed in 
 **R24. Active play must be rewarded only mildly (≤1.5× progress for 4× the sessions).** [SIM sessions]; avoids pressure and "not truly idle" complaints (12/37 files) [analysis].
 **R25. Show a "welcome back" card with what happened.** [prototypes/offline.html; PUB].
 
+**R28. Define each world as a data record (included/absent resources, a few modifiers, a gate cost table) so adding a world is a data edit.** Shark Game worlds [CODE games/shark-game.md]; Evolve per-reset constants tables [CODE]. Engineering rule, supports R20.
+**R29. Gate a world with a multi-slot payment (3–4 named costs shown up front) that always pays a flat reward on completion.** Shark Game gate cost slots [CODE games/shark-game.md]; Synergism challenges [CODE]. [GUESS on 3–4 slots]
+**R30. Offer banked offline time as optional spendable speed (e.g. ×5) alongside automatic gains.** Idle Loops [CODE games/idle-loops.md]; keeps returning players in control.
+
 ## F. Monetisation & UX
 **R26. Cosmetic-only or time-skip sold; never sell prestige currency or gate world progress.** 14/37 files cite ad/IAP pressure, 11/12 mobile-first [analysis/anti_patterns.md].
 **R27. Real numbers in tooltips, bulk-buy (×1/×10/×max), no hidden formulas.** Wiki-dependence complaint (NGU, Realm Grinder, CH) [analysis]. 
