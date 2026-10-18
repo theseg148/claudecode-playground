@@ -1,61 +1,68 @@
-# DECADE IDLE — Design document (v1)
-Applies DESIGN_RULES.md (R-numbers) to a Kamen Rider Decade idle game: Tsukasa travels the Rider worlds in sequence, photographing and "completing" each world by upgrading it. No fighting. Rider-lore hooks are author knowledge (see research/decade_worlds.md) — verify before shipping.
+# DECADE IDLE — Design document (v2)
+Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels the Rider worlds in sequence, photographing each one and *restoring* it by upgrading it — no fighting. Lore hooks are verified in research/decade_worlds.md ([S] vs [M]); fan project, see §9.
 
-## 1. Fantasy & loop
-Tsukasa's camera captures a world's energy ("Shots"). Shots buy upgrades; upgrades make more Shots. Nothing fights: the "monsters" are obstacles removed by upgrading (a world is *restored*, not conquered). Core loop (seconds): tap/auto-collect → buy → see multiplier bar fill. Session loop (minutes): hit milestone, unlock tier. World loop (days): clear objective, Dimension Ride to the next world. Meta loop (weeks): Ride Card collection, Decade Driver form unlocks.
+## 1. Loops
+- Seconds: auto-collect + tap "Photo Op"; buy; watch the ×2 bar fill.
+- Session (10 min): 1–2 rides' worth of decisions: welcome-back card → spend → build choice → optional Final Form Ride.
+- World (3–4 days): ~8–12 Final Form Rides, gate completed, Dimension Ride.
+- Campaign: 9 worlds ≈ 4.5 weeks flat or ≈ 7 weeks lengthening (R23, R25), then finale + post-game.
 
-## 2. Structure (R5, R8–R11, R18–R22)
-- **Ladder per world:** 6 tiers, tier cost ×8–12, rate ratio ≈ cost/1.3, growth 1.12 (R1–R2); ×2 at 10/25/50/100/200 (R3).
-- **Mid-world prestige "Final Form Ride":** gain = floor((lifetime/T)^0.5), +5–10 %/point, first available ≈ 25 min, then 20–45 min cycles (R12–R13). Player should hit it 8–14 times per world over its 3–5 days only if world is much longer; initial worlds use 3–6 rides.
-- **World hop "Dimension Ride":** gated by an objective (R22); keeps Ride Cards, forms, automation, Decade Driver; resets generators; cleared worlds add passive income (R21).
-- **Layers:** L1 Final Form Ride (per world), L2 Dimension Ride (cross-world, smaller exponent ~0.14–0.25), optional L3 "All Riders" post-game (R16).
-- **Time budget:** 3–5 days per world for casual, 9 worlds ≈ 5–8 weeks (R19). Kabuto should be shorter (tutorial world, ~1 day) so the first hop lands in session 2–3.
+## 2. Structure
+**Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
+**Layer 1 — Final Form Ride (in-world, R15–R19):** Form Energy = floor(sqrt(run_lifetime/T_w)), +5 % per point initially (tuning range 2–10 %). First ride available ≈7–15 min into session 1 (R10), ride when pending ≥2× current (highlighted, with before/after preview). Expected rhythm ≈1 ride per 1–2 returning sessions, 8–12 per world (R16). T_w scales with world cost so world length stays on plan.
+**Layer 2 — Dimension Ride (to next world, R24):** NOT a formula: a fixed carry multiplier c per cleared world (c ≈ cost-scale s / 1.0–1.2) plus one Ride Card; gated by the world objective (§4). Number of hops: 8.
+**Layer 3 — "All Riders" (post-game, R31):** only layer with a formula (log-scaled), unlocked after world 9.
+Layers ≤3 (R20).
 
-## 2b. World as data (R28–R29)
-World record = {name, tier names/ratios, rule id, local currency, gate = 3–4 named costs (e.g. "Shots 3e6 · 5 Zecter Charges · Cast-Off ×3"), carryover contributions}. Gate pays a flat Ride Card on completion; the engine is one generic ladder + a rule plug-in per world. Offline time banks into a "Time Skip" charge usable as ×5 speed (R30).
+### Reset table (answers REVIEW H1)
+| Thing | Final Form Ride | Dimension Ride |
+|---|---|---|
+| Shots, generators, tier unlocks, milestone progress | reset | reset |
+| Form Energy (L1 points) | kept (+gain) | archived per world; each world's total gives a permanent small bonus (sublinear, e.g. ×(1+0.02·√total)) so old worlds don't dilute |
+| Mastery tree nodes | kept | kept for that world; 3 cross-world nodes pooled |
+| World currency | kept | frozen in old world (visible in the album) |
+| Charge (Kabuto's Clock Up resource) | reset to full | reset |
+| Automation, offline upgrades, Ride Cards, Driver forms | kept | kept |
+| Photo Op cooldown | continues | continues |
+Rule: nothing the player earned by *decision* (tree, cards, forms) is ever lost; only the generator run resets (R42).
 
-## 3. The nine worlds (order is free; Kabuto first)
-Each world = one rule (R20) + a themed upgrade family + a world-local currency from world 3.
+## 2b. World as data (R27–R28)
+World record = {name, tier names, ratio table, rule id, local currency, gate (3–4 named costs), per-world T_w, carry c}. Engine = one generic ladder + rule plug-in. Gate pays a flat Ride Card. Offline time banks into a "Time Skip" charge (×5 speed) alongside automatic gains (R36).
 
-| # | World | Rule (new verb) | Themed upgrades | Local currency |
+## 3. Worlds (order free, Kabuto first, Kuuga last as the finale; show order is Kuuga…Hibiki but fixed here)
+| # | World | New rule (verb) | Themed upgrades (no combat) | Gate (3 named costs, examples) |
 |---|---|---|---|---|
-| 1 | **Kabuto** | *Clock Up*: spend Charge to run time ×N for 10 s; *Cast Off* at 25 owned sheds a tier for a stronger one | Clock Up Prep Station, Hyper Clock Up time-skip, Cast Off / Put On tier swap, Zecter Roster (Kabuto, Gatack, Drake, Sasword, Hercus, TheBee as worker types), Grandma's Recipes menu, ZECT Logistics, Phylloxera Mirror (ride that copies your build) | none (teach basics) |
-| 2 | Den-O | *Contracts*: assign Imagin to generators (time-skip +) | Rail extensions (DenLiner), Imagin contracts, Owner's tickets, time-skip | Train Tickets |
-| 3 | Faiz | *Routing*: Photon lines link generators (adjacency bonus) | Photon-blood channels, phone codes, gear | Photon Stream |
-| 4 | Ryuki | *Advent Cards*: collect contract-monster cards, slot 3 | Card packs by milestone, mirror-world dividers | Mirror Shards |
-| 5 | Blade | *Fusion*: combine two cards into a stronger one | Rouse cards, Undead seal collection | Fusion Dust |
-| 6 | Kiva | *Day/Night cycle*: night boosts rare tier, day boosts base | Castle upgrades, Arms Monsters, Wake-up | Moonlight |
-| 7 | Agito | *Forms*: Ground/Flame/Storm/Trinity multipliers, switch free | Form mastery tree, G3 units | Unknown Sparks |
-| 8 | Hibiki | *Training rhythm*: optional tap-timing bonuses (never required) | Oni training, Ongeki instruments | Drum Beats |
-| 9 | Kuuga | *Colour switch*: Mighty/Dragon/Pegasus/Titan rotation | Arcle upgrades, Amadam | Ancient Glyphs |
-Constraints: ≤3 visible currencies at once (R20); Shots + world currency + Ride Card/Driver meta.
+| 1 | **Kabuto** | *Clock Up*: spend Charge for ×N speed 10 s; *Cast Off* at **40** owned sheds a tier for a stronger one | Clock Up Prep Station, Hyper Clock Up time-skip, Cast Off / Put On, Zecter Roster (Kabuto, Gatack, Drake, Sasword, Hercus, TheBee as worker types) [S], Grandma's Recipes menu, ZECT Logistics, Phylloxera Mirror | Shots 1e18 · 3 Zecters collected · Hyper Clock Up unlocked |
+| 2 | Den-O | *Contracts*: assign Imagin to generators | DenLiner route map, Rider Pass stamps, Imagin contracts (Momotaros, Urataros, Kintaros, Ryutaros) [S], Climax fusion, Time Table | Shots · 4 Imagin contracts · Route length 8 |
+| 3 | Faiz | *Routing*: link tiers for adjacency bonus | Mission Memory slots, phone-keypad macros, Photon-blood channels, Laundry Express [M] | … |
+| 4 | Ryuki | *Advent Cards*: 3 slots, card packs by milestone | Contract-monster feeding (income), deck slot, mirror polish, ORE Journal press run [M]; Rider War reframed as card collecting | … |
+| 5 | Blade | *Fusion*: combine two cards | Rouze Card sorting by suit (set bonuses), BOARD archive, Rouzer maintenance | … |
+| 6 | Kiva | *Day/Night*: night boosts rare tier, day boosts base | Castle Doran greenhouse, Fuestle set collection, Violin varnish [M], Kivat duet | … |
+| 7 | Agito | *Forms*: Ground/Flame/Storm/Trinity | G3 suit mk, Altering ring, Unknown patrol [all M — Agito unverified] | … |
+| 8 | Hibiki | *Training rhythm* (optional taps) | Onkaku tuning, Ongekibou practice, Oni retreat, Tachibanaya cafe [M] | … |
+| 9 | Kuuga (finale) | *Colour switch*: Mighty/Dragon/Pegasus/Titan rotation | Arcle upgrades, Amadam polish (= offline cap), Pegasus eye (auto-collect radius) | All 8 previous Ride Cards + 3 named costs |
+Worlds 3–9 gates are placeholders to fill during content design. Currencies visible at once ≤3: Shots, world currency, Form Energy (cards/Driver live in the album) (R26).
 
-## 4. Upgrade families (no combat)
-1. **Generators** (6 tiers/world, themed names): the exponential spine (R1–R3).
-2. **Milestone multipliers** (×2 bars, R3–R4).
-3. **Mastery tree** (≈25 nodes per world, 3 branches, respec free; persists via best-result memory, R21): speed, multiplier, automation/offline.
-4. **Automation:** auto-buy cheapest tier from first Ride shop (R17).
-5. **Offline upgrades:** efficiency 50→75 %, cap 8→24 h (R23).
-6. **Ride Cards:** permanent collection, passives across worlds; sold only as earned, never purchased (R26).
-7. **Decade Driver forms:** cross-world unlocks (Kamen Ride cards: Kuuga form etc.), cosmetic + small multipliers.
-8. **Active layer, never mandatory:** golden-cookie-style "Photo Op" (Cookie Clicker golden cookies/Realm Grinder spells as models) giving ≤1.5× progress (R24).
+## 4. World objectives (the ride gate)
+Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: 1e18·s^w in the sim = ~3 days), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
 
-## 5. Transition moments
-- Pre-ride: reveal next world's card at ~1/3 of the objective (R22); Tsukasa quip.
-- Ride: "KAMEN RIDE … DECADE" flash, palette swap, recap card (time in world, what's kept, what resets) — prototypes/world_transition.html.
-- Arrival: first purchase in the new world is affordable in < 60 s (R9); new rule introduced via a 3-step tooltip; the cleared world's passive income ticks up visibly (R21).
-- Final world: ending sequence; post-game "All Riders" challenge layer (L3), Another-World replay with restrictions.
+## 5. Pacing plan and check table (from sim/results.md v2)
+- Flat variant: s=3, c=3 → 3 d/world, 27 d. Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
+- Per world: 8 tiers × (1 + 5 milestones) + ~11 rides ≈ 60 goals ⇒ ≥1 goal in 90–100 % of sessions (R25). If worlds are >5 days, add mid-world beats (tree nodes, set bonuses, events) to keep ≥6 goals/session-day.
+- Offline: stepped 50 %/25 %, cap 8 h (upgradable to 24 h) (R33). Active ≤1.5× (R34).
+- Check: each ride ≥2× faster than previous start; first ride ≤15 min; rides per session ≤2.
 
-## 6. Monetisation (R26)
-Cosmetic Driver skins/photo frames; optional rewarded "x2 offline claim" (never required); no sale of Ride Cards/prestige currency.
+## 6. Upgrade families (what the player decides — R13)
+1. Generators (spine). 2. ×2 milestones. 3. Mastery tree (~25 nodes/world, 3 branches, free respec): **branch choice = build** (e.g. Kabuto: Speed vs Cast-Off vs Recipes — each must reach the gate on its own; first fork within 5 min, R13). 4. Automation (first ride shop, R21). 5. Offline upgrades. 6. Ride Cards (earned only). 7. Driver forms (cross-world, small). 8. Photo Op: unscheduled 13 s window every 5–15 min, ≤1.2× average (R38).
 
-## 7. Risks
-- Sim is a toy greedy model; play-test world length and rides. 
-- Only ~11/37 reference games have confirmed formulas (analysis/growth_curves.md).
-- Nine unique rules is large content cost: ship 3 worlds (Kabuto, Den-O, Faiz) first.
-- Prototype set exists in prototypes/ (milestones, offline, prestige, unlock tree, world transition).
+## 7. Transition moments
+Pre-ride card reveal (1/3), ride flash + recap card (time, kept, reset — see reset table), arrival with endowed bar and a ≤60 s first purchase (R10), new-rule tooltip (3 steps), cleared-world income bump visible (R29). Finale: Kuuga clear plays the ending; unlocks Another-World replay (restrictions) and "All Riders".
 
-## 8. Lore verification & IP caution
-- Kabuto, Kiva, Ryuki, Blade, Faiz, Kuuga, Hibiki and Den-O hooks were checked against fan-wiki/Wikipedia snippets in research/decade_worlds.md ([S] tags); Agito is memory-only, and "Tenshi" Zecter / "Misaki Kaoru" were NOT found — do not use them. The Hikari Studio travel framing is unverified; the design uses only Decade's Rider Cards, camera and Dimension Ride.
-- Ryuki's Decade arc is the Rider War (a battle royale): reframe as "Advent Card collecting" with no duel. Kabuto's Clock Up and Cast Off are verified [S] and map cleanly to speed/tier-swap upgrades.
-- Fan project: no copied art/audio/logos/card images/catchphrase audio, no trademarked names in the title, non-commercial "unofficial fan work" disclaimer. Names above are descriptive references; consider renaming mechanics (e.g. "Clock Up" → "Hyper Tempo") before any public release.
+## 8. Monetisation (R39)
+Cosmetic Driver skins/photo frames; optional opt-in rewarded boost; time-skip packs only if they never gate a world (treated as pacing, per sim); no sale of cards/Form Energy.
+
+## 9. Lore & IP (research/decade_worlds.md)
+Verified [S]: Kabuto (Clock Up, Cast Off, Hyper Zecter, Zecter roster), Den-O Imagin, Kiva Fuestles/Castle Doran, Blade Rouze Cards, Faiz Mission Memories, Hibiki Onkaku. Unverified: Agito; "Tenshi", "Misaki Kaoru" (dropped); Hikari Studio framing. Fan project: no assets/logos/card images; consider renaming mechanics before release; non-commercial.
+
+## 10. Risks / next
+Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 3 worlds first: Kabuto, Den-O, Faiz); tuning T_w, bonus/pt, c need play-tests. prototypes/decade_slice.html implements a 2-world slice with telemetry for tuning.
