@@ -173,3 +173,14 @@ World 1 (gate 6.24e15), exact time: **spend-at-return** vs **greedy auto-buy dur
 | 3/day 5/8/11 h | 3.22 d | 2.54 d | ×1.27 |
 | 6/day 4 h | 2.11 d | 1.67 d | ×1.26 |
 Conclusion: R21/R37 (auto-spend while away) **shortens worlds by 26–44 %**, bigger for infrequent players — it must be included when gates are calibrated (the 3.2-day figure assumes spend-at-return; with auto-spend the same gates clear in ≈2.5 d), or the gate schedule scaled up ≈×1.3. Also a fairness lever: light players gain the most.
+
+## Ride cooldown as a fairness lever (ride_cooldown.py) [R34]
+World 1, spend-at-return, exact time, days to clear by minimum hours between rides (0/4/8/12/24):
+| | 0 | 4 h | 8 h | 12 h | 24 h |
+|---|---|---|---|---|---|
+| 1/day | 9.10 | 8.81 | 8.81 | 8.81 | 9.36 |
+| 2/day | 4.55 | 4.40 | 4.40 | 4.68 | 4.99 |
+| 3/day | 3.22 | 3.08 | 3.18 | 3.22 | 3.98 |
+| 4/day | 2.62 | 2.53 | 2.63 | 2.82 | 3.59 |
+| 6/day | 2.11 | 2.14 | 2.25 | 2.40 | 3.21 |
+Heavy (6/day) vs light (1/day) speed ratio: 4.3× (no cooldown) → 4.1× (4 h) → 3.9× (8 h) → 3.7× (12 h) → **2.9× (24 h)**. A cooldown barely compresses the gap until it is ≥12–24 h, and at 24 h it also slows the 3/day reference player by ≈24 % — i.e. **ride cooldowns are a poor fairness lever** (most of the heavy player's speed-up comes from more active purchasing, not more rides). Recommendation: do not add a ride cooldown; if heavy play should not run away, give heavy players more to do (optional challenges, replay modes, R31) rather than slowing them.
