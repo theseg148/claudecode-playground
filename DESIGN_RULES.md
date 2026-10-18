@@ -17,6 +17,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R11 [P] ≥1 new option/unlock every 2–5 min in the first hour.** 14/14 beloved games [analysis/beloved_patterns.md, manual tally].
 **R12 [P] Never a wait longer than one session without something to spend/decide.** ~30/37 games get grind-wall complaints [analysis/anti_patterns.md].
 **R13 [P] Build fork in the first 5 min with ≥2 viable builds; no "buy the next thing" only.** player_complaints C5, beloved B4.
+**R13b [H] Balance builds so the slowest is within ≤25 % of the fastest clear time (sim: 1.17×) and never make a build that only changes offline efficiency (it measured as no effect once rides exist) — tie the "idle" branch to cheaper rides.** [Sim builds.py]
 **R14 [P] Idle means idle: automation early, no mandatory active play, no daily-streak loss.** complaints C4/C10, anti_patterns.
 
 ## C. Prestige (Final Form Ride, inside a world)
