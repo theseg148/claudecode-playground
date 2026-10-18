@@ -3,7 +3,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 
 ## A. Cost & production
 **R1 [C] Per-unit cost growth r = 1.12–1.15 for main generators (1.07 only for late/bulk tiers).** Cookie Clicker 1.15 [CODE games/cookie-clicker.md], Kittens 1.12–1.15 [CODE], Trimps 1.12–1.24 [CODE], Synergism 1.25 [CODE]; Pecorella 1.07–1.15 [P research/math_of_idle_games.md]. At 1.15 price doubles every ~5 buys, at 1.07 every ~10.
-**R2 [H] Tier base cost ×8–12 per tier; tier rate ratio ≈ cost ratio / 1.3.** AdCap ×12 [P]; AD steps 1e3…1e15 [CODE]. Sim of 512 configs: best ratio cost/rate 1.2–1.5, ≤1 → bursts, >2 → walls [Sim].
+**R2 [H] Tier base cost ×8–12 per tier; tier rate ratio ≈ cost ratio / 1.3.** AdCap ×12 [P]; AD steps 1e3…1e15 [CODE]. Sim of 512 configs: best ratio cost/rate 1.2–1.5, ≤1 → bursts, >2 → walls [Sim]. **Reality check:** Cookie Clicker's code-verified ladder runs 1.4–2.9 (mostly ≈2) and a passive buyer sees median goal gaps ≈16 min — CC survives on clicking, upgrades and golden cookies; so 1.2–1.5 is a mobile-session target, not a law [CODE cc_ladder.py].
 **R3 [P] ×2 milestone multipliers at 10/25/50/100/200(/300/400/500/700/1000 for late tiers).** Guava Juice Tub Tapper's guide lists milestone levels 5,10,25,50,100,200,300,400,500,700,1000 with automation unlocking at 50 [S games/guava-juice-tub-tapper.md];  AD ×2 per 10 bought [CODE]; AdCap halvings at 25/50/100/200/300/400 [P]; Pecorella M≈r^S. Sim: ×2 beat ×3; 200 was not swept [H].
 **R4 [P] Show the next milestone as a bar and a count ("×2 in 7").** Goal-gradient effect (psychology.md, strong support for the effect, weaker for magnitude), prototypes/milestones.html.
 **R5 [P] Reveal tier N+1 at ~1/3 of its price or 5 owned.** Cookie Clicker reveal [P]; sim uses 5 owned [H].
@@ -12,7 +12,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R8 [H] Resource growth between milestone breakpoints should be smooth; no unscheduled cost walls >2×.** Sweep walls [Sim H]; AD's cost blocks (×1e3…1e15 per 10) are the scheduled-wall counter-example [CODE].
 
 ## B. Pacing (within a session)
-**R9 [H] Time between goals: median 30–60 s, 90th percentile ≤10 min, no gap >30 min *inside a session*.** Best sweep config: median 46 s, max 344 s, 97 % in 15–600 s [Sim]; the band itself is author-chosen [H]. Walls drive quitting [C1 research/player_complaints.md, P].
+**R9 [H] Time between goals: median 30–60 s, 90th percentile ≤10 min, no gap >30 min *inside a session*.** Best sweep config: median 46 s, max 344 s, 97 % in 15–600 s [Sim]; the band itself is author-chosen [H] and suits 10-minute mobile sessions — real Cookie Clicker (passive) sits at a ≈16-minute median gap and relies on other loops [CODE cc_ladder.py]. Walls drive quitting [C1 research/player_complaints.md, P].
 **R10 [P] First purchase <60 s; first *light* automation (auto-collect, auto-buy tier 1) ≈3 min — full payback auto-buy only in the first-ride shop (R21); first prestige/ride unlock 10–15 min (first ride available in session 1).** Blog pacing [P research/math_of_idle_games.md]; anti_patterns/complaints/postmortem say 25–35 min is too late. Sim v2: with T≈1e6 the first ride lands at ~7 min [Sim H].
 **R11 [P] ≥1 new option/unlock every 2–5 min in the first hour.** 14/14 beloved games [analysis/beloved_patterns.md, manual tally].
 **R12 [P] Never a wait longer than one session without something to spend/decide.** ~30/37 games get grind-wall complaints [analysis/anti_patterns.md].
