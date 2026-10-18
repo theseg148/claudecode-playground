@@ -1,7 +1,7 @@
 # SUMMARY — 20 most important findings (v2)
 Confidence: C = confirmed in code/primary data, P = published/convergent, H = hypothesis from toy sim or judgement. Rule numbers refer to DESIGN_RULES.md v2.
 1. **[C] Cost growth 1.12–1.15 per unit** is standard (Cookie Clicker 1.15, Kittens 1.12–1.15, Trimps 1.12–1.24 in code); Synergism uses 1.25, Bitburner nodes 1.85. (R1; research/formula_tables.md)
-2. **[H] Tier ladder shape matters more than the constant:** cost ratio ≈1.2–1.5× the rate ratio kept 97 % of goals in a 15–600 s band; ratio ≤1 gave bursts, >2 gave 2 h walls. Holds for noisy and lazy players. (R2; sim sweep + robustness)
+2. **[H] Tier ladder shape matters more than the constant:** cost ratio ≈1.2–1.5× the rate ratio kept 97 % of goals in a 15–600 s band; ratio ≤1 gave bursts, >2 gave 2 h walls. Holds for noisy players (95 %/89 % in band) and 1-min checkers (84 %); 10-min checkers see batched bursts (28 % in band) — only in the pre-ride model. (R2; sim sweep + robustness)
 3. **[P] ×2 milestone multipliers every 10–25 owned**, with visible progress bars. AD ×2 per 10 (code); ×2 beat ×3 in sim. (R3–R4)
 4. **[P] Sqrt prestige is the common design** (AdCap, Realm Grinder, Synergism L1); deeper layers use tiny exponents 0.03–0.01; Cookie Clicker uses cbrt; AD uses 308-OOM log layers. (R15, R20; analysis/prestige_designs.md)
 5. **[H] Linear prestige bonuses explode:** with sqrt Seals and +8 %/seal the campaign sim reached ≈30 rides/world and a 6e6× multiplier (REVIEW_2); a sub-linear multiplier (1+Seals)^0.5 gives 9–11 rides/world and a ≈300× final multiplier. (R15; campaign sim v3)

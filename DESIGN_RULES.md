@@ -9,7 +9,7 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R5 [P] Reveal tier N+1 at ~1/3 of its price or 5 owned.** Cookie Clicker reveal [P]; sim uses 5 owned [H].
 **R6 [P] Permanent perks have hard level caps (5–15).** Trimps perk caps [P games/trimps.md], Prestige Tree/Evolve softcaps [CODE]. (Leaf Blower combo caps unverified.)
 **R7 [C] Offer one endless, gentle-ratio sink (×1.14 per level) for late choice; steep one-off ladders (×1.9 per augment, Bitburner) are finite and are not an endless sink.** NeuroFlux 1.14, augment ×1.9 [CODE].
-**R8 [C] Resource growth between milestone breakpoints should be smooth; no unscheduled cost walls >2×.** AD cost blocks [CODE], sweep walls [Sim H].
+**R8 [H] Resource growth between milestone breakpoints should be smooth; no unscheduled cost walls >2×.** Sweep walls [Sim H]; AD's cost blocks (×1e3…1e15 per 10) are the scheduled-wall counter-example [CODE].
 
 ## B. Pacing (within a session)
 **R9 [H] Time between goals: median 30–60 s, 90th percentile ≤10 min, no gap >30 min *inside a session*.** Best sweep config: median 46 s, max 344 s, 97 % in 15–600 s [Sim]; the band itself is author-chosen [H]. Walls drive quitting [C1 research/player_complaints.md, P].
@@ -25,8 +25,8 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R16 [P/H] Teach the loop early: first ride in session 1 (≈8 min, calibrated per world via T_w), then ≈9–11 rides per 3.2-day world (≈1 per 7 h wall-clock), each ≥1.5× production by construction (ride only when gain ≥1.5×; typical 2–4× speed-up quoted in postmortems [P]).** Sim v2: rides cluster at session starts because offline accrual makes pending jump [Sim H]; 2–4× speedup [P design_talks_postmortems.md]. (Replaces the earlier "20–45 min cycles", which is continuous-time only.)
 **R17 [P/H] Player rides when it raises production ≥1.5× (sim rule; equivalent to the AdCap/Pecorella "pending ≥ current" heuristic early on); highlight it and show before/after production.** AdCap heuristic, Pecorella [P]; sim v3 ride rule [Sim H]. The old "pending ≥2× current" test was vacuous at 0 Seals (REVIEW_2).
 **R18 [P] Always show pending gain; second-run first 30 s visibly faster.** math_of_idle_games 3.2, design_talks 4.4. Loss aversion is contested (psychology.md) so frame as gain *and* show the preview.
-**R19 [H] No ride before ≥60 % of the world's tiers are seen (≥4 of 6–8).** Guard from sim; threshold untested.
-**R20 [P] ≤3 reset layers in the game; each deeper layer uses a smaller exponent.** Synergism 0.5→0.03→0.01 [CODE]; 4+ layers confuse (Clicker Heroes, Synergism, AD) [analysis/prestige_designs.md]. Dimension Ride is a *fixed-bonus* hop, not a formula (see R24).
+**R19 [H] No ride before ≥4 tiers have been bought (≈50 % of an 8-tier world; the sim uses maxtier ≥3).** Guard from sim; threshold untested.
+**R20 [P] ≤3 reset layers in the game; each deeper layer uses a smaller exponent.** Synergism 0.5→0.03→0.01 [CODE]; 4+ layers add opacity: complaints cite Clicker Heroes/Synergism/NGU, while AD and Synergism remain beloved by their core audience despite it [analysis/prestige_designs.md, anti_patterns.md]. Dimension Ride is a *fixed-bonus* hop, not a formula (see R24).
 **R21 [P] First-ride shop contains automation + a QoL perk; first ride gives a bonus.** Cookie Clicker Twin Gates etc. [P], psychology (endowed progress).
 **R22 [P] Cliff awareness:** the prestige currency magnitude ≪ main currency; check the reward cliff so players don't time rides before a cliff. math_of_idle_games 6.7.
 

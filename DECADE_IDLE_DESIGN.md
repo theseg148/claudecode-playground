@@ -70,15 +70,16 @@ Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 
 ## 11. Technical notes (research/ui_and_numbers.md)
 Native doubles suffice (peak ≈6.5e22 vs 1.8e308 limit). Named-short notation to 1e33; log-scale gate bar; versioned `DECADE1:` export string; autosave + backup slots.
 
-## 12. Systems roll-out (from research/events_and_choices.md; one new system per world — R26)
-| World | New system introduced | Notes (numbers [H]) |
-|---|---|---|
-| 1 Kabuto | Photo Window event (first at ~3:00, then every 90–240 s foregrounded; banked offline Exposures) + Clock Up | windows ≈ +30 % of active-session gain, ≈3 % of daily progress (sim/results.md events) |
-| 2 Den-O | Album (16 entries/world; achievement ×1.05^rows·1.01^count on base Shots) + Form Deck (3 slots 3:2:1, swap tokens, switch cost 1 top-tier unit) | best deck +17.6 % vs median; several near-equal decks |
-| 3 Faiz | Approach pick at world entry (Documentary/Portrait/Landscape: +25 % one tier family, −10 % other; one re-pick token) | build fork per world (R13b) |
-| 4 Ryuki | Constraint Shoots (2 optional challenges/world; first clear = automation or ×1.15; ≤ ×3.1 total from multipliers) | unlocked after base verb used ≥5 times |
-| 5 Blade | Studio Garden (3×3 card-adjacency board, 5-min tick, 1 tick/30 min offline, max 12 banked; +20–25 % for 9 cards, cap +35 %) | fusion discoveries 6–8 per world |
-| 6–9 | No new system; deepen existing (board 4×4→5×5, more forms, harder shoots) | lull audit R32 |
+## 12. Systems roll-out (from research/events_and_choices.md; rule per world + at most ONE extra system per world — R26, REVIEW_2 P0-5)
+| World | New rule (verb) | Extra system introduced (≤1) | Notes (numbers [H]) |
+|---|---|---|---|
+| 1 Kabuto | Clock Up (+ Cast Off at 40) | Photo Window event (first ≈3:00; every 90–240 s foregrounded; banked offline Exposures) + the mastery tree (tutorial set) | windows ≈ +33–52 % active-session gain, 3–6.5 % of daily progress (sim/results.md events) |
+| 2 Den-O | Contracts (Imagin) | Album (16 entries/world; ×1.05^rows·1.01^count on base Shots) | album ≤×10 at 144 entries, inside carry budget (R23) |
+| 3 Faiz | Routing (links) | Form Deck (3 slots 3:2:1, swap tokens, switch cost 1 top-tier unit) | best deck +17.5 % vs median, +40.7 % vs worst (events.py, seeded); several near-equal decks |
+| 4 Ryuki | Advent Cards | Approach pick at world entry (Documentary/Portrait/Landscape: +25 % one tier family, −10 % other; one re-pick token) | build fork per world (R13b) |
+| 5 Blade | Fusion | Constraint Shoots (2 optional challenges; first clear = automation or ×1.15; ≤×3.1 total from multipliers) | unlocked after base verb used ≥5 times |
+| 6 Kiva | Day/Night | Studio Garden (3×3 card-adjacency board, 5-min tick, 1 tick/30 min offline, max 12 banked; +20–25 % for 9 cards, cap +35 %) | needs ≥9 cards: ≈1 Ride Card/world + shards ⇒ unlock the board only when 9 are owned (≈W6+) |
+| 7–9 | Forms / Rhythm / Colour | none — deepen existing (board 4×4→5×5, more forms, harder shoots) | lull audit R32 |
 Crew/jobs layer (Kittens-style): optional alternative to the generators-only fork at 2:00 of world 1 — decide after play-test; skip if it adds a 4th currency.
 Never copy: negative golden-cookie outcomes, offline penalties, hidden slot interactions, gifted-boost economies (events_and_choices §5.10).
 First 10 minutes of World 1 (target, [E]; Forms/Album arrive in World 2, so they are NOT in this timeline): 0:00 Photo Op, 0:20 tier 1, 0:45 first ×2 bar, 1:30 tier 2 (visible at 5 owned), 2:00 first fork (Approach-lite: pick Speed / Cast Off / Recipes root), 3:00 first light automation (auto-collect + auto-buy tier 1 only) and first Photo Window, 4:00 Clock Up unlocked, 5:30 first Zecter joins (tier 3), 8:00 ride preview, ≈8–10:00 first Final Form Ride (≥×1.5 production, R16). Full payback auto-buy comes with the first-ride shop (R21).
