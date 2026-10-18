@@ -9,7 +9,7 @@ Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels
 
 ## 2. Structure
 **Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
-**Layer 1 — Final Form Ride (in-world, R15–R19):** Form Energy = floor(sqrt(run_lifetime/T_w)), +5 % per point initially (tuning range 2–10 %). First ride available ≈7–15 min into session 1 (R10), ride when pending ≥2× current (highlighted, with before/after preview). Expected rhythm ≈1 ride per 1–2 returning sessions, 8–12 per world (R16). T_w scales with world cost so world length stays on plan.
+**Layer 1 — Final Form Ride (in-world, R15–R19):** Seals = floor(sqrt(run_lifetime/T_w)), +5 % per point initially (tuning range 2–10 %). First ride available ≈7–15 min into session 1 (R10), ride when pending ≥2× current (highlighted, with before/after preview). Expected rhythm ≈1 ride per 1–2 returning sessions, 8–12 per world (R16). T_w scales with world cost so world length stays on plan.
 **Layer 2 — Dimension Ride (to next world, R24):** NOT a formula: a fixed carry multiplier c per cleared world (c ≈ cost-scale s / 1.0–1.2) plus one Ride Card; gated by the world objective (§4). Number of hops: 8.
 **Layer 3 — "All Riders" (post-game, R31):** only layer with a formula (log-scaled), unlocked after world 9.
 Layers ≤3 (R20).
@@ -18,7 +18,7 @@ Layers ≤3 (R20).
 | Thing | Final Form Ride | Dimension Ride |
 |---|---|---|
 | Shots, generators, tier unlocks, milestone progress | reset | reset |
-| Form Energy (L1 points) | kept (+gain) | archived per world; each world's total gives a permanent small bonus (sublinear, e.g. ×(1+0.02·√total)) so old worlds don't dilute |
+| Seals (L1 points) | kept (+gain) | archived per world; each cleared world adds a *bounded flat* +1 % permanent bonus, counted inside the carry budget (REVIEW_2: an unbounded √-formula collapses later worlds to 0.3 d) |
 | Mastery tree nodes | kept | kept for that world; 3 cross-world nodes pooled |
 | World currency | kept | frozen in old world (visible in the album) |
 | Charge (Kabuto's Clock Up resource) | reset to full | reset |
@@ -41,7 +41,7 @@ World record = {name, tier names, ratio table, rule id, local currency, gate (3�
 | 7 | Agito | *Forms*: Ground/Flame/Storm/Trinity | G3 suit mk, Altering ring, Unknown patrol [all M — Agito unverified] | … |
 | 8 | Hibiki | *Training rhythm* (optional taps) | Onkaku tuning, Ongekibou practice, Oni retreat, Tachibanaya cafe [M] | … |
 | 9 | Kuuga (finale) | *Colour switch*: Mighty/Dragon/Pegasus/Titan rotation | Arcle upgrades, Amadam polish (= offline cap), Pegasus eye (auto-collect radius) | All 8 previous Ride Cards + 3 named costs |
-Worlds 3–9 gates are placeholders to fill during content design. Currencies visible at once ≤3: Shots, world currency, Form Energy (cards/Driver live in the album) (R26).
+Worlds 3–9 gates are placeholders to fill during content design. **Main-screen counters ≤3:** Shots, Seals, and one per-world counter (World 1: Charge; later worlds: the world currency). Everything else lives on its own screen: mastery points (tree), Exposures (event strip), Swap Tokens (deck), Time Skip (offline card), Ride Cards (album) — REVIEW_2 counted 8–9 counters in total, so the screens, not the count, are what keeps the UI legible (R26, R40).
 
 ## 4. World objectives (the ride gate)
 Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: 1e18·s^w in the sim = ~3 days), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
@@ -49,17 +49,17 @@ Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-co
 ## 5. Pacing plan and check table (from sim/results.md v2)
 - **Recommended: gentle variant s=3, c=2.8 (ratio 1.07): 3.0→4.0 d/world, 33 d for a 3-session/day player (21 d heavy, 99 d for 1 session/day; sim/results.md population).** Flat variant: s=3, c=3 → 3 d/world, 27 d. Lengthening variant: s=3, c=2.5 → 3→8.7 d, 48 d (late worlds approach the 2-dry-session limit; add more content beats in worlds 6–9).
 - Per world: 8 tiers × (1 + 5 milestones) + ~11 rides ≈ 60 goals ⇒ ≥1 goal in 90–100 % of sessions (R25). If worlds are >5 days, add mid-world beats (tree nodes, set bonuses, events) to keep ≥6 goals/session-day.
-- Offline: stepped 50 %/25 %, cap 8 h (upgradable to 24 h) (R33). Active ≤1.5× (R34).
+- Offline: stepped 50 %/25 %, cap 8 h (upgradable to 24 h) (R33). Active-tools budget (R34c): Clock Up ≤1.25× average, Photo Op ≤1.1×, Photo Windows ≈1.05–1.1× of daily progress; all together ≤1.5× in an active session.
 - Check: each ride ≥2× faster than previous start; first ride ≤15 min; rides per session ≤2.
 
 ## 6. Upgrade families (what the player decides — R13)
-1. Generators (spine). 2. ×2 milestones. 3. Mastery tree (~25 nodes/world, 3 branches, free respec): **branch choice = build** (e.g. Kabuto: Speed vs Cast-Off vs Recipes — each must reach the gate on its own; first fork within 5 min, R13). 4. Automation (first ride shop, R21). 5. Offline upgrades. 6. Ride Cards (earned only). 7. Driver forms (cross-world, small). 8. Photo Op: unscheduled 13 s window every 5–15 min, ≤1.2× average (R38).
+1. Generators (spine). 2. ×2 milestones. 3. Mastery tree (~25 nodes/world, 3 branches; points capped at ≈4 per world so builds stay exclusive; respec costs 1 point per node moved — free respec removes the decision): **branch choice = build** (e.g. Kabuto: Speed vs Cast-Off vs Recipes — each must reach the gate on its own; first fork within 5 min, R13). 4. Automation (first ride shop, R21). 5. Offline upgrades. 6. Ride Cards (earned only). 7. Driver forms (cross-world, small). 8. Photo Op: unscheduled 13 s window every 5–15 min, ≤1.2× average (R38).
 
 ## 7. Transition moments
 Pre-ride card reveal (1/3), ride flash + recap card (time, kept, reset — see reset table), arrival with endowed bar and a ≤60 s first purchase (R10), new-rule tooltip (3 steps), cleared-world income bump visible (R29). Finale: Kuuga clear plays the ending; unlocks Another-World replay (restrictions) and "All Riders".
 
 ## 8. Monetisation (R39)
-Default: **none** (fan project, Toei IP; research/retention_monetization.md: Apple/Google/Belgium loot-box rules avoided by deterministic unlocks; Cookie Clicker Steam is a clean one-time model). Design for ~5 short sessions/day (GameAnalytics 2020 idle benchmark, 5.3 sessions × 8 min, vendor/[S]). If commercialised later: Cosmetic Driver skins/photo frames; optional opt-in rewarded boost; time-skip packs only if they never gate a world (treated as pacing, per sim); no sale of cards/Form Energy.
+Default: **none** (fan project, Toei IP; research/retention_monetization.md: Apple/Google/Belgium loot-box rules avoided by deterministic unlocks; Cookie Clicker Steam is a clean one-time model). Design for ~5 short sessions/day (GameAnalytics 2020 idle benchmark, 5.3 sessions × 8 min, vendor/[S]). If commercialised later: Cosmetic Driver skins/photo frames; optional opt-in rewarded boost; time-skip packs only if they never gate a world (treated as pacing, per sim); no sale of cards/Seals.
 
 ## 9. Lore & IP (research/decade_worlds.md)
 Verified [S]: Kabuto (Clock Up, Cast Off, Hyper Zecter, Zecter roster), Den-O Imagin, Kiva Fuestles/Castle Doran, Blade Rouze Cards, Faiz Mission Memories, Hibiki Onkaku. Unverified: Agito; "Tenshi", "Misaki Kaoru" (dropped); Hikari Studio framing. Fan project: no assets/logos/card images; consider renaming mechanics before release; non-commercial.
@@ -81,4 +81,4 @@ Native doubles suffice (peak ≈6.5e22 vs 1.8e308 limit). Named-short notation t
 | 6–9 | No new system; deepen existing (board 4×4→5×5, more forms, harder shoots) | lull audit R32 |
 Crew/jobs layer (Kittens-style): optional alternative to the generators-only fork at 2:00 of world 1 — decide after play-test; skip if it adds a 4th currency.
 Never copy: negative golden-cookie outcomes, offline penalties, hidden slot interactions, gifted-boost economies (events_and_choices §5.10).
-First 10 minutes (target, [E]): 0:00 Photo Op, 0:20 tier 1, 0:45 first ×2 bar, 1:30 tier 2, 2:00 first fork, 3:00 first Window, 4:00 first Form, 5:30 album entry, 7:00 first automation, 8:00 ride preview, 10:00 first Final Form Ride.
+First 10 minutes of World 1 (target, [E]; Forms/Album arrive in World 2, so they are NOT in this timeline): 0:00 Photo Op, 0:20 tier 1, 0:45 first ×2 bar, 1:30 tier 2 (visible at 5 owned), 2:00 first fork (Approach-lite: pick Speed / Cast Off / Recipes root), 3:00 first light automation (auto-collect + auto-buy tier 1 only) and first Photo Window, 4:00 Clock Up unlocked, 5:30 first Zecter joins (tier 3), 8:00 ride preview, ≈8–10:00 first Final Form Ride (≥×1.5 production, R16). Full payback auto-buy comes with the first-ride shop (R21).
