@@ -20,7 +20,7 @@ Implements R15 (sqrt pending, sub-linear multiplier), R17 (ride only if gain ≥
 ## unlock_tree.html — 3-branch mastery tree
 Branches Clock Up / Zecter / Hyper with prerequisites, final node "Decade Link" unlocks next world.
 - Applies: finite caps and visible 'done' moments (Trimps perks [S]); branching instead of linear to create planning (Bitburner augments [CODE]).
-- Weak: only 12 points and 9 nodes — decisions are trivial. Need ~25 nodes/world with respec.
+- Weak: only 12 points and 9 nodes — decisions are trivial. Need ~12 nodes/world (4 points to spend) with respec.
 - Change: let the tree persist across worlds (carryover) and add one cross-world node per world.
 
 ## world_transition.html (v2) — gate with 3 named costs, recap card, endowed bar
@@ -48,7 +48,7 @@ Slider-driven card: ignores <2 min, measures capped time (8 h), stepped efficien
 5. Cast Off applies to tiers ≥4 only (matches builds.py); Clock Up ×2 for 8 s for 4 Charge (regen 1/8 s ⇒ ≈×1.25 average; Speed II no longer changes Clock Up); Photo Op +10 %: active tools stay inside the R34c budget (≤1.5× total).
 6. Auto-buy after the first ride is payback-greedy like the sim (not cheapest-first). Separate localStorage key `decadeSliceV2`.
 7. **Photo Window event added** (R38b): first at ≈170 s, then every 90–240 s foregrounded, 15 s lifetime, outcomes Windfall (min(15 % stock, 600 s production)+13) / Frenzy (×7 for 45 s) / Spotlight (one tier ≥10 owned gets +owned/10 for 30 s), 80 % no-repeat, no downside. Headless test: window appears, button clickable, frenzy applied, no JS errors.
-Known gaps: still two worlds, a single-bar gate instead of 3 named costs (world_transition.html shows the 3-cost gate), no Album/Form Deck (they arrive in World 2/3 per DECADE_IDLE_DESIGN §12), no Exposure bank offline.
+Known gaps: still two worlds, a single-bar gate instead of 3 named costs (world_transition.html shows the 3-cost gate), no Album/Loadout (they arrive in World 2/3 per DECADE_IDLE_DESIGN §12), no Exposure bank offline.
 
 ## Measured first-10-minutes timeline of decade_slice_v2 (headless payback-greedy bot, ×20 speed; t7.js)
 | event | target (DECADE_IDLE_DESIGN §12) | slice measured |
