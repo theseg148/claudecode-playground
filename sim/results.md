@@ -49,3 +49,15 @@ Caveat: toy model with a purely greedy buyer; real players also decide among upg
 | 3 / 4 (c = 1.33 s) | 1.3, 1.0, 1.0, 0.7, 0.7, 0.7, 0.3, 0.3, 0.3 | 6.4 d |
 | 5 / 7 (c = 1.4 s) | 1.3, 1.0, 1.0, 0.7, 0.7, 0.3 ... | 6.1 d |
 Confirms the closed form: world length ratio = s/c. c = s gives equal-length worlds; c > s makes the campaign accelerate (late worlds feel trivial) — the toy model's carry is too generous at c = 1.33 s, so aim c ~ 0.8-1.0 s (slightly lengthening worlds) and instead raise the *reward density* (new mechanics) in late worlds. Base world length of 1.3 d here is only a scale choice (base_cost); real target: 3-5 days/world for casual (see sessions table) -> 9 worlds ~ 4-6 weeks.
+
+## Robustness to player behaviour (robustness.py / robustness.json; 10 seeds each, 3 h)
+"good" = growth 1.12, cost/rate ratio 8/6, milestones 10/25/50/100 ×2; "bad" = 5/14 with ×3 milestones from 5.
+| config / player | median gap | max gap | goals in 15–600 s band |
+|---|---|---|---|
+| good, greedy | 46 s | 344 s | 97 % |
+| good, noisy (30 % picks from top-3) | 45 s | 351 s | 95 % |
+| good, noisy (60 %) | 46 s | 347 s | 89 % |
+| good, checks every 60 s | 60 s | 360 s | 84 % |
+| good, checks every 10 min | 0 s (batched) | 600 s | 28 % |
+| bad, any player | ~0.1 s | 8,760 s | 4–18 % |
+Findings: the good/bad ranking is independent of player strategy (picking sub-optimally barely changes pacing because costs are tight-ladder); infrequent checkers don't see "gaps" but *bursts* — after a 10-min absence many goals are ready at once, which argues for an auto-spend/"while away" summary (offline card) rather than making the player click through 10 purchases. Bad configs are bad for everyone: a 2.4 h wall appears whatever the player does.
