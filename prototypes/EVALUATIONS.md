@@ -40,3 +40,6 @@ Adds: Charge/Clock Up (×3 for 10 s, Speed II ×5), Cast Off ×2/×3/×5 at 40 o
 Bug found by the headless bot and fixed in both slices: after a Dimension Ride the start gold was 15 while tier-0 cost scaled ×3, so world 2 soft-locked (no production, no purchases). Fixed by starting gold = cost of tier 0 (`cs(0)`). Lesson for the real game: **every reset path must leave the player able to buy something within seconds** (R10) — add an automated "no-soft-lock after reset" test.
 Headless bot (greedy + clock + tree + rides + hop): world 1 → hop → world 2 buys generators within 70 s; no JS errors.
 Still missing: second world rule, objective with 3 named costs (currently a single lifetime-Shots bar), tuning of T per world.
+
+## offline_v2.html — welcome-back card (R35, R36, R38b)
+Slider-driven card: ignores <2 min, measures capped time (8 h), stepped efficiency (50 %/25 %), Exposure bank (1 per 30 min, cap 6, half value), banked Time Skip (20 % of time as ×5 speed), auto-spend suggestion and two decisions (spend vs save, use Exposures now vs keep). Evaluation: implements every R35/R36 clause; the numbers (Time Skip 20 %, Exposure half value) are untested [H]. Missing: the cap upgrades (8→24 h), the ride-preview link, and a persisted quit timestamp (v2 slice has it).
