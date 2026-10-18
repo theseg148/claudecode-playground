@@ -20,3 +20,4 @@
 Lessons added to world design: world = data record; multi-slot gate payment; offline time banked.
 - 08:34 REVIEW_1 applied: DESIGN_RULES v2 (42 rules w/ C/P/H confidence), DECADE_IDLE_DESIGN v2 (reset table, objectives, world gates). Campaign sim v2 reconciles world length: ratio 1.0-1.2 => 27-48 d.
 - 08:38 retention_monetization.md + ui_and_numbers.md done; decade_slice_v2 built (found/fixed post-hop soft-lock). R39: default no monetisation; R40a: doubles suffice.
+- 08:41 events_and_choices.md done (342 lines). events.py: windows 2.5-3.6% of daily progress, ~+30% active session; form deck best +17.6% vs median; ach mult x10 at 144.
