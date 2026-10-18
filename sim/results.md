@@ -184,3 +184,13 @@ World 1, spend-at-return, exact time, days to clear by minimum hours between rid
 | 4/day | 2.62 | 2.53 | 2.63 | 2.82 | 3.59 |
 | 6/day | 2.11 | 2.14 | 2.25 | 2.40 | 3.21 |
 Heavy (6/day) vs light (1/day) speed ratio: 4.3× (no cooldown) → 4.1× (4 h) → 3.9× (8 h) → 3.7× (12 h) → **2.9× (24 h)**. A cooldown barely compresses the gap until it is ≥12–24 h, and at 24 h it also slows the 3/day reference player by ≈24 % — i.e. **ride cooldowns are a poor fairness lever** (most of the heavy player's speed-up comes from more active purchasing, not more rides). Recommendation: do not add a ride cooldown; if heavy play should not run away, give heavy players more to do (optional challenges, replay modes, R31) rather than slowing them.
+
+## Stacked speed-ups (stacked.py / stacked.json) [REVIEW_3 #1]
+World 1 at the baseline gate 6.24e15 (calibrated for spend-at-return, no build → 3.2 d at 3/day). Days to clear with the design's own features on (balanced builds Speed ×1.2, Cast Off ×1.5→×2, Recipes rides −70 %; offline auto-spend):
+| schedule | manual+none | manual+best build | auto+none | auto+best build |
+|---|---|---|---|---|
+| 1/day | 9.1 | 6.1 | 6.3 | 4.3 |
+| 2/day | 4.55 | 3.05 | 3.3 | 2.3 |
+| 3/day | 3.22 | 2.07 | 2.5 | 1.5 (speed 1.9, recipes 1.9) |
+| 6/day | 2.11 | 1.27 | 1.67 | 1.0 |
+**The headline "3.2 d/world, 29-day campaign" is an upper bound**: with auto-spend and a build the same gates clear in ≈1.5–1.9 d (≈14–17 d for 9 worlds at 3/day). To keep 3.2 d/world with everything on, the gate schedule must be re-calibrated ≈×1.7–2.1 larger (gate search with these features in the loop); campaign3.py gates are therefore a *lower bound on required gate size*.

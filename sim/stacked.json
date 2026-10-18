@@ -1,0 +1,42 @@
+{
+ "1/day": {
+  "manual+none": 9.100481499943134,
+  "manual+speed": 6.101050054010572,
+  "manual+castoff": 6.4358791261926696,
+  "manual+recipes": 7.096896815587298,
+  "auto+none": 6.340277777777778,
+  "auto+speed": 5.000806340254329,
+  "auto+castoff": 4.340277777777778,
+  "auto+recipes": 5.340277777777778
+ },
+ "2/day": {
+  "manual+none": 4.553385919552209,
+  "manual+speed": 3.0536682086346016,
+  "manual+castoff": 3.2199120137040653,
+  "manual+recipes": 3.551606111235614,
+  "auto+none": 3.3402777777777777,
+  "auto+speed": 2.500806340254342,
+  "auto+castoff": 2.3402777777777777,
+  "auto+recipes": 2.8402777777777777
+ },
+ "3/day": {
+  "manual+none": 3.2158693216063443,
+  "manual+speed": 2.1125226600054714,
+  "manual+castoff": 2.0663220295297333,
+  "manual+recipes": 2.4483623395544685,
+  "auto+none": 2.5416666666666665,
+  "auto+speed": 1.8819444444444444,
+  "auto+castoff": 1.5416666666666667,
+  "auto+recipes": 1.8819444444444444
+ },
+ "6/day": {
+  "manual+none": 2.1072502041236336,
+  "manual+speed": 1.3507763846199288,
+  "manual+castoff": 1.2748025908197216,
+  "manual+recipes": 1.506930662179991,
+  "auto+none": 1.6666666666666667,
+  "auto+speed": 1.1666666666666667,
+  "auto+castoff": 1.0,
+  "auto+recipes": 1.3333333333333333
+ }
+}

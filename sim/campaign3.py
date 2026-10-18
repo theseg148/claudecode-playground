@@ -1,6 +1,6 @@
 """Campaign sim v3 (answers REVIEW_2 P0-1..P0-3).
 Changes vs campaign.py:
- * ALL designed carry sources: base c^w, Ride Cards (+10 %/card), archived Form Energy (bounded: +1 %/cleared world), achievements 1.05^rows*1.01^count (80 % fill).
+ * ALL designed carry sources: base c^w, Ride Cards (+10 %/card), archived Seals (bounded: +1 %/cleared world), achievements 1.05^rows*1.01^count (80 % fill).
  * Ride rule: ride when it would raise production by >= RIDE_GAIN (default 1.5x) -> well defined from ride 1; seals mult modes 'lin' (1+b*s) and 'pow' ((1+s)^p).
  * T_w auto-calibrated so the first ride (>= 2 seals) lands at ~8 min of play in every world (fixes first-ride drift, REVIEW_2 2.4).
  * Gate G_w auto-calibrated by bisection so a reference player (3 sessions/day, gaps 5h/8h/11h) clears the world in TARGET days -> output is the gate-size schedule needed.

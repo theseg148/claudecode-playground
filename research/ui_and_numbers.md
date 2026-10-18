@@ -154,7 +154,7 @@ Computation (node, this session):
 - Cost per unit: `base * r^n`, r=1.15: n=200 -> 1.4e12; n=1000 -> 5.0e60; n=4000 -> 6.2e242; overflow of a double at n ~ 5,100 (log(1.8e308)/log(1.15)) [E]. A player owning 1000 of one tier is far beyond plan (milestones at 10/25/50/100/200 per R3).
 - Milestone multiplier: x2 per 10 owned: 400 owned -> 2^40 = 1.1e12 [E].
 - Tier base cost x10 per tier, 8 tiers -> 1e8 spread [E].
-- Final Form Ride: Form Energy = floor(sqrt(run_lifetime/T_w)) at 5 %/pt (R15). With T_w sized so a world needs ~100 points, ride multiplier ~ 1+0.05*100 = 6; DESIGN_RULES range 2e2-6e3 final multiplier [sweep]. The computed worst case with the toy T=1e6 gives 2.5e8 points -> 1.3e7 multiplier, which shows T_w MUST scale with the world cost (as R15 says) [E].
+- Final Form Ride: Seals = floor(sqrt(run_lifetime/T_w)) at 5 %/pt (R15). With T_w sized so a world needs ~100 points, ride multiplier ~ 1+0.05*100 = 6; DESIGN_RULES range 2e2-6e3 final multiplier [sweep]. The computed worst case with the toy T=1e6 gives 2.5e8 points -> 1.3e7 multiplier, which shows T_w MUST scale with the world cost (as R15 says) [E].
 - Dimension Ride carry: c = s/1.1 = 3.64 per world; product over 8 hops = 3.06e4 [E].
 - Production side: rate needed to hit goal in 3 days (2.6e5 s) at 6.55e22 is ~2.5e17/s average; peak maybe 10x that = 2.5e18/s [E].
 - Practical peak "Shots" value in play: 6.5e22 (gate) x overshoot (players can run past gate ~100x) = ~1e25; with a safety margin to the stated ~1e30 [E]. Double max 1.8e308 leaves 10^278 headroom [E].

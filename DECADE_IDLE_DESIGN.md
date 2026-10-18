@@ -5,7 +5,7 @@ Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels
 - Seconds: auto-collect + tap "Photo Op"; buy; watch the ×2 bar fill.
 - Session (10 min): 1–2 rides' worth of decisions: welcome-back card → spend → build choice → optional Final Form Ride.
 - World (≈3.2 days): ≈9–11 Final Form Rides (≈3.4/day), gate (3 named costs) completed, Dimension Ride.
-- Campaign: 9 worlds ≈ 29 days (≈4 weeks) for a 3-session/day player (≈3.2 d/world; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d), then finale + post-game (R23, R25; sim v3 + population sim).
+- Campaign: 9 worlds ≈ 29 days (≈4 weeks) *as the calibration target for a 3-session/day player with auto-spend and a build on* (the sim v3 gates, calibrated without them, clear in ≈1.5–1.9 d/world = 14–17 d; ≈3.2 d/world; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d), then finale + post-game (R23, R25; sim v3 + population sim).
 
 ## 2. Structure
 **Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
@@ -44,7 +44,7 @@ World record = {name, tier names, ratio table, rule id, local currency, gate (3�
 Worlds 3–9 gates are placeholders to fill during content design. **Main-screen counters ≤3:** Shots, Seals, and one per-world counter (World 1: Charge; later worlds: the world currency). Everything else lives on its own screen: mastery points (tree), Exposures (event strip), Swap Tokens (deck), Time Skip (offline card), Ride Cards (album) — REVIEW_2 counted 8–9 counters in total, so the screens, not the count, are what keeps the UI legible (R26, R40).
 
 ## 4. World objectives (the ride gate)
-Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: 1e18·s^w in the sim = ~3 days), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
+Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-controlled one: campaign3 pow schedule 6.2e15 → 4.0e19, ×2.5–3.5 per world, then ×≈1.7–2.1 once auto-spend and builds are in the calibration loop), (b) a collection requirement ("3 Zecters"), (c) a mechanic requirement ("use Hyper Clock Up once"). Completing pays a Ride Card (flat). Reveal the next world's card at ~1/3 of the gate (R30 endowed progress when you arrive: bar starts at the carried-over card value, with the reason shown).
 
 ## 5. Pacing plan and check table (from sim/results.md campaign v3)
 - **Recommended (sim v3): s=3, total carry budget c≈2.25 plus cards/archive/achievements so that drift d≈1.0; gates ×2.5–3.5 per world (6.2e15 → 4.0e19 for 3.2-day worlds); ≈29 d (≈4 weeks) for a 3-session/day player; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d (population sim).** Every permanent carry source must be inside the budget (R23).
@@ -68,7 +68,7 @@ Verified [S]: Kabuto (Clock Up, Cast Off, Hyper Zecter, Zecter roster), Den-O Im
 Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 3 worlds first: Kabuto, Den-O, Faiz); tuning T_w, bonus/pt, c need play-tests. prototypes/decade_slice.html implements a 2-world slice with telemetry for tuning.
 
 ## 11. Technical notes (research/ui_and_numbers.md)
-Native doubles suffice (peak ≈6.5e22 vs 1.8e308 limit). Named-short notation to 1e33; log-scale gate bar; versioned `DECADE1:` export string; autosave + backup slots.
+Native doubles suffice (peak ≈1e22 vs 1.8e308 limit). Named-short notation to 1e33; log-scale gate bar; versioned `DECADE1:` export string; autosave + backup slots.
 
 ## 12. Systems roll-out (from research/events_and_choices.md; rule per world + at most ONE extra system per world — R26, REVIEW_2 P0-5)
 | World | New rule (verb) | Extra system introduced (≤1) | Notes (numbers [H]) |
