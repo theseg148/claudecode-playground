@@ -9,7 +9,7 @@ Autonomous research project (started 2026-10-18 08:10:47 UTC, see START_TIME.txt
 
 ## Evidence
 - `research/` — foundations (math of idle games, design talks/postmortems, psychology, player complaints), `formula_tables.md` (source-verified formulas), `events_and_choices.md`, `ui_and_numbers.md`, `retention_monetization.md`, `decade_worlds.md` (lore, [S]/[M] tagged).
-- `games/` — 47 game files in one template (core loop, formulas, prestige, offline, monetisation, loves/hates, lessons) with [CODE]/[S]/[M]/[E] tags and verification logs. `_TEMPLATE.md` is the template.
+- `games/` — 47 game files in one template (24 carry [CODE]/[SRC] source-code evidence) (core loop, formulas, prestige, offline, monetisation, loves/hates, lessons) with [CODE]/[S]/[M]/[E] tags and verification logs. `_TEMPLATE.md` is the template.
 - `analysis/` — cross-game analyses: growth curves, prestige designs, beloved patterns, anti-patterns, sequential-world freshness.
 
 ## Simulation (`sim/`, Python + matplotlib/numpy)
