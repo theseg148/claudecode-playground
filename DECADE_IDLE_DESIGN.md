@@ -4,8 +4,8 @@ Applies DESIGN_RULES.md v2 (R-numbers) and REVIEW_1.md. Fantasy: Tsukasa travels
 ## 1. Loops
 - Seconds: auto-collect + tap "Photo Op"; buy; watch the ×2 bar fill.
 - Session (10 min): 1–2 rides' worth of decisions: welcome-back card → spend → build choice → optional Final Form Ride.
-- World (3–4 days): ~8–12 Final Form Rides, gate completed, Dimension Ride.
-- Campaign: 9 worlds ≈ 4.5 weeks flat or ≈ 7 weeks lengthening (R23, R25), then finale + post-game.
+- World (≈3.2 days): ≈9–11 Final Form Rides (≈3.4/day), gate (3 named costs) completed, Dimension Ride.
+- Campaign: 9 worlds ≈ 29 days (≈4 weeks) for a 3-session/day player (≈3.2 d/world; 1 session/day ≈ 80–150 d, 6 sessions/day ≈ 16–33 d), then finale + post-game (R23, R25; sim v3 + population sim).
 
 ## 2. Structure
 **Ladder per world:** 8 tiers (names per world), cost ×8–12 per tier, rate ratio = cost ratio/1.3, growth 1.12 (R1–R2). ×2 milestones at 10/25/50/100/200 owned (R3) shown as bars (R4). Tier N+1 visible at 5 owned of N (R5).
