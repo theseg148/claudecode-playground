@@ -52,9 +52,10 @@ v2 applies REVIEW_1.md. Each rule has a **confidence**: **C** = confirmed in ope
 **R38 [P] One small unscheduled event: spawn gap 5–15 min, lifetime ~13 s, reward ≤1.2× average; never required.** Cookie Clicker golden cookies 5–15 min base, 13 s lifetime [CODE games/cookie-clicker.md]; variable reward psychology (delight only, no punishment).
 
 ## G. Monetisation, UX, trust
-**R39 [P] Monetise with cosmetics; optional time-skip sales acceptable only if they never gate a world or sell Ride Cards/prestige currency; no mandatory ads; rewarded ads only as an opt-in bonus.** 14/37 games cite ad/IAP pressure, 11/12 mobile-first [analysis/anti_patterns.md]; note: time-skips change pacing like offline efficiency does [Sim], so treat them as pacing tools.
+**R39 [P] Default for this fan project: no monetisation at all (Toei IP exposure is the largest risk; Cookie Clicker's Steam $4.99 one-time model shows a clean option; deterministic Ride Card unlocks avoid loot-box rules; research/retention_monetization.md). If it ever became commercial: monetise with cosmetics; optional time-skip sales acceptable only if they never gate a world or sell Ride Cards/prestige currency; no mandatory ads; rewarded ads only as an opt-in bonus.** 14/37 games cite ad/IAP pressure, 11/12 mobile-first [analysis/anti_patterns.md]; note: time-skips change pacing like offline efficiency does [Sim], so treat them as pacing tools.
+**R40a [C/E] Numbers: native doubles suffice — peak ≈6.5e22 (s=4, world 9, gate 1e18·4^8) vs 1.8e308 max; per-tick income must exceed one double step (≈8.4e6 at 6.5e22), compare with ≥, never use Shots as keys; no big-number library needed (research/ui_and_numbers.md).
 **R40 [P] Number legibility: named ranks, capped notation (no e47), real numbers in tooltips, additive vs multiplicative labelled, bulk-buy ×1/×10/×max.** C8, anti_patterns.
-**R41 [P] Trust: autosave from day one, local+cloud dual save, versioned backups, constants in one file.** C11, A8/A11.
+**R41 [P] Trust: autosave from day one, versioned export string (AD/Cookie Clicker-style deflate+base64 with end marker, [CODE research/ui_and_numbers.md]), local+cloud dual save, versioned backups, constants in one file.** C11, A8/A11.
 **R42 [P] Soft failure only; never destroy the card collection.** A9.
 
 ## Open questions (play-test)

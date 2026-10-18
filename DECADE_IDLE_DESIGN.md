@@ -59,10 +59,13 @@ Each gate = 3 named costs (R28): (a) lifetime Shots ≥ goal·s^w (the pacing-co
 Pre-ride card reveal (1/3), ride flash + recap card (time, kept, reset — see reset table), arrival with endowed bar and a ≤60 s first purchase (R10), new-rule tooltip (3 steps), cleared-world income bump visible (R29). Finale: Kuuga clear plays the ending; unlocks Another-World replay (restrictions) and "All Riders".
 
 ## 8. Monetisation (R39)
-Cosmetic Driver skins/photo frames; optional opt-in rewarded boost; time-skip packs only if they never gate a world (treated as pacing, per sim); no sale of cards/Form Energy.
+Default: **none** (fan project, Toei IP; research/retention_monetization.md: Apple/Google/Belgium loot-box rules avoided by deterministic unlocks; Cookie Clicker Steam is a clean one-time model). Design for ~5 short sessions/day (GameAnalytics 2020 idle benchmark, 5.3 sessions × 8 min, vendor/[S]). If commercialised later: Cosmetic Driver skins/photo frames; optional opt-in rewarded boost; time-skip packs only if they never gate a world (treated as pacing, per sim); no sale of cards/Form Energy.
 
 ## 9. Lore & IP (research/decade_worlds.md)
 Verified [S]: Kabuto (Clock Up, Cast Off, Hyper Zecter, Zecter roster), Den-O Imagin, Kiva Fuestles/Castle Doran, Blade Rouze Cards, Faiz Mission Memories, Hibiki Onkaku. Unverified: Agito; "Tenshi", "Misaki Kaoru" (dropped); Hikari Studio framing. Fan project: no assets/logos/card images; consider renaming mechanics before release; non-commercial.
 
 ## 10. Risks / next
 Greedy toy sim; unknown real session behaviour; nine rules = content cost (ship 3 worlds first: Kabuto, Den-O, Faiz); tuning T_w, bonus/pt, c need play-tests. prototypes/decade_slice.html implements a 2-world slice with telemetry for tuning.
+
+## 11. Technical notes (research/ui_and_numbers.md)
+Native doubles suffice (peak ≈6.5e22 vs 1.8e308 limit). Named-short notation to 1e33; log-scale gate bar; versioned `DECADE1:` export string; autosave + backup slots.

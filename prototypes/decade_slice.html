@@ -40,8 +40,8 @@ function goal(why){const now=S.run;const gap=now-S.lastGoal;S.lastGoal=now;S.goa
 function buy(i){const c=cost(i);if(S.gold<c)return;S.gold-=c;S.own[i]++;S.maxTier=Math.max(S.maxTier,i);
  if(S.own[i]==1||MS.includes(S.own[i]))goal();render()}
 $("photo").onclick=()=>{if(S.photoCD>0)return;S.gold+=prod()*15;S.life+=prod()*15;S.photoCD=45;};  // R24 active layer ≈ 15 s of income, 45 s CD
-$("ffr").onclick=()=>{const p=pend();if(p<1||S.maxTier<3)return;S.seals+=p;S.gold=15;S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
-$("dim").onclick=()=>{if(S.w>=WORLDS.length-1)return;S.w++;S.cards++;S.gold=15;S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;document.body.style.background="#fff";setTimeout(()=>document.body.style.background="",250);toast(`KAMEN RIDE — ${WORLDS[S.w].n}! Kept: Seals, Cards (+10% each). New rule here.`)};
+$("ffr").onclick=()=>{const p=pend();if(p<1||S.maxTier<3)return;S.seals+=p;S.gold=cs(0);S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;toast(`Final Form Ride! +${p} Seals (×${sealMult().toFixed(2)})`)};
+$("dim").onclick=()=>{if(S.w>=WORLDS.length-1)return;S.w++;S.cards++;S.gold=cs(0);S.life=0;S.own=[0,0,0,0,0,0];S.maxTier=0;S.run=0;S.lastGoal=0;document.body.style.background="#fff";setTimeout(()=>document.body.style.background="",250);toast(`KAMEN RIDE — ${WORLDS[S.w].n}! Kept: Seals, Cards (+10% each). New rule here.`)};
 function toast(m){const t=$("toast");t.style.display="block";t.textContent=m;setTimeout(()=>t.style.display="none",5000)}
 function offline(){const s=Math.min((Date.now()-S.last)/1000,8*3600);if(s<30)return;const a=Math.min(s,7200)*.5+Math.max(0,s-7200)*.25;const e=prod()*a;S.gold+=e;S.life+=e;toast(`Welcome back! Away ${(s/60).toFixed(0)} min → +${fmt(e)} Shots (${(100*a/s).toFixed(0)}% efficiency)`)}
 function render(){

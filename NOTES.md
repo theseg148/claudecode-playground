@@ -19,3 +19,4 @@
 - 08:29 batch E: 10 more games (now ~47 files). Shark Game worlds = data records w/ gate cost table; Idle Loops banks offline time as 5x spendable speed; Prestige Tree layers = worlds w/ order choice. 
 Lessons added to world design: world = data record; multi-slot gate payment; offline time banked.
 - 08:34 REVIEW_1 applied: DESIGN_RULES v2 (42 rules w/ C/P/H confidence), DECADE_IDLE_DESIGN v2 (reset table, objectives, world gates). Campaign sim v2 reconciles world length: ratio 1.0-1.2 => 27-48 d.
+- 08:38 retention_monetization.md + ui_and_numbers.md done; decade_slice_v2 built (found/fixed post-hop soft-lock). R39: default no monetisation; R40a: doubles suffice.
