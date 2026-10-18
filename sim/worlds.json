@@ -1,0 +1,662 @@
+{
+ "carry1.0_costscale1.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  }
+ ],
+ "carry1.0_costscale3.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 25.12228167916087,
+   "carry": 1.0,
+   "max_gap": 41853.05118724311,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 75.3668450374826,
+   "carry": 1.0,
+   "max_gap": 85146.27503102075,
+   "n_goals": 26
+  },
+  {
+   "world": 4,
+   "minutes": 226.10053511244786,
+   "carry": 1.0,
+   "max_gap": 5224.290053741799,
+   "n_goals": 24
+  },
+  {
+   "world": 5,
+   "minutes": 678.3016053373437,
+   "carry": 1.0,
+   "max_gap": 15672.870161225394,
+   "n_goals": 24
+  },
+  {
+   "world": 6,
+   "minutes": 2034.9048160120303,
+   "carry": 1.0,
+   "max_gap": 11120.064541793108,
+   "n_goals": 18
+  }
+ ],
+ "carry1.0_costscale10.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 83.74093893053627,
+   "carry": 1.0,
+   "max_gap": 94606.97225668978,
+   "n_goals": 26
+  },
+  {
+   "world": 3,
+   "minutes": 837.4093893053622,
+   "carry": 1.0,
+   "max_gap": 19349.222421265935,
+   "n_goals": 24
+  },
+  {
+   "world": 4,
+   "minutes": null,
+   "carry": 1.0,
+   "max_gap": 44331.85100361143,
+   "n_goals": 6
+  },
+  {
+   "world": 5,
+   "minutes": null,
+   "carry": 1.0,
+   "max_gap": 0.0,
+   "n_goals": 1
+  },
+  {
+   "world": 6,
+   "minutes": null,
+   "carry": 1.0,
+   "max_gap": 0.0,
+   "n_goals": 1
+  }
+ ],
+ "carry1.5_costscale1.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 5.58272926203575,
+   "carry": 1.5,
+   "max_gap": 9300.678041609575,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 3.721819508023834,
+   "carry": 2.25,
+   "max_gap": 6200.452027739724,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 2.4812130053492223,
+   "carry": 3.375,
+   "max_gap": 4133.634685159814,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 1.6541420035661472,
+   "carry": 5.0625,
+   "max_gap": 2755.7564567732106,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 1.1027613357107653,
+   "carry": 7.59375,
+   "max_gap": 1837.1709711821413,
+   "n_goals": 30
+  }
+ ],
+ "carry1.5_costscale3.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 16.74818778610726,
+   "carry": 1.5,
+   "max_gap": 27902.03412482876,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 33.49637557221452,
+   "carry": 2.25,
+   "max_gap": 37842.788902675886,
+   "n_goals": 29
+  },
+  {
+   "world": 4,
+   "minutes": 66.99275114442904,
+   "carry": 3.375,
+   "max_gap": 75685.57780535177,
+   "n_goals": 27
+  },
+  {
+   "world": 5,
+   "minutes": 133.98550228885807,
+   "carry": 5.0625,
+   "max_gap": 3095.87558740255,
+   "n_goals": 24
+  },
+  {
+   "world": 6,
+   "minutes": 267.97100457771614,
+   "carry": 7.59375,
+   "max_gap": 6191.7511748051,
+   "n_goals": 24
+  }
+ ],
+ "carry1.5_costscale10.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 55.82729262035743,
+   "carry": 1.5,
+   "max_gap": 63071.31483779317,
+   "n_goals": 28
+  },
+  {
+   "world": 3,
+   "minutes": 372.18195080238337,
+   "carry": 2.25,
+   "max_gap": 8599.654409451512,
+   "n_goals": 24
+  },
+  {
+   "world": 4,
+   "minutes": null,
+   "carry": 3.375,
+   "max_gap": 13175.388297840385,
+   "n_goals": 17
+  },
+  {
+   "world": 5,
+   "minutes": null,
+   "carry": 5.0625,
+   "max_gap": 87569.08840219543,
+   "n_goals": 3
+  },
+  {
+   "world": 6,
+   "minutes": null,
+   "carry": 7.59375,
+   "max_gap": 0.0,
+   "n_goals": 1
+  }
+ ],
+ "carry2.0_costscale1.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 4.187046946526815,
+   "carry": 2.0,
+   "max_gap": 6975.50853120719,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 2.0935234732634074,
+   "carry": 4.0,
+   "max_gap": 3487.754265603595,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 1.0467617366317037,
+   "carry": 8.0,
+   "max_gap": 1743.8771328017974,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 0.5233808683158518,
+   "carry": 16.0,
+   "max_gap": 871.9385664008987,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 0.2616904341579259,
+   "carry": 32.0,
+   "max_gap": 435.96928320044935,
+   "n_goals": 30
+  }
+ ],
+ "carry2.0_costscale3.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 12.561140839580435,
+   "carry": 2.0,
+   "max_gap": 20926.525593621554,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 18.84171125937065,
+   "carry": 4.0,
+   "max_gap": 31389.78839043234,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 28.262566889055982,
+   "carry": 8.0,
+   "max_gap": 31929.8531366328,
+   "n_goals": 29
+  },
+  {
+   "world": 5,
+   "minutes": 42.393850333583984,
+   "carry": 16.0,
+   "max_gap": 47894.7797049492,
+   "n_goals": 28
+  },
+  {
+   "world": 6,
+   "minutes": 63.59077550037595,
+   "carry": 32.0,
+   "max_gap": 71842.1695574238,
+   "n_goals": 27
+  }
+ ],
+ "carry2.0_costscale10.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 41.87046946526814,
+   "carry": 2.0,
+   "max_gap": 47303.48612834489,
+   "n_goals": 29
+  },
+  {
+   "world": 3,
+   "minutes": 209.35234732634055,
+   "carry": 4.0,
+   "max_gap": 4837.305605316484,
+   "n_goals": 24
+  },
+  {
+   "world": 4,
+   "minutes": 1046.761736631703,
+   "carry": 8.0,
+   "max_gap": 24186.528026582382,
+   "n_goals": 24
+  },
+  {
+   "world": 5,
+   "minutes": null,
+   "carry": 16.0,
+   "max_gap": 27707.406877257148,
+   "n_goals": 8
+  },
+  {
+   "world": 6,
+   "minutes": null,
+   "carry": 32.0,
+   "max_gap": 138537.03438628576,
+   "n_goals": 2
+  }
+ ],
+ "carry3.0_costscale1.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 2.791364631017875,
+   "carry": 3.0,
+   "max_gap": 4650.339020804788,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 0.9304548770059585,
+   "carry": 9.0,
+   "max_gap": 1550.113006934931,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 0.3101516256686528,
+   "carry": 27.0,
+   "max_gap": 516.7043356449767,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 0.1033838752228842,
+   "carry": 81.0,
+   "max_gap": 172.23477854832566,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 0.034461291740961415,
+   "carry": 243.0,
+   "max_gap": 57.41159284944192,
+   "n_goals": 30
+  }
+ ],
+ "carry3.0_costscale3.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 8.37409389305363,
+   "carry": 3.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 8.37409389305363,
+   "carry": 9.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 8.37409389305363,
+   "carry": 27.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 8.37409389305363,
+   "carry": 81.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 8.37409389305363,
+   "carry": 243.0,
+   "max_gap": 13951.017062414383,
+   "n_goals": 30
+  }
+ ],
+ "carry3.0_costscale10.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 27.913646310178716,
+   "carry": 3.0,
+   "max_gap": 46503.3902080479,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 93.04548770059584,
+   "carry": 9.0,
+   "max_gap": 105118.85806298863,
+   "n_goals": 26
+  },
+  {
+   "world": 4,
+   "minutes": 310.1516256686529,
+   "carry": 27.0,
+   "max_gap": 7166.378674542924,
+   "n_goals": 24
+  },
+  {
+   "world": 5,
+   "minutes": 1033.8387522288428,
+   "carry": 81.0,
+   "max_gap": 23887.9289151431,
+   "n_goals": 24
+  },
+  {
+   "world": 6,
+   "minutes": null,
+   "carry": 243.0,
+   "max_gap": 18299.15041366723,
+   "n_goals": 12
+  }
+ ],
+ "carry5.0_costscale1.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 1.6748187786107251,
+   "carry": 5.0,
+   "max_gap": 2790.203412482875,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 0.3349637557221449,
+   "carry": 25.0,
+   "max_gap": 558.0406824965746,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 0.066992751144429,
+   "carry": 125.0,
+   "max_gap": 111.60813649931481,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 0.0133985502288858,
+   "carry": 625.0,
+   "max_gap": 22.321627299862996,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 0.002679710045777161,
+   "carry": 3125.0,
+   "max_gap": 4.464325459972601,
+   "n_goals": 30
+  }
+ ],
+ "carry5.0_costscale3.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 5.024456335832179,
+   "carry": 5.0,
+   "max_gap": 8370.610237448629,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 3.0146738014993053,
+   "carry": 25.0,
+   "max_gap": 5022.366142469167,
+   "n_goals": 30
+  },
+  {
+   "world": 4,
+   "minutes": 1.8088042808995823,
+   "carry": 125.0,
+   "max_gap": 3013.4196854815054,
+   "n_goals": 30
+  },
+  {
+   "world": 5,
+   "minutes": 1.08528256853975,
+   "carry": 625.0,
+   "max_gap": 1808.0518112889035,
+   "n_goals": 30
+  },
+  {
+   "world": 6,
+   "minutes": 0.6511695411238496,
+   "carry": 3125.0,
+   "max_gap": 1084.8310867733412,
+   "n_goals": 30
+  }
+ ],
+ "carry5.0_costscale10.0": [
+  {
+   "world": 1,
+   "minutes": 8.37409389305363,
+   "carry": 1.0,
+   "max_gap": 13951.01706241438,
+   "n_goals": 30
+  },
+  {
+   "world": 2,
+   "minutes": 16.74818778610726,
+   "carry": 5.0,
+   "max_gap": 27902.034124828766,
+   "n_goals": 30
+  },
+  {
+   "world": 3,
+   "minutes": 33.49637557221452,
+   "carry": 25.0,
+   "max_gap": 37842.788902675886,
+   "n_goals": 29
+  },
+  {
+   "world": 4,
+   "minutes": 66.99275114442904,
+   "carry": 125.0,
+   "max_gap": 75685.57780535177,
+   "n_goals": 27
+  },
+  {
+   "world": 5,
+   "minutes": 133.98550228885807,
+   "carry": 625.0,
+   "max_gap": 3095.87558740255,
+   "n_goals": 24
+  },
+  {
+   "world": 6,
+   "minutes": 267.97100457771614,
+   "carry": 3125.0,
+   "max_gap": 6191.7511748051,
+   "n_goals": 24
+  }
+ ]
+}
