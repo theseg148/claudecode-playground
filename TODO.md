@@ -27,8 +27,8 @@
 ## Phase 3: Analysis -> analysis/
 - [x] growth curves compare
 - [x] prestige designs
-- [ ] beloved patterns / anti-patterns
-- [ ] sequential worlds freshness
+- [x] beloved patterns / anti-patterns
+- [x] sequential worlds freshness
 ## Phase 4: Simulation -> sim/
 - [ ] sim.py
 - [ ] sweeps
